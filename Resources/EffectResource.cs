@@ -4,7 +4,7 @@ namespace Colin.Resources
 {
     public class EffectResource : IGameResource
     {
-        public string Name { get; }
+        public string Name => "着色器";
 
         public float Progress { get; set; }
 
@@ -12,6 +12,8 @@ namespace Colin.Resources
 
         public void LoadResource( )
         {
+            if( !Directory.Exists( string.Concat( EngineInfo.Engine.Content.RootDirectory, "/Effects" ) ) )
+                return;
             Effect _effect;
             string _fileName;
             string[ ] TextureFileNames = Directory.GetFiles( string.Concat( EngineInfo.Engine.Content.RootDirectory, "/Effects" ), "*.*", SearchOption.AllDirectories );

@@ -318,6 +318,8 @@ namespace Colin.Common.UserInterfaces
                 InteractiveX = Left;
                 InteractiveY = Top;
             }
+        //    InteractiveX -= container.DesignInfo.Origin.X / 2;
+         //   InteractiveY -= container.DesignInfo.Origin.Y / 2;
         }
     }
 }

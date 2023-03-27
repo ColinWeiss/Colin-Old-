@@ -9,7 +9,7 @@ namespace Colin.Common.Tiles
     /// <summary>
     /// 瓦片处理核心.
     /// </summary>
-    public sealed class Tiled : ISceneMode, IUpdateableSceneMode, IDrawableSceneMode
+    public sealed class Tiled : ISceneMode, IUpdateableSceneMode, IRenderableSceneMode
     {
         public bool Enable { get; set; }
 

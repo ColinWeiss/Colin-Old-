@@ -1,3 +1,6 @@
+E:\Codes\Colin\bin\Debug\net6.0\Colin.deps.json
+E:\Codes\Colin\bin\Debug\net6.0\Colin.dll
+E:\Codes\Colin\bin\Debug\net6.0\Colin.pdb
 E:\Codes\Colin\obj\Debug\net6.0\Colin.csproj.AssemblyReference.cache
 E:\Codes\Colin\obj\Debug\net6.0\Colin.Resources.PreloadResources.ProgramResources.resources
 E:\Codes\Colin\obj\Debug\net6.0\Colin.csproj.GenerateResource.cache
@@ -5,10 +8,8 @@ E:\Codes\Colin\obj\Debug\net6.0\Colin.GeneratedMSBuildEditorConfig.editorconfig
 E:\Codes\Colin\obj\Debug\net6.0\Colin.AssemblyInfoInputs.cache
 E:\Codes\Colin\obj\Debug\net6.0\Colin.AssemblyInfo.cs
 E:\Codes\Colin\obj\Debug\net6.0\Colin.csproj.CoreCompileInputs.cache
-E:\Codes\Colin\bin\Debug\net6.0\Colin.deps.json
-E:\Codes\Colin\bin\Debug\net6.0\Colin.dll
-E:\Codes\Colin\bin\Debug\net6.0\Colin.pdb
 E:\Codes\Colin\obj\Debug\net6.0\Colin.dll
 E:\Codes\Colin\obj\Debug\net6.0\refint\Colin.dll
 E:\Codes\Colin\obj\Debug\net6.0\Colin.pdb
 E:\Codes\Colin\obj\Debug\net6.0\ref\Colin.dll
+E:\Codes\Colin\bin\Debug\net6.0\Assets\Effects\LeftRightLoopMapping.xnb

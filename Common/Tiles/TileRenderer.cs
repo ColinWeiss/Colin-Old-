@@ -54,7 +54,7 @@ namespace Colin.Common.Tiles
             NeedRefresh = false;
             EngineInfo.SpriteBatch.End( );
             EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( Tile ); // 从这开始,
-            (Tiled as IDrawableSceneMode).BatchBegin( );
+            (Tiled as IRenderableSceneMode).BatchBegin( );
             TileChunk _chunk;
             for( int count = 0; count < tileChunks.Count; count++ )
             {
@@ -66,7 +66,7 @@ namespace Colin.Common.Tiles
             EngineInfo.SpriteBatch.Begin( SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp, Tiled.DepthStencilState, Tiled.RasterizerState, Tiled.Effect, Tiled.TransformMatrix );
             EngineInfo.SpriteBatch.Draw( Tile, _cameraPosition - EngineInfo.ViewCenter, Color.White );
             EngineInfo.SpriteBatch.End( );  // 一直到这, 把 Tile 画到 Tiled 的场景渲染上.
-            (Tiled as IDrawableSceneMode).BatchBegin( ); //结束一下, 用默认设置继续画.
+            (Tiled as IRenderableSceneMode).BatchBegin( ); //结束一下, 用默认设置继续画.
 
         }
 

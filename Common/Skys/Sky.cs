@@ -1,6 +1,6 @@
 ﻿namespace Colin.Common.Skys
 {
-    internal class Sky : ISceneMode, IUpdateableSceneMode, IDrawableSceneMode
+    internal class Sky : ISceneMode, IUpdateableSceneMode, IRenderableSceneMode
     {
         public Scene Scene { get; set; }
 

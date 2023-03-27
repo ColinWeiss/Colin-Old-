@@ -13,6 +13,8 @@ namespace Colin.Resources
 
         public void LoadResource( )
         {
+            if( !Directory.Exists( string.Concat( EngineInfo.Engine.Content.RootDirectory, "/Sounds" ) ) )
+                return;
             SoundEffect _sound;
             string _fileName;
             string[ ] TextureFileNames = Directory.GetFiles( string.Concat( EngineInfo.Engine.Content.RootDirectory, "/Sounds" ), "*.*", SearchOption.AllDirectories );
@@ -31,7 +33,7 @@ namespace Colin.Resources
         /// </summary>
         /// <param name="path">路径.</param>
         /// <returns>声音贴图.</returns>
-        public static SoundEffect GetAsset( string path )
+        public static SoundEffect Get( string path )
         {
             SoundEffect _sound;
             if( Sounds.TryGetValue( string.Concat( "Sounds/", path ), out _sound ) )

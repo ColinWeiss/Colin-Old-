@@ -9,7 +9,7 @@ namespace Colin.Common
     /// <para>[!] 不需要在类内对 <see cref="RenderTarget"/> 实例化, 
     /// <br>这一操作在 <see cref="SceneModeCollection"/> 加入该模块时自动实现.</br></para>
     /// </summary>
-    public interface IDrawableSceneMode
+    public interface IRenderableSceneMode
     {
         /// <summary>
         /// 场景渲染目标.

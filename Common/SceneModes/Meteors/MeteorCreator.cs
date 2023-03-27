@@ -4,7 +4,7 @@ using Colin.Resources;
 
 namespace Colin.Common.SceneModes.Meteors
 {
-    public class MeteorCreator : ISceneMode, IUpdateableSceneMode, IDrawableSceneMode
+    public class MeteorCreator : ISceneMode, IUpdateableSceneMode, IRenderableSceneMode
     {
         public Meteor[ ] Pool { get; set; } = new Meteor[256];
 

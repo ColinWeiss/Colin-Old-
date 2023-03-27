@@ -3,7 +3,7 @@
     /// <summary>
     /// 用户交互界面核心.
     /// </summary>
-    public sealed class UserInterface : ISceneMode, IUpdateableSceneMode, IDrawableSceneMode
+    public sealed class UserInterface : ISceneMode, IUpdateableSceneMode, IRenderableSceneMode
     {
         /// <summary>
         /// 当前焦点容器.

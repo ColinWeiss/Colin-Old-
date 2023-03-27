@@ -13,7 +13,7 @@ namespace Colin.Common
 
         private List<IUpdateableSceneMode> _updates = new List<IUpdateableSceneMode>( );
 
-        private List<IDrawableSceneMode> _draws = new List<IDrawableSceneMode>( );
+        private List<IRenderableSceneMode> _draws = new List<IRenderableSceneMode>( );
 
         /// <summary>
         /// 指示场景在切换时是否执行初始化的值.
@@ -77,7 +77,7 @@ namespace Colin.Common
 
         public override sealed void Draw( GameTime gameTime )
         {
-            IDrawableSceneMode renderMode;
+            IRenderableSceneMode renderMode;
             RenderTarget2D frameRenderLayer;
             for( int count = 0; count < _draws.Count; count++ )
             {
@@ -122,7 +122,7 @@ namespace Colin.Common
                 upMode.Enable = true;
                 _updates.Add( upMode );
             }
-            if( sceneMode is IDrawableSceneMode dwMode )
+            if( sceneMode is IRenderableSceneMode dwMode )
             {
                 dwMode.Visiable = true;
                 _draws.Add( dwMode );
@@ -135,7 +135,7 @@ namespace Colin.Common
         {
             if( sceneMode is IUpdateableSceneMode upMode )
                 _updates.Remove( upMode );
-            if( sceneMode is IDrawableSceneMode dwMode )
+            if( sceneMode is IRenderableSceneMode dwMode )
             {
                 _draws.Remove( dwMode );
                 Game.Window.ClientSizeChanged -= dwMode.OnClientSizeChanged; ;

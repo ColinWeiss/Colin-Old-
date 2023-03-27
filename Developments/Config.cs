@@ -34,12 +34,12 @@ namespace Colin.Developments
         /// <summary>
         /// 指示是否启用音效.
         /// </summary>
-        public bool SoundEffect { get; set; }
+        public bool SoundEffect { get; set; } = true;
 
         /// <summary>
         /// 指示音效音量百分比.
         /// </summary>
-        public float SoundEffectVolume { get; set; }
+        public float SoundEffectVolume { get; set; } = 1f;
 
         /// <summary>
         /// 指示图形质量.

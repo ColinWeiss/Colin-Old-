@@ -1,6 +1,7 @@
 ﻿using Colin.Common;
 using Colin.Common.Inputs;
 using Colin.Common.IO;
+using Colin.Resources;
 using System.Text.Json;
 
 namespace Colin.Developments
@@ -60,6 +61,7 @@ namespace Colin.Developments
         protected override sealed void Initialize( )
         {
             EngineInfo.SpriteBatch = new SpriteBatch( EngineInfo.Graphics.GraphicsDevice );
+            Preloader.LoadResources( );
             EngineInfo.Config = new Config( );
             EngineInfo.Config.Load( );
             Components.Add( FileDropProcessor.Instance );

@@ -9,7 +9,6 @@ namespace Colin.Common.Backgrounds.Styles
     /// </summary>
     public class BackgroundStyle_Forest : BackgroundStyle
     {
-
         public override void SetDefault( )
         {
             FixLayerOverallOffset = -Vector2.UnitY * EngineInfo.ViewHeight / 3f;

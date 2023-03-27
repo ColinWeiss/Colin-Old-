@@ -10,7 +10,7 @@ namespace Colin.Common.Particles
     /// 粒子系统.
     /// 在不同画质下有不同的表现.
     /// </summary>
-    public class Particle : ISceneMode, IUpdateableSceneMode, IDrawableSceneMode
+    public class Particle : ISceneMode, IUpdateableSceneMode, IRenderableSceneMode
     {
         public RenderTarget2D RenderTarget { get; set; }
         public bool Visiable { get; set; }

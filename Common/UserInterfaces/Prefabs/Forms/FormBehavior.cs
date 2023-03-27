@@ -74,7 +74,7 @@ namespace Colin.Common.UserInterfaces.Prefabs.Forms
         /// </summary>
         public virtual void OnClose( )
         {
-            Sound.Play( SoundResource.GetAsset( "UI/FormOpen" ) );
+            Sound.Play( SoundResource.Get( "UI/FormOpen" ) );
 
             //   Sound.Play( SoundResource.GetAsset( "UI/Click_0" ) );
             GameForm.DesignInfo.SetTargetColor( Color.Transparent );

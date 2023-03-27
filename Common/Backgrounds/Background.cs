@@ -8,7 +8,7 @@ namespace Colin.Common.Backgrounds
     /// <br>仅支持将其加入 <see cref="Gameworld"/> 场景中.</br>
     /// <br>加入其他场景可能会发生预料不到的后果.</br>
     /// </summary>
-    public sealed class Background : ISceneMode, IUpdateableSceneMode, IDrawableSceneMode
+    public sealed class Background : ISceneMode, IUpdateableSceneMode, IRenderableSceneMode
     {
         public Scene Scene { get; set; }
 
@@ -108,7 +108,6 @@ namespace Colin.Common.Backgrounds
         public void RenderLeftRightLoopBackground( BackgroundLayer layer )
         {
             Vector3 translateCenter = new Vector3( Camera.TranslateCenter, 0f );
-
             Vector3 translateBody = new Vector3( -(Camera.Position - CurrentStyle.LoopLayerDrawPosition) * layer.Parallax, 0f );
             Vector2 drawCount = new Vector2( (float)EngineInfo.ViewWidth / layer.Sprite.Width, (float)EngineInfo.ViewHeight / layer.Sprite.Height );
             Vector2 offset = Vector2.One / layer.Sprite.SizeF;
@@ -123,6 +122,5 @@ namespace Colin.Common.Backgrounds
             EngineInfo.SpriteBatch.Begin( SpriteSortMode, BlendState, SamplerState, null, null, LeftRightLoopEffect, null );
             EngineInfo.SpriteBatch.Draw( _screenMap, new Rectangle( 0, 0, EngineInfo.ViewWidth, EngineInfo.ViewHeight ), Color.White );
         }
-
     }
 }

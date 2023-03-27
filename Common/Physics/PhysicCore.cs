@@ -11,7 +11,7 @@ namespace Colin.Common.Physics
 
         public void SetDefault( )
         {
-
+            World = new World( Vector2.Zero );
         }
 
         public void DoUpdate( )

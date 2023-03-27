@@ -304,7 +304,7 @@ namespace Colin.Common.UserInterfaces
                 else
                     EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( UserInterface.RenderTarget );
 
-                (UserInterface as IDrawableSceneMode).BatchBegin( );
+                (UserInterface as IRenderableSceneMode).BatchBegin( );
                 if( Parent != null && Parent.IsCanvas )
                     EngineInfo.SpriteBatch.Draw( Canvas, LayoutInfo.LocationF + DesignInfo.OriginF, new Rectangle( 0, 0, LayoutInfo.Width, LayoutInfo.Height ), DesignInfo.CurrentColor, 0f, DesignInfo.OriginF, DesignInfo.CurrentScale, SpriteEffects.None, 1f );
                 if( CanvasParent != null )

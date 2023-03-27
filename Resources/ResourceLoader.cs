@@ -32,10 +32,10 @@ namespace EternalResolve.Contents.Scenes.Loaders.GameAsset
                     {
                         asset = (IGameResource)Activator.CreateInstance( item );
                         asset.LoadResource( );
-                        Console.WriteLine( asset.Name + "is loading." );
+                        EngineConsole.WriteLine( ConsoleTextType.Remind, asset.Name + " 正在加载..." );
                     }
                 }
-                Console.WriteLine( "Load complete." );
+                EngineConsole.WriteLine( ConsoleTextType.Remind, "游戏资源加载完成." );
                 BasicEvent onResourceLoadComplete = new BasicEvent( );
                 onResourceLoadComplete.Name = "Event_GameResources_LoadComplete";
                 this.EventRaise( OnLoadComplete , onResourceLoadComplete );
