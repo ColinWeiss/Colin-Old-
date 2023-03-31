@@ -9,12 +9,12 @@ namespace Colin.Common.Physics
 
         public World World;
 
-        public void SetDefault( )
+        public void DoInitialize( )
         {
             World = new World( Vector2.Zero );
         }
 
-        public void DoUpdate( )
+        public void DoUpdate( GameTime time )
         {
 
         }

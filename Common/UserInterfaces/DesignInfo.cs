@@ -42,25 +42,25 @@ namespace Colin.Common.UserInterfaces
         /// 指示颜色转换当前时间.
         /// </summary>
         [DataMember]
-        public int ColorConversionTimer;
+        public float ColorConversionTimer;
 
         /// <summary>
         /// 指示颜色转换所需时间.
         /// </summary>
         [DataMember]
-        public int ColorConversionTime;
+        public float ColorConversionTime;
 
         /// <summary>
         /// 指示缩放调整当前时间.
         /// </summary>
         [DataMember]
-        public int ScaleConversionTimer;
+        public float ScaleConversionTimer;
 
         /// <summary>
         /// 指示缩放调整所需时间.
         /// </summary>
         [DataMember]
-        public int ScaleConversionTime;
+        public float ScaleConversionTime;
 
         public void SetColor( byte r, byte g, byte b, byte a = 255 )
         {

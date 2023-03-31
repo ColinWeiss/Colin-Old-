@@ -30,6 +30,13 @@ namespace Colin.Common.IO
                     FileDropBehaviors.Add( (IFileDropBehavior)Activator.CreateInstance( item ) );
                 }
             }
+            foreach( var item in Assembly.GetEntryAssembly( ).GetTypes( ) )
+            {
+                if( !item.IsAbstract && item.GetInterfaces( ).Contains( typeof( IFileDropBehavior ) ) )
+                {
+                    FileDropBehaviors.Add( (IFileDropBehavior)Activator.CreateInstance( item ) );
+                }
+            }
             Game.Window.FileDrop += ( s, e ) =>
             {
                 IFileDropBehavior fileDropBehavior;

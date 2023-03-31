@@ -13,7 +13,7 @@ namespace Colin.Developments
         /// 指示游戏配置文件的位置及其本身.
         /// <br>包含文件扩展名.</br>
         /// </summary>
-        public static string ConfigPath => string.Concat( GameDirPhonebook.ProgramDir, "\\Configs.json" );
+        public static string ConfigPath => string.Concat( DirPhonebook.ProgramDir, "\\Configs.json" );
 
         /// <summary>
         /// 指示是否全屏.

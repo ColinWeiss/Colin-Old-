@@ -66,7 +66,7 @@ namespace Colin.Common
             for( int count = 0; count < _updates.Count; count++ )
             {
                 if( _updates[count].Enable )
-                    _updates[count].DoUpdate( );
+                    _updates[count].DoUpdate( gameTime );
             }
             SceneUpdate( );
             base.Update( gameTime );

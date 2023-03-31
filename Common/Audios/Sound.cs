@@ -11,11 +11,11 @@ namespace Colin.Common.Audios
         public bool Enable { get; set; } = true;
         public Scene Scene { get; set; }
 
-        public void SetDefault( )
+        public void DoInitialize( )
         {
 
         }
-        public void DoUpdate( )
+        public void DoUpdate( GameTime time )
         {
 
         }

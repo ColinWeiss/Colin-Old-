@@ -37,7 +37,7 @@ namespace Colin.Common
             if( item != null )
             {
                 item.Scene = Scene;
-                item.SetDefault( );
+                item.DoInitialize( );
                 OnComponentAdded( new SceneModeCollectionEventArgs( item ) );
             }
         }

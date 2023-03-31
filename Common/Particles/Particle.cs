@@ -24,12 +24,12 @@ namespace Colin.Common.Particles
         public Scene Scene { get; set; }
         public bool Enable { get; set; }
 
-        public void SetDefault( )
+        public void DoInitialize( )
         {
 
         }
 
-        public void DoUpdate( )
+        public void DoUpdate( GameTime time )
         {
 
         }

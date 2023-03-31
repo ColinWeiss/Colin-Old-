@@ -17,11 +17,11 @@
         public Effect Effect { get; }
         public Matrix? TransformMatrix { get; }
 
-        public void SetDefault( )
+        public void DoInitialize( )
         {
 
         }
-        public void DoUpdate( )
+        public void DoUpdate( GameTime time )
         {
 
         }

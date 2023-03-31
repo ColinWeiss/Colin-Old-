@@ -13,7 +13,7 @@
         /// <summary>
         /// 进行逻辑计算.
         /// </summary>
-        void DoUpdate( );
+        void DoUpdate( GameTime time );
 
     }
 }

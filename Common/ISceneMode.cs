@@ -17,7 +17,7 @@
         /// <summary>
         /// 在加入 <see cref="SceneModeCollection"/> 时执行初始化内容.
         /// </summary>
-        public void SetDefault( );
+        public void DoInitialize( );
 
     }
 }

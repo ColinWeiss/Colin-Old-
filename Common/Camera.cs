@@ -36,7 +36,7 @@ namespace Colin.Common
 
         public Matrix Transform => View * Projection;
 
-        public void SetDefault( )
+        public void DoInitialize( )
         {
             _graphics = EngineInfo.Engine.GraphicsDevice;
             Projection = Matrix.CreateOrthographicOffCenter( 0f, _graphics.Viewport.Width, _graphics.Viewport.Height, 0f, 0f, 1f );
@@ -70,7 +70,7 @@ namespace Colin.Common
             SetView( );
         }
 
-        public void DoUpdate( )
+        public void DoUpdate( GameTime time )
         {
             if( Trace )
             {

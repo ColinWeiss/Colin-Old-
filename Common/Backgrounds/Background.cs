@@ -63,13 +63,13 @@ namespace Colin.Common.Backgrounds
                 CurrentStyle = style;
         }
 
-        public void SetDefault( )
+        public void DoInitialize( )
         {
             _screenMap = PreloadResource.Pixel.Source;
             LeftRightLoopEffect = EffectResource.GetAsset( "LeftRightLoopMapping" );
         }
 
-        public void DoUpdate( )
+        public void DoUpdate( GameTime time )
         {
             CurrentStyle?.UpdateStyle( );
         }
@@ -84,7 +84,7 @@ namespace Colin.Common.Backgrounds
                     layer = CurrentStyle.Layers[count];
                     if( layer.IsFix )
                         RenderFixBackground( layer );
-                    else if( layer.IsLoop && layer.LoopStyle == BackgroundLoopStyle.LeftRightConnect )
+                    if( layer.IsLoop && layer.LoopStyle == BackgroundLoopStyle.LeftRightConnect )
                         RenderLeftRightLoopBackground( layer );
                 }
             }
@@ -107,20 +107,23 @@ namespace Colin.Common.Backgrounds
 
         public void RenderLeftRightLoopBackground( BackgroundLayer layer )
         {
-            Vector3 translateCenter = new Vector3( Camera.TranslateCenter, 0f );
             Vector3 translateBody = new Vector3( -(Camera.Position - CurrentStyle.LoopLayerDrawPosition) * layer.Parallax, 0f );
+            Vector3 translateCenter = new Vector3( Camera.TranslateCenter, 0f );
             Vector2 drawCount = new Vector2( (float)EngineInfo.ViewWidth / layer.Sprite.Width, (float)EngineInfo.ViewHeight / layer.Sprite.Height );
             Vector2 offset = Vector2.One / layer.Sprite.SizeF;
             layer.Transform = Matrix.CreateTranslation( translateBody ) * Matrix.CreateTranslation( translateCenter );
-            LeftRightLoopEffect.Parameters["MappingTexture"].SetValue( layer.Sprite.Source );
-            LeftRightLoopEffect.Parameters["DrawCount"].SetValue( drawCount );
+
             offset *= new Vector2( -layer.Translation.X, -layer.Translation.Y );
             offset.X += CurrentStyle.LoopLayerOffset.X;
             offset.Y -= CurrentStyle.LoopLayerOffset.Y;
+            LeftRightLoopEffect.Parameters["MappingTexture"].SetValue( layer.Sprite.Source );
+            LeftRightLoopEffect.Parameters["DrawCount"].SetValue( drawCount );
             LeftRightLoopEffect.Parameters["Offset"].SetValue( offset );
             EngineInfo.SpriteBatch.End( );
-            EngineInfo.SpriteBatch.Begin( SpriteSortMode, BlendState, SamplerState, null, null, LeftRightLoopEffect, null );
+            EngineInfo.SpriteBatch.Begin( SpriteSortMode , BlendState, SamplerState , null , null , LeftRightLoopEffect , null );
             EngineInfo.SpriteBatch.Draw( _screenMap, new Rectangle( 0, 0, EngineInfo.ViewWidth, EngineInfo.ViewHeight ), Color.White );
+            EngineInfo.SpriteBatch.End( );
+            (this as IRenderableSceneMode).BatchBegin( );
         }
     }
 }

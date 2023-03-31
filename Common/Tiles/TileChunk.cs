@@ -30,7 +30,7 @@ namespace Colin.Common.Tiles
         /// <summary>
         /// 区块文件的路径.
         /// </summary>
-        public string Path => string.Concat( GameDirPhonebook.ArchiveChunkDir, "\\", X, "_", Y, ".chunk" );
+        public string Path => string.Concat( DirPhonebook.ArchiveChunkDir, "\\", X, "_", Y, ".chunk" );
 
         public void UpdateChunk( )
         {

@@ -1,6 +1,7 @@
 ﻿using Colin.Common;
 using Colin.Common.Inputs;
 using Colin.Common.IO;
+using Colin.Developments.Check;
 using Colin.Resources;
 using System.Text.Json;
 
@@ -19,10 +20,13 @@ namespace Colin.Developments
         /// </summary>
         public Scene CurrentScene { get; internal set; }
 
+        public ResourceLoader ResourceLoader { get; private set; }
+
         public virtual int TargetFrame => 120;
 
         public Engine( )
         {
+            ProgramCheck.DoCheck( );
             if( EngineInfo.Engine == null )
                 EngineInfo.Engine = this;
             if( EngineInfo.Graphics == null )
@@ -87,7 +91,9 @@ namespace Colin.Developments
                 return;
             if( !Started )
             {
-                Start( );
+                ResourceLoader = new ResourceLoader( );
+                ResourceLoader.OnLoadComplete += ( s, e ) => Start( );
+                SetScene( ResourceLoader );
                 Started = true;
             }
             EngineInfo.GetInformationFromDevice( gameTime );
@@ -101,9 +107,6 @@ namespace Colin.Developments
             if( !Visiable )
                 return;
             GraphicsDevice.Clear( Color.Black );
-            FrameCounter frameCounter = new FrameCounter( );
-            frameCounter.Update( (float)gameTime.ElapsedGameTime.TotalSeconds );
-            Window.Title = frameCounter.AverageFramesPerSecond.ToString( "F0" );
             DoRender( );
             base.Draw( gameTime );
         }

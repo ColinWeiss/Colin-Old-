@@ -15,10 +15,11 @@ float2 DrawCount;
 //映射图在底图上的偏移绘制量.
 float2 Offset;
 
+Texture2D SpriteTexture;
+
 //映射使用的纹理.
 Texture2D MappingTexture;
 
-Texture2D SpriteTexture;
 
 sampler2D SpriteTextureSampler = sampler_state
 {

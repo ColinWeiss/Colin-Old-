@@ -16,6 +16,8 @@ namespace Colin.Resources
 
         public void LoadResource( )
         {
+            if( !Directory.Exists( string.Concat( EngineInfo.Engine.Content.RootDirectory, "/Textures" ) ))
+                return;
             Texture2D _texture;
             string _fileName;
             string[ ] TextureFileNames = Directory.GetFiles( string.Concat( EngineInfo.Engine.Content.RootDirectory, "/Textures" ), "*.*", SearchOption.AllDirectories );

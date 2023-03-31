@@ -7,7 +7,7 @@ namespace Colin.Developments.Check
     {
         public void Check( )
         {
-            PropertyInfo[ ] properties = typeof( GameDirPhonebook ).GetProperties( );
+            PropertyInfo[ ] properties = typeof( DirPhonebook ).GetProperties( );
             foreach( PropertyInfo property in properties )
             {
                 CheckDir( (string)property.GetValue( null ) );

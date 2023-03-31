@@ -72,7 +72,7 @@ namespace Colin.Common.Tiles
             _camera = camera;
         }
 
-        public void SetDefault( )
+        public void DoInitialize( )
         {
         }
 
@@ -179,7 +179,7 @@ namespace Colin.Common.Tiles
             Destruction( coordinate.X, coordinate.Y, eventSender );
         }
 
-        public void DoUpdate( )
+        public void DoUpdate( GameTime time )
         {
             if( !Enable )
                 return;

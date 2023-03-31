@@ -7,6 +7,8 @@ using Colin.Common.UserInterfaces.Prefabs;
 using Microsoft.Xna.Framework.Input;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using System;
+using Colin.Common.UserInterfaces.Prefabs.Forms;
 
 namespace Colin.Common.UserInterfaces
 {
@@ -15,7 +17,7 @@ namespace Colin.Common.UserInterfaces
     /// </summary>
     [Serializable]
     [DataContract( IsReference = true, Name = "Container" )]
-    public class Container
+    public class Container : IBehavior
     {
         [DataMember]
         public bool Enable { get; set; } = true;
@@ -223,8 +225,9 @@ namespace Colin.Common.UserInterfaces
         private MouseState MouseState => Mouse.GetState( );
 
         private bool Started = false;
-        public void DoUpdate( )
+        public void DoUpdate( GameTime time )
         {
+            float dt = (float)time.ElapsedGameTime.TotalSeconds;
             if( !Enable )
                 return;
             if( !Started )
@@ -244,21 +247,22 @@ namespace Colin.Common.UserInterfaces
             EventResponder.UpdateIndependentEvent( );
 
             SelfUpdate( );
+
             if( DesignInfo.ScaleConversionTimer < DesignInfo.ScaleConversionTime )
-                DesignInfo.ScaleConversionTimer++;
+                DesignInfo.ScaleConversionTimer += 120f * dt;
             DesignInfo.CurrentScale.GetCloserVector2( DesignInfo.TargetScale, DesignInfo.ScaleConversionTimer, DesignInfo.ScaleConversionTime );
 
             if( DesignInfo.ColorConversionTimer < DesignInfo.ColorConversionTime )
-                DesignInfo.ColorConversionTimer++;
+                DesignInfo.ColorConversionTimer += 120f * dt;
             DesignInfo.CurrentColor.GetCloserColor( DesignInfo.TargetColor, DesignInfo.ColorConversionTimer, DesignInfo.ColorConversionTime );
-            SubUpdate( );
+            SubUpdate( time );
         }
         public virtual void UpdateStart( ) { }
         public virtual void LayoutInfoUpdate( ref LayoutInfo info ) { }
         public virtual void DesignInfoUpdate( ref DesignInfo info ) { }
         public virtual void InteractiveInfoUpdate( ref InteractiveInfo info ) { }
         public virtual void SelfUpdate( ) { }
-        public virtual void SubUpdate( )
+        public virtual void SubUpdate( GameTime time )
         {
             Container _sub;
             for( int count = Sub.Count - 1; count >= 0; count-- )
@@ -272,7 +276,7 @@ namespace Colin.Common.UserInterfaces
                     _sub.CanvasParent = this;
                 _sub.Page = Page;
                 _sub.Parent = this;
-                _sub.DoUpdate( );
+                _sub.DoUpdate( time );
             }
         }
 

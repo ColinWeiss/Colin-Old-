@@ -10,6 +10,8 @@ namespace Colin.Developments
     {
         public static Random Random => new Random( );
 
+        public static string[ ] StartupParameter;
+
         /// <summary>
         ///用于初始化和控制图形设备的显示.
         /// </summary>

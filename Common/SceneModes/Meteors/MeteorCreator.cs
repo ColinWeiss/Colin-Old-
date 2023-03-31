@@ -39,7 +39,7 @@ namespace Colin.Common.SceneModes.Meteors
 
         public Sprite MeteorSprite;
 
-        public void SetDefault( )
+        public void DoInitialize( )
         {
             MeteorSprite = new Sprite( TextureResource.Get( "Extras/Meteor_0" ) );
             Span<Meteor> pool = Pool;
@@ -47,7 +47,7 @@ namespace Colin.Common.SceneModes.Meteors
             ActiveList = new List<Meteor>( );
         }
 
-        public void DoUpdate( )
+        public void DoUpdate( GameTime time )
         {
             if( (int)EngineInfo.Config.PictureQuality <= 0 )
                 return;

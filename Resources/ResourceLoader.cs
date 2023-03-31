@@ -1,12 +1,11 @@
 ﻿using Colin.Common;
 using Colin.Common.Events;
 using Colin.Extensions;
-using Colin.Resources;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace EternalResolve.Contents.Scenes.Loaders.GameAsset
+namespace Colin.Resources
 {
     /// <summary>
     /// 游戏资产加载器.
@@ -38,7 +37,7 @@ namespace EternalResolve.Contents.Scenes.Loaders.GameAsset
                 EngineConsole.WriteLine( ConsoleTextType.Remind, "游戏资源加载完成." );
                 BasicEvent onResourceLoadComplete = new BasicEvent( );
                 onResourceLoadComplete.Name = "Event_GameResources_LoadComplete";
-                this.EventRaise( OnLoadComplete , onResourceLoadComplete );
+                this.EventRaise( OnLoadComplete, onResourceLoadComplete );
             } );
         }
     }

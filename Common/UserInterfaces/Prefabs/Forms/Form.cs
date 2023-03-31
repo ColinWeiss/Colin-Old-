@@ -133,7 +133,6 @@ namespace Colin.Common.UserInterfaces.Prefabs.Forms
             CloseButton.Renderer = new PictureRenderer( TextureResource.Get( "UI/Forms/Default/Close" ) );
             CloseButton.LayoutInfo.SetSize( 40, 24 );
             CloseButton.LayoutInfo.SetLocation( TitleBlock.LayoutInfo.Width - CloseButton.LayoutInfo.Width, 0 );
-            CloseButton.EventResponder.MouseHoverOn += ( s, e ) => { Console.WriteLine( "?" ); };
             CloseButton.EventResponder.MouseLeftDown += ( s, e ) =>
             {
                 (CloseButton.Renderer as PictureRenderer).Picture = new Sprite( TextureResource.Get( "UI/Forms/Default/Close_Using" ) );

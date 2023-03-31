@@ -32,11 +32,11 @@
         /// </summary>
         public ContainerPage Page { get; private set; } = new ContainerPage( );
 
-        public void SetDefault( ) { }
+        public void DoInitialize( ) { }
 
-        public void DoUpdate( )
+        public void DoUpdate( GameTime time )
         {
-            Page?.DoUpdate( );
+            Page?.DoUpdate( time );
         }
         public void DoRender( ) => Page?.DoRender( );
 
