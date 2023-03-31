@@ -145,10 +145,10 @@ namespace Colin.Common.UserInterfaces
             DoSubInitialize( );
             if( IsCanvas )
             {
-                Canvas = RenderTargetExtension.CreateDefault( LayoutInfo.Width, LayoutInfo.Height );
+                Canvas = RenderTargetExt.CreateDefault( LayoutInfo.Width, LayoutInfo.Height );
                 LayoutInfo.OnSizeChanged += ( ) =>
                 {
-                    Canvas = RenderTargetExtension.CreateDefault( LayoutInfo.Width, LayoutInfo.Height );
+                    Canvas = RenderTargetExt.CreateDefault( LayoutInfo.Width, LayoutInfo.Height );
                 };
             }
             InitializeComplete = true;

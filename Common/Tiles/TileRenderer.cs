@@ -34,13 +34,13 @@ namespace Colin.Common.Tiles
         public void Init( )
         {
             NeedRefresh = true;
-            Tile = RenderTargetExtension.CreateDefault( EngineInfo.ViewWidth, EngineInfo.ViewHeight );
-            Swap = RenderTargetExtension.CreateDefault( EngineInfo.ViewWidth, EngineInfo.ViewHeight );
+            Tile = RenderTargetExt.CreateDefault( EngineInfo.ViewWidth, EngineInfo.ViewHeight );
+            Swap = RenderTargetExt.CreateDefault( EngineInfo.ViewWidth, EngineInfo.ViewHeight );
             EngineInfo.Engine.Window.ClientSizeChanged += ( s, e ) =>
             {
                 NeedRefresh = true;
-                Tile = RenderTargetExtension.CreateDefault( EngineInfo.ViewWidth, EngineInfo.ViewHeight );
-                Swap = RenderTargetExtension.CreateDefault( EngineInfo.ViewWidth, EngineInfo.ViewHeight );
+                Tile = RenderTargetExt.CreateDefault( EngineInfo.ViewWidth, EngineInfo.ViewHeight );
+                Swap = RenderTargetExt.CreateDefault( EngineInfo.ViewWidth, EngineInfo.ViewHeight );
             };
         }
 

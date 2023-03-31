@@ -1,6 +1,6 @@
 ﻿namespace Colin.Extensions
 {
-    public static class Texture2DExtension
+    public static class TextureExt
     {
         public static Vector2 GetSize( this Texture2D texture )
         {

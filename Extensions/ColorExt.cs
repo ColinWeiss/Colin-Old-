@@ -1,6 +1,6 @@
 ﻿namespace Colin.Extensions
 {
-    public static class ColorExtension
+    public static class ColorExt
     {
         /// <summary>
         /// 对颜色进行线性插值.

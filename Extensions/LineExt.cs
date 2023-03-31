@@ -2,7 +2,7 @@
 
 namespace Colin.Extensions
 {
-    public static class LineExpansion
+    public static class LineExt
     {
         /// <summary>
         /// 线线相交.

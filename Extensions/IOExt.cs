@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Colin.Extensions
 {
-    public static class IOExtension
+    public static class IOExt
     {
         public static byte[ ] ReadBytes( this FileStream stream, int index, int length = 0 )
         {

@@ -3,7 +3,7 @@
     /// <summary>
     /// 与 <see cref="SpriteBatch"/> 相关的扩展方法.
     /// </summary>
-    public static class SpriteBatchExtension
+    public static class SpriteBatchExt
     {
         /// <summary>
         /// 九宫绘制.

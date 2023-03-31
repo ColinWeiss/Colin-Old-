@@ -89,6 +89,7 @@ namespace Colin.Developments
         {
             if( !Enable )
                 return;
+            Time.Update( (float)gameTime.ElapsedGameTime.TotalSeconds );
             if( !Started )
             {
                 ResourceLoader = new ResourceLoader( );

@@ -2,7 +2,7 @@
 
 namespace Colin.Extensions
 {
-    public static class RectangleExtension
+    public static class RectangleExt
     {
         /// <summary>
         /// 获取矩形左边缘的中心位置.

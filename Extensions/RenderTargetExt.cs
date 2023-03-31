@@ -2,7 +2,7 @@
 
 namespace Colin.Extensions
 {
-    public static class RenderTargetExtension
+    public static class RenderTargetExt
     {
         public static RenderTarget2D CreateDefault( )
         {

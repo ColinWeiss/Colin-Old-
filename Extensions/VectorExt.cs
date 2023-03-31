@@ -3,7 +3,7 @@
     /// <summary>
     /// <seealso cref="Vector2"/> 的扩展类.
     /// </summary>
-    public static class Vector2Extension
+    public static class VectorExt
     {
         /// <summary>
         /// 获取指定 <seealso cref="Vector2"/> 的单位向量.

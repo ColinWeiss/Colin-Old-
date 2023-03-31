@@ -2,7 +2,7 @@
 
 namespace Colin.Extensions
 {
-    public static class FontExtension
+    public static class FontExt
     {
         public static Vector2 Size( this Bounds bounds )
         {

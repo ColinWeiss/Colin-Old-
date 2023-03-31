@@ -1,6 +1,6 @@
 ﻿namespace Colin.Extensions
 {
-    public static class EventExtension
+    public static class EventExt
     {
         public static void EventRaise<TEventArgs>( this object sender, EventHandler<TEventArgs> handler, TEventArgs e )
         {

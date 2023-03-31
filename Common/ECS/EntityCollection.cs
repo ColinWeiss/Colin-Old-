@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Colin.Developments
+namespace Colin.Common.ECS
 {
-    public interface IName
+    public class EntityCollection
     {
-        public string Name { get; }
-        public string DisplayName { get; }
+
     }
 }

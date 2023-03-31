@@ -56,7 +56,7 @@ namespace Colin.Common
 
         public void InitRenderTarget( )
         {
-            RenderTarget = RenderTargetExtension.CreateDefault( );
+            RenderTarget = RenderTargetExt.CreateDefault( );
         }
 
         public void OnClientSizeChanged( object o, EventArgs e )

@@ -43,7 +43,7 @@ namespace Colin.Common
 
         internal void InitRenderTarget( object s, EventArgs e )
         {
-            SceneRenderTarget = RenderTargetExtension.CreateDefault( );
+            SceneRenderTarget = RenderTargetExt.CreateDefault( );
         }
 
         private void Modes_ComponentAdded( object sender, SceneModeCollectionEventArgs e ) => CategorizeMode( e.Mode );
