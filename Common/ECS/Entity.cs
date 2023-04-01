@@ -30,5 +30,17 @@ namespace Colin.Common.ECS
             Source = source;
         }
 
+        public EntityCore Core;
+
+        public Transform2D Transform;
+
+        public bool Enable = false;
+
+        public ComponentList Components = new ComponentList( );
+
+        public void DoUpdate( GameTime gameTime ) => Components.DoUpdate( gameTime );
+
+        public void DoRender( ) => Components.DoRender( );
+
     }
 }

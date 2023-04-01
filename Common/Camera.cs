@@ -2,7 +2,7 @@
 
 namespace Colin.Common
 {
-    public class Camera : ISceneMode, IUpdateableSceneMode
+    public class Camera : ISceneComponent
     {
         private static GraphicsDevice _graphics;
 

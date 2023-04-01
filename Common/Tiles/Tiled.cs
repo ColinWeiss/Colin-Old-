@@ -1,4 +1,5 @@
-﻿using Colin.Common.Physics.Dynamics;
+﻿using Colin.Common.Graphics;
+using Colin.Common.Physics.Dynamics;
 using Colin.Common.Tiles.Events;
 using Colin.Developments;
 using System.Threading.Tasks;
@@ -9,17 +10,13 @@ namespace Colin.Common.Tiles
     /// <summary>
     /// 瓦片处理核心.
     /// </summary>
-    public sealed class Tiled : ISceneMode, IUpdateableSceneMode, IRenderableSceneMode
+    public sealed class Tiled : ISceneComponent, IRenderableSceneComponent
     {
         public bool Enable { get; set; }
 
         public bool Visiable { get; set; }
         public SpriteSortMode SpriteSortMode => SpriteSortMode.Deferred;
-        public BlendState BlendState => BlendState.AlphaBlend;
-        public SamplerState SamplerState => SamplerState.PointClamp;
-        public DepthStencilState DepthStencilState => null;
-        public RasterizerState RasterizerState => null;
-        public Effect Effect => null;
+        public Material Material => Material.DefaultMaterial;
 
         private Camera _camera;
         public Camera Camera => _camera;

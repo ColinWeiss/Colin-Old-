@@ -1,9 +1,11 @@
-﻿namespace Colin.Common.UserInterfaces
+﻿using Colin.Common.Graphics;
+
+namespace Colin.Common.UserInterfaces
 {
     /// <summary>
     /// 用户交互界面核心.
     /// </summary>
-    public sealed class UserInterface : ISceneMode, IUpdateableSceneMode, IRenderableSceneMode
+    public sealed class UserInterface : ISceneComponent, IRenderableSceneComponent
     {
         /// <summary>
         /// 当前焦点容器.
@@ -16,11 +18,9 @@
 
         public bool Visiable { get; set; }
         public SpriteSortMode SpriteSortMode => SpriteSortMode.Deferred;
-        public BlendState BlendState => BlendState.AlphaBlend;
-        public SamplerState SamplerState => SamplerState.PointClamp;
-        public DepthStencilState DepthStencilState { get; }
-        public RasterizerState RasterizerState { get; }
-        public Effect Effect { get; }
+
+        public Material Material => Material.DefaultMaterial;
+
         public Matrix? TransformMatrix { get; }
 
         public RenderTarget2D RenderTarget { get; set; }

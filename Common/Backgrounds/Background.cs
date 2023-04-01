@@ -1,4 +1,5 @@
-﻿using Colin.Developments;
+﻿using Colin.Common.Graphics;
+using Colin.Developments;
 using Colin.Resources;
 
 namespace Colin.Common.Backgrounds
@@ -8,7 +9,7 @@ namespace Colin.Common.Backgrounds
     /// <br>仅支持将其加入 <see cref="Gameworld"/> 场景中.</br>
     /// <br>加入其他场景可能会发生预料不到的后果.</br>
     /// </summary>
-    public sealed class Background : ISceneMode, IUpdateableSceneMode, IRenderableSceneMode
+    public sealed class Background : ISceneComponent, IRenderableSceneComponent
     {
         public Scene Scene { get; set; }
 
@@ -18,15 +19,7 @@ namespace Colin.Common.Backgrounds
 
         public SpriteSortMode SpriteSortMode => SpriteSortMode.Deferred;
 
-        public BlendState BlendState => BlendState.AlphaBlend;
-
-        public SamplerState SamplerState => SamplerState.LinearClamp;
-
-        public DepthStencilState DepthStencilState => null;
-
-        public RasterizerState RasterizerState => null;
-
-        public Effect Effect => null;
+        public Material Material => Material.DefaultMaterial;
 
         private Camera _camera;
         public Camera Camera => _camera;
@@ -120,10 +113,10 @@ namespace Colin.Common.Backgrounds
             LeftRightLoopEffect.Parameters["DrawCount"].SetValue( drawCount );
             LeftRightLoopEffect.Parameters["Offset"].SetValue( offset );
             EngineInfo.SpriteBatch.End( );
-            EngineInfo.SpriteBatch.Begin( SpriteSortMode , BlendState, SamplerState , null , null , LeftRightLoopEffect , null );
+            EngineInfo.SpriteBatch.Begin( SpriteSortMode , Material.BlendState, Material.SamplerState, null , null , LeftRightLoopEffect , null );
             EngineInfo.SpriteBatch.Draw( _screenMap, new Rectangle( 0, 0, EngineInfo.ViewWidth, EngineInfo.ViewHeight ), Color.White );
             EngineInfo.SpriteBatch.End( );
-            (this as IRenderableSceneMode).BatchBegin( );
+            (this as IRenderableSceneComponent).BatchBegin( );
         }
     }
 }

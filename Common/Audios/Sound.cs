@@ -6,7 +6,7 @@ namespace Colin.Common.Audios
     /// <summary>
     /// 声音模块.
     /// </summary>
-    public class Sound : ISceneMode, IUpdateableSceneMode
+    public class Sound : ISceneComponent
     {
         public bool Enable { get; set; } = true;
         public Scene Scene { get; set; }
@@ -15,6 +15,7 @@ namespace Colin.Common.Audios
         {
 
         }
+
         public void DoUpdate( GameTime time )
         {
 

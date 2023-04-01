@@ -8,12 +8,11 @@ namespace Colin.Common
     /// </summary>
     public class Scene : DrawableGameComponent
     {
-        private SceneModeCollection _modes;
-        public SceneModeCollection Modes => _modes;
-
-        private List<IUpdateableSceneMode> _updates = new List<IUpdateableSceneMode>( );
-
-        private List<IRenderableSceneMode> _draws = new List<IRenderableSceneMode>( );
+        private SceneComponentList _components;
+        /// <summary>
+        /// 获取场景组件列表.
+        /// </summary>
+        public SceneComponentList Components => _components;
 
         /// <summary>
         /// 指示场景在切换时是否执行初始化的值.
@@ -31,9 +30,7 @@ namespace Colin.Common
             {
                 InitRenderTarget( this, new EventArgs( ) );
                 Game.Window.ClientSizeChanged += InitRenderTarget;
-                _modes = new SceneModeCollection( this );
-                _modes.ModeAdded += Modes_ComponentAdded;
-                _modes.ModeRemoved += Modes_ComponentRemoved;
+                _components = new SceneComponentList( this );
                 SceneInit( );
             }
             else
@@ -45,10 +42,6 @@ namespace Colin.Common
         {
             SceneRenderTarget = RenderTargetExt.CreateDefault( );
         }
-
-        private void Modes_ComponentAdded( object sender, SceneModeCollectionEventArgs e ) => CategorizeMode( e.Mode );
-
-        private void Modes_ComponentRemoved( object sender, SceneModeCollectionEventArgs e ) => DecategorizeMode( e.Mode );
 
         /// <summary>
         /// 执行场景初始化.
@@ -63,11 +56,7 @@ namespace Colin.Common
                 Start( );
                 Started = true;
             }
-            for( int count = 0; count < _updates.Count; count++ )
-            {
-                if( _updates[count].Enable )
-                    _updates[count].DoUpdate( gameTime );
-            }
+            Components.DoUpdate( gameTime );
             SceneUpdate( );
             base.Update( gameTime );
         }
@@ -77,7 +66,7 @@ namespace Colin.Common
 
         public override sealed void Draw( GameTime gameTime )
         {
-            IRenderableSceneMode renderMode;
+            IRenderableSceneComponent renderMode;
             RenderTarget2D frameRenderLayer;
             for( int count = 0; count < _draws.Count; count++ )
             {
@@ -113,34 +102,6 @@ namespace Colin.Common
         /// <br>这个方法将伴随 <see cref="Game.Exit"/> 一起执行.</br>
         /// </summary>
         public virtual void SaveDatas( ) { }
-
-        private void CategorizeMode( ISceneMode sceneMode )
-        {
-            sceneMode.Scene = this;
-            if( sceneMode is IUpdateableSceneMode upMode )
-            {
-                upMode.Enable = true;
-                _updates.Add( upMode );
-            }
-            if( sceneMode is IRenderableSceneMode dwMode )
-            {
-                dwMode.Visiable = true;
-                _draws.Add( dwMode );
-                dwMode.InitRenderTarget( );
-                Game.Window.ClientSizeChanged += dwMode.OnClientSizeChanged; ;
-            }
-        }
-
-        private void DecategorizeMode( ISceneMode sceneMode )
-        {
-            if( sceneMode is IUpdateableSceneMode upMode )
-                _updates.Remove( upMode );
-            if( sceneMode is IRenderableSceneMode dwMode )
-            {
-                _draws.Remove( dwMode );
-                Game.Window.ClientSizeChanged -= dwMode.OnClientSizeChanged; ;
-            }
-        }
 
         public Scene( ) : base( EngineInfo.Engine ) { }
 

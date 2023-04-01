@@ -79,7 +79,7 @@ namespace Colin.Extensions
         public static Vector2 NextUnitVector( )
         {
             float angle = NextAngle( );
-            return new Vector2( Mathf.Cos( angle ), Mathf.Sin( angle ) );
+            return new Vector2( MathF.Cos( angle ), MathF.Sin( angle ) );
         }
 
 

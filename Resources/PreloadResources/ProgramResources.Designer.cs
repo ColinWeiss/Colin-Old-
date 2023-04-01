@@ -8,7 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Colin.Resources.PreloadResources {
+namespace Colin.Resources.PreLoadResources
+{
     using System;
     
     

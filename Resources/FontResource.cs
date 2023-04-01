@@ -1,4 +1,4 @@
-﻿using Colin.Resources.PreloadResources;
+﻿using Colin.Resources.PreLoadResources;
 using FontStashSharp;
 
 namespace Colin.Resources

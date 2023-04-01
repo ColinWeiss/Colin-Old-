@@ -12,8 +12,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Assets\obj\**" />
+    <Compile Remove="Common\Graphics\Vertexes\**" />
     <EmbeddedResource Remove="Assets\obj\**" />
+    <EmbeddedResource Remove="Common\Graphics\Vertexes\**" />
     <None Remove="Assets\obj\**" />
+    <None Remove="Common\Graphics\Vertexes\**" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FontStashSharp.MonoGame" Version="1.2.8" />
@@ -21,7 +24,7 @@
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Common\Graphics\Vertexes\" />
+    <Folder Include="Common\ECS\Components\" />
     <Folder Include="Common\Networks\Events\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Colin.Common.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,16 +11,12 @@ namespace Colin.Common.Particles
     /// 粒子系统.
     /// 在不同画质下有不同的表现.
     /// </summary>
-    public class Particle : ISceneMode, IUpdateableSceneMode, IRenderableSceneMode
+    public class Particle : ISceneComponent, IRenderableSceneComponent
     {
         public RenderTarget2D RenderTarget { get; set; }
         public bool Visiable { get; set; }
         public SpriteSortMode SpriteSortMode { get; }
-        public BlendState BlendState { get; }
-        public SamplerState SamplerState { get; }
-        public DepthStencilState DepthStencilState { get; }
-        public RasterizerState RasterizerState { get; }
-        public Effect Effect { get; }
+        public Material Material => Material.DefaultMaterial;
         public Matrix? TransformMatrix { get; }
         public Scene Scene { get; set; }
         public bool Enable { get; set; }

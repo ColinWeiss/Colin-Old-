@@ -2,7 +2,7 @@
 
 namespace Colin.Common.Physics
 {
-    public class PhysicCore : ISceneMode, IUpdateableSceneMode
+    public class PhysicCore : ISceneComponent
     {
         public bool Enable { get; set; }
         public Scene Scene { get; set; }

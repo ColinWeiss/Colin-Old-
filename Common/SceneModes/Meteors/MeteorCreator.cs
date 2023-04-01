@@ -4,7 +4,7 @@ using Colin.Resources;
 
 namespace Colin.Common.SceneModes.Meteors
 {
-    public class MeteorCreator : ISceneMode, IUpdateableSceneMode, IRenderableSceneMode
+    public class MeteorCreator : ISceneComponent, IRenderableSceneComponent
     {
         public Meteor[ ] Pool { get; set; } = new Meteor[256];
 
@@ -30,11 +30,7 @@ namespace Colin.Common.SceneModes.Meteors
         public RenderTarget2D RenderTarget { get; set; }
         public RenderTarget2D RenderTargetSwap { get; set; }
         public SpriteSortMode SpriteSortMode => SpriteSortMode.Deferred;
-        public BlendState BlendState => BlendState.AlphaBlend;
-        public SamplerState SamplerState { get; }
-        public DepthStencilState DepthStencilState { get; }
-        public RasterizerState RasterizerState { get; }
-        public Effect Effect { get; }
+        public Material Material => Material.DefaultMaterial;
         public Matrix? TransformMatrix { get; }
 
         public Sprite MeteorSprite;
