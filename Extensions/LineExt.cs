@@ -1,6 +1,4 @@
-﻿using Colin.Developments;
-
-namespace Colin.Extensions
+﻿namespace Colin.Extensions
 {
     public static class LineExt
     {
