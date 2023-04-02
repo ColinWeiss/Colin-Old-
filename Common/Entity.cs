@@ -24,7 +24,7 @@ namespace Colin.Common
         /// 构造一个实体.
         /// </summary>
         /// <param name="source">实体来源.</param>
-        public Entity(ITraceable source)
+        public Entity( ITraceable source )
         {
             ID = _idGenerator++;
             Source = source;
@@ -34,11 +34,12 @@ namespace Colin.Common
 
         public bool Enable = false;
 
-        public ComponentList Components = new ComponentList();
+        public ComponentList Components = new ComponentList( );
 
-        public void DoUpdate(GameTime gameTime) => Components.DoUpdate(gameTime);
 
-        public void DoRender() => Components.DoRender();
+        public void DoUpdate( GameTime gameTime ) => Components.DoUpdate( gameTime );
+
+        public void DoRender( ) => Components.DoRender( );
 
     }
 }

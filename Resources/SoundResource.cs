@@ -1,5 +1,4 @@
-﻿using Colin.Developments;
-using Microsoft.Xna.Framework.Audio;
+﻿using Microsoft.Xna.Framework.Audio;
 
 namespace Colin.Resources
 {

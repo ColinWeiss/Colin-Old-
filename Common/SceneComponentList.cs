@@ -1,4 +1,5 @@
-﻿using Colin.Extensions;
+﻿using Colin.Collections;
+using Colin.Extensions;
 using System.Collections.ObjectModel;
 
 namespace Colin.Common

@@ -1,5 +1,4 @@
 ﻿using Colin.Common.Graphics;
-using Colin.Developments;
 using Colin.Extensions;
 
 namespace Colin.Common.UserInterfaces.Renderers

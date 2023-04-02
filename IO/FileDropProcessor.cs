@@ -1,5 +1,4 @@
-﻿using Colin.Developments;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace Colin.Common.IO
 {

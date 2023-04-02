@@ -1,6 +1,4 @@
-﻿using Colin.Developments;
-
-namespace Colin.Common.Noises.Berlin
+﻿namespace Colin.Common.Noises.Berlin
 {
     /// <summary>
     /// 柏林噪声生成器.

@@ -13,13 +13,13 @@
   <ItemGroup>
     <Compile Remove="Assets\obj\**" />
     <Compile Remove="Graphics\Vertexes\**" />
-    <Compile Remove="Ecs\SceneComponents\Networks\Events\**" />
+    <Compile Remove="Common\SceneComponents\Networks\Events\**" />
     <EmbeddedResource Remove="Assets\obj\**" />
     <EmbeddedResource Remove="Graphics\Vertexes\**" />
-    <EmbeddedResource Remove="Ecs\SceneComponents\Networks\Events\**" />
+    <EmbeddedResource Remove="Common\SceneComponents\Networks\Events\**" />
     <None Remove="Assets\obj\**" />
     <None Remove="Graphics\Vertexes\**" />
-    <None Remove="Ecs\SceneComponents\Networks\Events\**" />
+    <None Remove="Common\SceneComponents\Networks\Events\**" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Icon.bmp" />

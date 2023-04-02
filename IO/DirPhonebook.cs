@@ -1,6 +1,4 @@
-﻿using Colin.Developments;
-
-namespace Colin.Common.IO
+﻿namespace Colin.Common.IO
 {
     public class DirPhonebook
     {

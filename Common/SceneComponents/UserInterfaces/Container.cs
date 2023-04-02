@@ -1,7 +1,6 @@
 ﻿using Colin.Common;
 using Colin.Common.UserInterfaces.Events;
 using Colin.Common.UserInterfaces.Renderers;
-using Colin.Developments;
 using Colin.Extensions;
 using Colin.Common.UserInterfaces.Prefabs;
 using Microsoft.Xna.Framework.Input;
@@ -17,18 +16,13 @@ namespace Colin.Common.UserInterfaces
     /// </summary>
     [Serializable]
     [DataContract( IsReference = true, Name = "Container" )]
-    public class Container : IBehavior
+    public class Container
     {
         [DataMember]
-        public bool Enable { get; set; } = true;
+        public bool Enable = true;
 
         [DataMember]
-        public bool Visiable { get; set; } = true;
-
-        /// <summary>
-        /// 可见性初始值: 若它的值为 false, 那么涉及到可见性性能优化相关的计算该容器将不会参与.
-        /// </summary>
-        public bool RealVisiable { get; set; } = true;
+        public bool Visiable = true;
 
         /// <summary>
         /// 容器名称.
@@ -118,16 +112,6 @@ namespace Colin.Common.UserInterfaces
             DesignInfo.SetScale( Vector2.One );
             DesignInfo.ColorConversionTime = 48;
             DesignInfo.ScaleConversionTime = 48;
-            if( this is ContainerPage page )
-                Page = page;
-        }
-
-        public void INI( )
-        {
-            EventResponder = new ContainerEventResponder( this );
-            EventResponder.DragStart += Container_DragStart;
-            EventResponder.Dragging += Container_DragDragging;
-            EventResponder.DragEnd += Container_DragEnd;
             if( this is ContainerPage page )
                 Page = page;
         }

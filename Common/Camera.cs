@@ -1,6 +1,4 @@
-﻿using Colin.Developments;
-
-namespace Colin.Common
+﻿namespace Colin.Common
 {
     public class Camera : ISceneComponent
     {

@@ -1,4 +1,5 @@
-﻿using Colin.Common.ECS;
+﻿using Colin.Collections;
+using Colin.Common.ECS;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

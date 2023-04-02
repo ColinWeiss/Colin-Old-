@@ -1,6 +1,4 @@
-﻿using Colin.Developments;
-
-namespace Colin.Common.UserInterfaces.Prefabs
+﻿namespace Colin.Common.UserInterfaces.Prefabs
 {
     public class LinerMenu : Container
     {

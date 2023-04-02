@@ -1,4 +1,4 @@
-﻿using Colin.Developments;
+﻿using Colin.Collections;
 using Colin.Extensions;
 
 namespace Colin.Common

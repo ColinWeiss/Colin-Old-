@@ -1,5 +1,4 @@
 ﻿using Colin.Common.UserInterfaces;
-using Colin.Developments;
 using Colin.Resources;
 using Colin.Extensions;
 using FontStashSharp;

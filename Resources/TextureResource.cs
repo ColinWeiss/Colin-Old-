@@ -1,6 +1,4 @@
-﻿using Colin.Developments;
-
-namespace Colin.Resources
+﻿namespace Colin.Resources
 {
     /// <summary>
     /// 包含游戏已加载的纹理资产类.

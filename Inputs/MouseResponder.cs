@@ -1,5 +1,4 @@
-﻿using Colin.Developments;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 
 namespace Colin.Common.Inputs
 {

@@ -1,5 +1,4 @@
-﻿using Colin.Developments;
-using Colin.Common.UserInterfaces.Renderers;
+﻿using Colin.Common.UserInterfaces.Renderers;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;

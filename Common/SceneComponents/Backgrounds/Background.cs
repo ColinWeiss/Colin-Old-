@@ -1,5 +1,4 @@
 ﻿using Colin.Common.Graphics;
-using Colin.Developments;
 using Colin.Resources;
 
 namespace Colin.Common.Backgrounds

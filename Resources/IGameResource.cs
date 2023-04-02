@@ -1,5 +1,4 @@
 ﻿using Colin.Common.IO;
-using Colin.Developments;
 
 namespace Colin.Resources
 {

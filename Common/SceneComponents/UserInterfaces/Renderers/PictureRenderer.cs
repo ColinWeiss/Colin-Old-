@@ -1,5 +1,4 @@
 ﻿using Colin.Common.Graphics;
-using Colin.Developments;
 using System.Runtime.Serialization;
 
 namespace Colin.Common.UserInterfaces.Renderers

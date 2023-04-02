@@ -1,6 +1,4 @@
-﻿using Colin.Developments;
-
-namespace Colin.Resources
+﻿namespace Colin.Resources
 {
     public class EffectResource : IGameResource
     {
