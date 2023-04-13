@@ -6,9 +6,20 @@ namespace Colin.Inputs
     /// 键盘响应器.
     /// <br>另两个键盘事件请使用 <see cref="Game.Window"/> 中的 <see cref="GameWindow.KeyDown"/> 与 <see cref="GameWindow.KeyUp"/>.</br>
     /// </summary>
-    public sealed class KeyboardResponder
+    public sealed class KeyboardResponder : GameComponent
     {
-        internal KeyboardResponder( ) { }
+        private static KeyboardResponder _instance;
+        public static KeyboardResponder Instance
+        {
+            get
+            {
+                if( _instance == null )
+                    _instance = new KeyboardResponder( );
+                return _instance;
+            }
+        }
+
+        internal KeyboardResponder( ) : base( EngineInfo.Engine ) { }
 
         /// <summary>
         /// 事件: 发生于键盘上任何键单击按下时.
@@ -29,7 +40,7 @@ namespace Colin.Inputs
         /// </summary>
         public KeyboardEventArgs KeyboardEvent;
 
-        public void Update( GameTime gameTime )
+        public override void Update( GameTime gameTime )
         {
             keyboardStateLast = keyboardState;
             keyboardState = Keyboard.GetState( );
@@ -53,6 +64,7 @@ namespace Colin.Inputs
                     KeyClickAfter.Invoke( this, KeyboardEvent );
                 }
             }
+            base.Update( gameTime );
         }
 
         public bool IsKeyDown( Keys keys ) => keyboardState.IsKeyDown( keys );

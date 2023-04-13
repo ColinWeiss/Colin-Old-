@@ -5,9 +5,20 @@ namespace Colin.Inputs
     /// <summary>
     /// 鼠标响应器.
     /// </summary>
-    public sealed class MouseResponder
+    public sealed class MouseResponder : GameComponent
     {
-        internal MouseResponder( )
+        private static MouseResponder _instance;
+        public static MouseResponder Instance
+        {
+            get
+            {
+                if( _instance == null )
+                    _instance = new MouseResponder( );
+                return _instance;
+            }
+        }
+
+        internal MouseResponder( ) : base( EngineInfo.Engine )
         {
             MouseLeftDown = ( s, e ) => { };
             MouseLeftUp = ( s, e ) => { };
@@ -118,7 +129,7 @@ namespace Colin.Inputs
         /// </summary>
         public MouseEventArgs MouseEvent;
 
-        public void Update( GameTime gameTime )
+        public override void Update( GameTime gameTime )
         {
             MouseStateLast = MouseState;
             MouseState = Mouse.GetState( );
@@ -184,7 +195,7 @@ namespace Colin.Inputs
                 MouseEvent.Name = "Event_Mouse_MousePulleySliding";
                 MousePulleySliding.Invoke( this, MouseEvent );
             }
+            base.Update( gameTime );
         }
-
     }
 }

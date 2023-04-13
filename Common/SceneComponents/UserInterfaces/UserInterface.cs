@@ -1,4 +1,5 @@
-﻿using Colin.Graphics;
+﻿using Colin.Events;
+using Colin.Graphics;
 using Colin.Inputs;
 
 namespace Colin.Common.SceneComponents.UserInterfaces
@@ -6,7 +7,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
     /// <summary>
     /// 用户交互界面核心.
     /// </summary>
-    public sealed class UserInterface : ISceneComponent, IRenderableSceneComponent
+    public sealed class UserInterface : ISceneComponent, IRenderableSceneComponent , IGetDeviceInputable
     {
         /// <summary>
         /// 当前焦点容器.
@@ -62,6 +63,12 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         }
 
         public void Register( Container container ) => State?.Register( container );
+
+        public InputEvent GetDeviceInput( )
+        {
+            InputEvent inputEvent = State.GetDeviceInput( );
+            return inputEvent;
+        }
 
     }
 }

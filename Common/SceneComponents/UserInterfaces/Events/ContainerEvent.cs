@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using Microsoft.Xna.Framework.Input;
+using System.Runtime.Serialization;
 
 namespace Colin.Common.SceneComponents.UserInterfaces.Events
 {
@@ -17,6 +18,5 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
         {
             Container = container;
         }
-
     }
 }

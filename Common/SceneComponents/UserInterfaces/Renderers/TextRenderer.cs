@@ -1,5 +1,6 @@
 ﻿using Colin.Resources;
 using FontStashSharp;
+using System.ComponentModel;
 using System.Runtime.Serialization;
 
 namespace Colin.Common.SceneComponents.UserInterfaces.Renderers
@@ -35,16 +36,19 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Renderers
         [IgnoreDataMember]
         public SpriteFontBase Font;
 
+        public void RefreshSize( Container container )
+        {
+            _size = Font.MeasureString( _text );
+            container.LayoutInfo.SetSize( _size );
+            _half = (_size / 2).ToPoint( );
+            _needRefresh = false;
+        }
+
         public override void RendererInit( ) { }
         public override void Render( Container container )
         {
             if( _needRefresh )
-            {
-                _size = Font.MeasureString( _text );
-                container.LayoutInfo.SetSize( _size );
-                _half = (_size / 2).ToPoint( );
-                _needRefresh = false;
-            }
+                RefreshSize( container );
             EngineInfo.SpriteBatch.DrawString( Font, Text, container.LayoutInfo.RenderLocation.ToVector2( ), container.DesignInfo.CurrentColor );
         }
 
@@ -58,5 +62,6 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Renderers
         {
             Font = FontResource.Unifont.GetFont( 16 ); //默认字体.
         }
+
     }
 }

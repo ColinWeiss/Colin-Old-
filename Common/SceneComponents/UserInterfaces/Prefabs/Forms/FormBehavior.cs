@@ -36,12 +36,11 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs.Forms
 
         public override void OnDisactive( )
         {
+            CloseState = true;
             Sound.Play( SoundResource.Get( "UI/FormOpen" ) );
             GameForm.DesignInfo.SetTargetColor( Color.Transparent );
             GameForm.DesignInfo.SetTargetScale( Vector2.One * 0.78f );
-            CloseState = true;
             base.OnDisactive( );
         }
-
     }
 }

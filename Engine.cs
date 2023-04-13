@@ -56,6 +56,9 @@ namespace Colin
                     Window.ClientSizeChanged -= CurrentScene.InitRenderTarget;
                 Components.Remove( CurrentScene );
             }
+            Components.Clear( );
+            Components.Add( MouseResponder.Instance );
+            Components.Add( KeyboardResponder.Instance );
             Components.Add( scene );
             CurrentScene = scene;
         }
@@ -85,7 +88,6 @@ namespace Colin
         {
             if( !Enable )
                 return;
-            Input.Current?.InputHandle.UpdateInput( gameTime );
             Time.Update( (float)gameTime.ElapsedGameTime.TotalSeconds );
             if( !Started )
             {

@@ -1,5 +1,6 @@
 ﻿using Colin.Common.SceneComponents.UserInterfaces.Prefabs;
 using Colin.Common.SceneComponents.UserInterfaces.Renderers;
+using Colin.Events;
 using Colin.Inputs;
 using Colin.Resources;
 using Microsoft.Xna.Framework.Input;
@@ -12,13 +13,11 @@ namespace Colin.Common.SceneComponents.UserInterfaces
     /// </summary>
     [Serializable]
     [DataContract( IsReference = true )]
-    public class ContainerState : Container, Inputable
+    public class ContainerState : Container 
     {
         public override sealed bool IsCanvas => false;
 
         public Rectangle BaseRectangle => new Rectangle( LayoutInfo.RenderLocation, LayoutInfo.Size );
-
-        public Input InputHandle { get; set; } = new Input( );
 
         public bool OnDebug = false;
 
@@ -36,10 +35,6 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             {
                 LayoutInfo.SetLocation( 0, 0 );
                 LayoutInfo.SetSize( EngineInfo.ViewWidth, EngineInfo.ViewHeight );
-            };
-            EventResponder.MouseLeftClickBefore += ( s, e ) =>
-            {
-                Input.BindInput( this );
             };
             InitializeContainers( );
 
@@ -62,20 +57,20 @@ namespace Colin.Common.SceneComponents.UserInterfaces
 
         public override void SelfUpdate( )
         {
-            Seek( )?.EventResponder.UpdateEvent( );
-            if( InputHandle.Keyboard.IsKeyDown( Keys.LeftShift ) && InputHandle.Keyboard.IsKeyClickBefore( Keys.U ) )
+            SeekInteractive( )?.EventResponder.UpdateEvent( );
+            if( KeyboardResponder.Instance.IsKeyDown( Keys.LeftShift ) && KeyboardResponder.Instance.IsKeyClickBefore( Keys.U ) )
                 OnDebug = !OnDebug;
-            if( InputHandle.Keyboard.IsKeyDown( Keys.LeftShift ) && InputHandle.Keyboard.IsKeyClickBefore( Keys.L ) )
+            if( KeyboardResponder.Instance.IsKeyDown( Keys.LeftShift ) && KeyboardResponder.Instance.IsKeyClickBefore( Keys.L ) )
                 DoInitialize( );
 
             if( OnDebug && DebugText != null )
             {
                 DebugText.Text = string.Concat(
-                    "Current Container: ", Seek( )?.GetType( ).Name, "\n",
-                    "    Size: ", Seek( )?.LayoutInfo.Size, "\n",
-                    "    Absolute Location: ", Seek( )?.LayoutInfo.RenderLocation, "\n",
-                    "    Location: ", Seek( )?.LayoutInfo.Location, "\n",
-                    "    Interactive Rectangle: ", Seek( )?.LayoutInfo.InteractiveRectangle
+                    "Current Container: ", SeekInteractive( )?.GetType( ).Name, "\n",
+                    "    Size: ", SeekInteractive( )?.LayoutInfo.Size, "\n",
+                    "    Absolute Location: ", SeekInteractive( )?.LayoutInfo.RenderLocation, "\n",
+                    "    Location: ", SeekInteractive( )?.LayoutInfo.Location, "\n",
+                    "    Interactive Rectangle: ", SeekInteractive( )?.LayoutInfo.InteractiveRectangle
                     );
                 DebugText.Enable = true;
                 DebugText.Visible = true;
@@ -103,5 +98,6 @@ namespace Colin.Common.SceneComponents.UserInterfaces
                 Register( DebugText );
             }
         }
+
     }
 }

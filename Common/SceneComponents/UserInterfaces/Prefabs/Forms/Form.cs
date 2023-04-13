@@ -9,7 +9,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs.Forms
     /// <summary>
     /// 通用窗口.
     /// </summary>
-    public class Form : Canvas , Inputable
+    public class Form : Canvas
     {
         /// <summary>
         /// 事件: 发生于窗口开启状态时.
@@ -20,7 +20,6 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs.Forms
         /// 事件: 发生于窗口关闭状态时.
         /// </summary>
         public EventHandler<EventArgs> OnCloseStateEnable = ( s, e ) => { };
-
 
         /// <summary>
         /// 窗体基底.
@@ -82,8 +81,6 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs.Forms
             }
         }
 
-        public Input InputHandle { get; set; } = new Input( );
-
         public string Title = "Form";
 
         public override sealed void ContainerInitialize( )
@@ -139,7 +136,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs.Forms
             CloseButton.EventResponder.MouseLeftClickAfter += ( s, e ) =>
             {
                 (CloseButton.Renderer as PictureRenderer).Picture = new Sprite( TextureResource.Get( "UI/Forms/Default/Close" ) );
-                Disactive( true );
+                Close( );
             };
             TitleBlock.Register( CloseButton );
 
@@ -181,17 +178,13 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs.Forms
             if( Behavior.CloseState )
                 Behavior.UpdateCloseState( );
             FormUpdate( );
-            if( Input.Current != this )
-            {
-                Input.BindInput( this );
-            }
             base.SelfUpdate( );
         }
         public virtual void FormUpdate( ) { }
 
         public override void InteractiveInfoUpdate( ref InteractiveInfo info )
         {
-            if( UserInterface.State.Seek( ) == this && InputHandle.Mouse.MouseLeftClickBeforeFlag )
+            if( UserInterface.State.SeekInteractive( ) == this &&MouseResponder.Instance.MouseLeftClickBeforeFlag )
                 UserInterface.State.SetTop( this );
             base.InteractiveInfoUpdate( ref info );
         }
@@ -223,6 +216,17 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs.Forms
         /// <param name="width">窗体宽度.</param>
         /// <param name="height">窗体高度.</param>
         public void SetSize( int width, int height ) => LayoutInfo.SetSize( width, height );
+
+        public void Open( )
+        {
+            Active( true );
+        }
+
+        public void Close( )
+        {
+            Behavior.CloseState = true;
+            Behavior.OnDisactive( );
+        }
 
     }
 }

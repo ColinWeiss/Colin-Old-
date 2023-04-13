@@ -13,7 +13,10 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs
             set
             {
                 if( Renderer is TextRenderer textRender )
+                {
                     textRender.Text = value;
+                    textRender.RefreshSize( this );
+                }
             }
         }
 

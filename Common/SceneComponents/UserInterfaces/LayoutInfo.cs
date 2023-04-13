@@ -350,7 +350,6 @@ namespace Colin.Common.SceneComponents.UserInterfaces
                     InteractiveX = container.CanvasParent.LayoutInfo.InteractiveX + container.Parent.LayoutInfo._renderLocation.X + Left;
                     InteractiveY = container.CanvasParent.LayoutInfo.InteractiveY + container.Parent.LayoutInfo._renderLocation.Y + Top;
                 }
-
             }
             else
             {

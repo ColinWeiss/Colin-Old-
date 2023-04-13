@@ -8,7 +8,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs.Lists
 
         public LinerMenu LinerMenu = new LinerMenu( );
 
-        public Slidebar Slidebar = new Slidebar( );
+        public Scrollbar Slidebar = new Scrollbar( );
 
         public Direction Direction = Direction.Portrait;
 

@@ -1,7 +1,9 @@
 ﻿using Colin.Common.SceneComponents.UserInterfaces.Events;
 using Colin.Common.SceneComponents.UserInterfaces.Prefabs.Forms;
 using Colin.Common.SceneComponents.UserInterfaces.Renderers;
+using Colin.Events;
 using Colin.Extensions;
+using Colin.Inputs;
 using Colin.Resources;
 using Microsoft.Xna.Framework.Input;
 using System.Reflection.PortableExecutable;
@@ -14,7 +16,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
     /// </summary>
     [Serializable]
     [DataContract( IsReference = true, Name = "Container" )]
-    public class Container
+    public class Container : IGetDeviceInputable
     {
         [DataMember]
         public bool Enable = true;
@@ -129,8 +131,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             ContainerInitialize( );
             Renderer?.RendererInit( );
             LayoutInfo.UpdateInfo( this ); //刷新一下.
-            if( Behavior == null )
-                Behavior = new ContainerBehavior( this );
+
             Behavior?.SetDefault( );
             DoSubInitialize( );
             if( IsCanvas )
@@ -251,7 +252,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             DesignInfo.CurrentColor.GetCloserColor( DesignInfo.TargetColor, DesignInfo.ColorConversionTimer, DesignInfo.ColorConversionTime );
             if( DesignInfo.CurrentColor.A >= 254 )
                 DesignInfo.CurrentColor.A = 255;
-           SubUpdate( time );
+            SubUpdate( time );
         }
         public virtual void UpdateStart( ) { }
         public virtual void LayoutInfoUpdate( ref LayoutInfo info ) { }
@@ -305,7 +306,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             }
         }
         public virtual void PreRender( ) { }
-        public virtual void RenderSubs()
+        public virtual void RenderSubs( )
         {
             Container _sub;
             for( int count = 0; count < Sub.Count; count++ )
@@ -317,7 +318,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         }
         public virtual void PostRender( ) { }
 
-        public void Active( bool subActive )
+        public virtual void Active( bool subActive )
         {
             Enable = true;
             Visible = true;
@@ -333,7 +334,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             }
         }
 
-        public void Disactive( bool subDisactive )
+        public virtual void Disactive( bool subDisactive )
         {
             Enable = false;
             Visible = false;
@@ -353,7 +354,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         {
             container.Page = Page;
             container.Parent = this;
-            if( !Sub.Contains( container ))
+            if( !Sub.Contains( container ) )
                 Sub.Add( container );
         }
 
@@ -373,24 +374,49 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         /// 寻找允许交互的、当前最先交互元素.
         /// </summary>
         /// <returns>当前最先可交互元素.</returns>
-        public Container Seek( )
+        public Container SeekInteractive( )
         {
             Container target = null;
             Container _sub;
             for( int sub = Sub.Count - 1; sub >= 0; sub-- )
             {
                 _sub = Sub[sub];
-                if( _sub.Seek( ) == null )
+                if( _sub.SeekInteractive( ) == null )
                 {
                     target = null;
                 }
-                else if( _sub.Seek( ) != null && _sub.Enable )
+                else if( _sub.SeekInteractive( ) != null && _sub.Enable )
                 {
-                    target = _sub.Seek( );
+                    target = _sub.SeekInteractive( );
                     return target;
                 }
             }
             if( InteractiveInfo.Activation && InteractiveInfo.CanSeek && Enable )
+                return this;
+            return target;
+        }
+
+        /// <summary>
+        /// 寻找最顶层元素.
+        /// </summary>
+        public Container SeekTopmost( )
+        {
+            Container target = null;
+            Container _sub;
+            for( int sub = Sub.Count - 1; sub >= 0; sub-- )
+            {
+                _sub = Sub[sub];
+                if( _sub.SeekTopmost( ) == null )
+                {
+                    target = null;
+                }
+                else if( _sub.SeekTopmost( ) != null && _sub.Enable )
+                {
+                    target = _sub.SeekTopmost( );
+                    return target;
+                }
+            }
+            if( InteractiveInfo.CanSeek && Enable )
                 return this;
             return target;
         }
@@ -406,13 +432,13 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             for( int sub = Sub.Count - 1; sub >= 0; sub-- )
             {
                 _sub = Sub[sub];
-                if( _sub.Seek( ) == null )
+                if( _sub.SeekInteractive( ) == null )
                 {
                     target = null;
                 }
-                else if( _sub.Seek( ) != null && _sub.Enable )
+                else if( _sub.SeekInteractive( ) != null && _sub.Enable )
                 {
-                    target = _sub.Seek( );
+                    target = _sub.SeekInteractive( );
                     return target;
                 }
             }
@@ -421,5 +447,31 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             return target;
         }
 
+        public virtual InputEvent GetDeviceInput( )
+        {
+            InputEvent target = null;
+            InputEvent _sub;
+            for( int sub = Sub.Count - 1; sub >= 0; sub-- )
+            {
+                _sub = Sub[sub].GetDeviceInput( );
+                if( _sub == null )
+                {
+                    target = null;
+                }
+                else if( _sub != null )// && _sub.Enable )
+                {
+                    target = _sub;
+                    return target;
+                }
+            }
+            if( InteractiveInfo.CanSeek && Enable )
+            {
+                InputEvent inputEvent = new InputEvent( );
+                inputEvent.Keyboard = KeyboardResponder.Instance;
+                inputEvent.Mouse = MouseResponder.Instance;
+                return inputEvent;
+            }
+            return target;
+        }
     }
 }
