@@ -1,6 +1,6 @@
-using Colin.Common.Physics.Shared.Optimization;
+using Colin.Common.SceneComponents.Physics.Shared.Optimization;
 
-namespace Colin.Common.Physics.Collision.Narrowphase
+namespace Colin.Common.SceneComponents.Physics.Collision.Narrowphase
 {
     /// <summary>
     /// A manifold for two touching convex Shapes.

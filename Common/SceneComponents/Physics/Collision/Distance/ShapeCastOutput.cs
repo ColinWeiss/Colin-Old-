@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.Physics.Collision.Distance
+﻿namespace Colin.Common.SceneComponents.Physics.Collision.Distance
 {
     /// <summary>Output results for b2ShapeCast</summary>
     public struct ShapeCastOutput

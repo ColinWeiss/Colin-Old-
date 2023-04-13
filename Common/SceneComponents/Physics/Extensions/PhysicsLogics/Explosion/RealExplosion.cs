@@ -1,11 +1,11 @@
-using Colin.Common.Physics.Collision.RayCast;
-using Colin.Common.Physics.Collision.Shapes;
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Extensions.PhysicsLogics.PhysicsLogicBase;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Collision.RayCast;
+using Colin.Common.SceneComponents.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Extensions.PhysicsLogics.PhysicsLogicBase;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 
-namespace Colin.Common.Physics.Extensions.PhysicsLogics.Explosion
+namespace Colin.Common.SceneComponents.Physics.Extensions.PhysicsLogics.Explosion
 {
     // Original Code by Steven Lu - see http://www.box2d.org/forum/viewtopic.php?f=3&t=1688
     // Ported by Nicol�s Hormaz�bal

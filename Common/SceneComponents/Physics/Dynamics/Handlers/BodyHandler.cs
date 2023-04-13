@@ -1,6 +1,4 @@
-using Colin.Common.Physics.Dynamics;
-
-namespace Colin.Common.Physics.Dynamics.Handlers
+namespace Colin.Common.SceneComponents.Physics.Dynamics.Handlers
 {
     public delegate void BodyHandler( Body body );
 }

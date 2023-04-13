@@ -1,7 +1,6 @@
-﻿using Colin.Common.UserInterfaces;
-using Colin.Common.UserInterfaces.Renderers;
+﻿using Colin.Common.SceneComponents.UserInterfaces.Renderers;
 
-namespace Colin.Common.UserInterfaces.Prefabs.Lists
+namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs.Lists
 {
     public class UIList : Container
     {

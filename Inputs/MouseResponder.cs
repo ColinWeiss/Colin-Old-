@@ -1,24 +1,26 @@
 ﻿using Microsoft.Xna.Framework.Input;
 
-namespace Colin.Common.Inputs
+namespace Colin.Inputs
 {
     /// <summary>
     /// 鼠标响应器.
     /// </summary>
-    public sealed class MouseResponder : GameComponent
+    public sealed class MouseResponder
     {
-        private static MouseResponder _instance;
-        public static MouseResponder Instance
+        internal MouseResponder( )
         {
-            get
-            {
-                if( _instance == null )
-                    _instance = new MouseResponder( );
-                return _instance;
-            }
-        }
+            MouseLeftDown = ( s, e ) => { };
+            MouseLeftUp = ( s, e ) => { };
+            MouseLeftClickBefore = ( s, e ) => { };
+            MouseLeftClickAfter = ( s, e ) => { };
+            MouseRightDown = ( s, e ) => { };
+            MouseRightUp = ( s, e ) => { };
+            MouseRightClickBefore = ( s, e ) => { };
+            MouseRightClickAfter = ( s, e ) => { };
+            MouseRelease = ( s, e ) => { };
+            MousePulleySliding = ( s, e ) => { };
 
-        internal MouseResponder( ) : base( EngineInfo.Engine ) { }
+        }
 
         private bool _mouseLeftClickBeforeFlag;
         public bool MouseLeftClickBeforeFlag => _mouseLeftClickBeforeFlag;
@@ -116,22 +118,7 @@ namespace Colin.Common.Inputs
         /// </summary>
         public MouseEventArgs MouseEvent;
 
-        public override void Initialize( )
-        {
-            MouseLeftDown = ( s, e ) => { };
-            MouseLeftUp = ( s, e ) => { };
-            MouseLeftClickBefore = ( s, e ) => { };
-            MouseLeftClickAfter = ( s, e ) => { };
-            MouseRightDown = ( s, e ) => { };
-            MouseRightUp = ( s, e ) => { };
-            MouseRightClickBefore = ( s, e ) => { };
-            MouseRightClickAfter = ( s, e ) => { };
-            MouseRelease = ( s, e ) => { };
-            MousePulleySliding = ( s, e ) => { };
-            base.Initialize( );
-        }
-
-        public override void Update( GameTime gameTime )
+        public void Update( GameTime gameTime )
         {
             MouseStateLast = MouseState;
             MouseState = Mouse.GetState( );
@@ -197,7 +184,6 @@ namespace Colin.Common.Inputs
                 MouseEvent.Name = "Event_Mouse_MousePulleySliding";
                 MousePulleySliding.Invoke( this, MouseEvent );
             }
-            base.Update( gameTime );
         }
 
     }

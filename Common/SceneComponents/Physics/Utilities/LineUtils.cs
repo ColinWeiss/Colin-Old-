@@ -1,6 +1,6 @@
-using Colin.Common.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Shared;
 
-namespace Colin.Common.Physics.Utilities
+namespace Colin.Common.SceneComponents.Physics.Utilities
 {
     /// <summary>
     /// Collection of helper methods for misc collisions. Does float tolerance and line collisions with lines and

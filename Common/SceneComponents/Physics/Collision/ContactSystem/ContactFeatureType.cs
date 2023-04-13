@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Collision.ContactSystem
+namespace Colin.Common.SceneComponents.Physics.Collision.ContactSystem
 {
     public enum ContactFeatureType : byte
     {

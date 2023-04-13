@@ -1,5 +1,4 @@
-﻿using Colin.Common.IO;
-using Colin.Resources;
+﻿using Colin.IO;
 using System.Text.Json;
 
 namespace Colin
@@ -13,7 +12,7 @@ namespace Colin
         /// 指示游戏配置文件的位置及其本身.
         /// <br>包含文件扩展名.</br>
         /// </summary>
-        public static string ConfigPath => string.Concat(DirPhonebook.ProgramDir, "\\Configs.json");
+        public static string ConfigPath => string.Concat( DirPhonebook.ProgramDir, "\\Configs.json" );
 
         /// <summary>
         /// 指示是否全屏.
@@ -27,7 +26,23 @@ namespace Colin
             set
             {
                 EngineInfo.Graphics.IsFullScreen = value;
-                EngineInfo.Graphics.ApplyChanges();
+                EngineInfo.Graphics.ApplyChanges( );
+            }
+        }
+
+        /// <summary>
+        /// 指示窗体是否无边框.
+        /// </summary>
+        public bool IsBorderless
+        {
+            get
+            {
+                return EngineInfo.Engine.Window.IsBorderless;
+            }
+            set
+            {
+                EngineInfo.Engine.Window.IsBorderless = value;
+                EngineInfo.Graphics.ApplyChanges( );
             }
         }
 
@@ -61,21 +76,22 @@ namespace Colin
             }
         }
 
-        public void Load()
+        public void Load( )
         {
-            if (!File.Exists(ConfigPath))
-                Save();
-            Config result = JsonSerializer.Deserialize<Config>(File.ReadAllText(ConfigPath));
+            if( !File.Exists( ConfigPath ) )
+                Save( );
+            Config result = JsonSerializer.Deserialize<Config>( File.ReadAllText( ConfigPath ) );
             IsFullScreen = result.IsFullScreen;
+            IsBorderless = result.IsBorderless;
             SoundEffect = result.SoundEffect;
             SoundEffectVolume = result.SoundEffectVolume;
             PictureQuality = result.PictureQuality;
             IsMouseVisiable = result.IsMouseVisiable;
         }
-        public void Save()
+        public void Save( )
         {
-            string config = JsonSerializer.Serialize(this);
-            File.WriteAllText(ConfigPath, config);
+            string config = JsonSerializer.Serialize( this );
+            File.WriteAllText( ConfigPath, config );
         }
     }
 }

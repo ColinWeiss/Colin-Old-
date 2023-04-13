@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Extensions.DebugView
+namespace Colin.Common.SceneComponents.Physics.Extensions.DebugView
 {
     [Flags]
     public enum DebugViewFlags

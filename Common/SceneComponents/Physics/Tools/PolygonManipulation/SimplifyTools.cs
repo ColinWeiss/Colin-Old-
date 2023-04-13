@@ -1,8 +1,8 @@
-﻿using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+﻿using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Tools.PolygonManipulation
+namespace Colin.Common.SceneComponents.Physics.Tools.PolygonManipulation
 {
     /// <summary>Provides a set of tools to simplify polygons in various ways.</summary>
     public static class SimplifyTools

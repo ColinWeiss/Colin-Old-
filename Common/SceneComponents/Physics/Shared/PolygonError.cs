@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Shared
+namespace Colin.Common.SceneComponents.Physics.Shared
 {
     public enum PolygonError
     {

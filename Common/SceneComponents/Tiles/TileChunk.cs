@@ -1,8 +1,8 @@
-﻿using Colin.Common.IO;
+﻿using Colin.IO;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Colin.Common.Tiles
+namespace Colin.Common.SceneComponents.Tiles
 {
     /// <summary>
     /// 物块区块, 恒定 64x64.

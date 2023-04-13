@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Extensions.Controllers.ControllerBase
+namespace Colin.Common.SceneComponents.Physics.Extensions.Controllers.ControllerBase
 {
     public struct ControllerFilter
     {

@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Collision.RayCast
+namespace Colin.Common.SceneComponents.Physics.Collision.RayCast
 {
     /// <summary>Ray-cast output data.</summary>
     public struct RayCastOutput

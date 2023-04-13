@@ -20,14 +20,12 @@
 * 3. This notice may not be removed or altered from any source distribution. 
 */
 
-using Colin.Common.Physics.Definitions.Joints;
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Dynamics.Joints.Misc;
-using Colin.Common.Physics.Dynamics.Solver;
-using Colin.Common.Physics.Dynamics.Joints;
+using Colin.Common.SceneComponents.Physics.Definitions.Joints;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints.Misc;
+using Colin.Common.SceneComponents.Physics.Dynamics.Solver;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Dynamics.Joints
+namespace Colin.Common.SceneComponents.Physics.Dynamics.Joints
 {
     public abstract class Joint
     {

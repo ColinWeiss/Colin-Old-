@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.Events
+﻿namespace Colin.Events
 {
     /// <summary>
     /// 事件.

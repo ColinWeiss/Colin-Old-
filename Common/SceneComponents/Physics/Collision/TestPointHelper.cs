@@ -1,7 +1,7 @@
-﻿using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+﻿using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 
-namespace Colin.Common.Physics.Collision
+namespace Colin.Common.SceneComponents.Physics.Collision
 {
     public static class TestPointHelper
     {

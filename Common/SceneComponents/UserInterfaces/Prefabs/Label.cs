@@ -1,8 +1,7 @@
-﻿using Colin.Common.UserInterfaces.Renderers;
-using Colin.Extensions;
+﻿using Colin.Common.SceneComponents.UserInterfaces.Renderers;
 using System.Runtime.Serialization;
 
-namespace Colin.Common.UserInterfaces.Prefabs
+namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs
 {
     [Serializable]
     [DataContract( IsReference = true, Name = "Label" )]
@@ -22,6 +21,12 @@ namespace Colin.Common.UserInterfaces.Prefabs
         {
             Renderer = new TextRenderer( );
         }
+        public Label( string text )
+        {
+            Renderer = new TextRenderer( );
+            Text = text;
+        }
+
         public override void LayoutInfoUpdate( ref LayoutInfo info )
         {
             if( Renderer != null && Renderer is TextRenderer textRender )

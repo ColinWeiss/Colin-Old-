@@ -1,8 +1,8 @@
-﻿using Colin.Common.Graphics;
+﻿using Colin.Graphics;
 using Colin.Resources;
 using System.Text;
 
-namespace Colin.Common.Tiles.Prefabs
+namespace Colin.Common.SceneComponents.Tiles.Prefabs
 {
     /// <summary>
     /// 适用单个方块的通用 <see cref="Tile"/>.

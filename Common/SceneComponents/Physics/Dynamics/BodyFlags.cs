@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Dynamics
+namespace Colin.Common.SceneComponents.Physics.Dynamics
 {
     [Flags]
     public enum BodyFlags : byte

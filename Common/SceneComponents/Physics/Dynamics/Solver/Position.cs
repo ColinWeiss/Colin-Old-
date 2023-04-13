@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Dynamics.Solver
+namespace Colin.Common.SceneComponents.Physics.Dynamics.Solver
 {
     /// This is an internal structure.
     public struct Position

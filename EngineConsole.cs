@@ -37,9 +37,9 @@
         /// </summary>  
         /// <param name="informationType">信息类型.</param>  
         /// <param name="output">输出内容.</param>  
-        internal static void WriteLine(ConsoleTextType informationType, object output)
+        internal static void WriteLine( ConsoleTextType informationType, object output )
         {
-            WriteLine(informationType, output.ToString());
+            WriteLine( informationType, output.ToString( ) );
         }
 
         /// <summary>  
@@ -47,10 +47,10 @@
         /// </summary>  
         /// <param name="informationType">信息类型.</param>  
         /// <param name="output">输出内容.</param>  
-        internal static void WriteLine(ConsoleTextType informationType, string output)
+        internal static void WriteLine( ConsoleTextType informationType, string output )
         {
-            Console.ForegroundColor = GetConsoleColor(informationType);
-            Console.WriteLine(string.Concat("[", EngineInfo.EngineName, "] ", output));
+            Console.ForegroundColor = GetConsoleColor( informationType );
+            Console.WriteLine( string.Concat( "[", EngineInfo.EngineName, "] ", output ) );
         }
 
         /// <summary>  
@@ -58,9 +58,9 @@
         /// </summary>  
         /// <param name="informationType">信息类型.</param>  
         /// <returns></returns>  
-        private static ConsoleColor GetConsoleColor(ConsoleTextType informationType)
+        private static ConsoleColor GetConsoleColor( ConsoleTextType informationType )
         {
-            switch (informationType)
+            switch( informationType )
             {
                 case ConsoleTextType.Normal:
                     return ConsoleColor.DarkGray;

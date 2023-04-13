@@ -45,11 +45,9 @@
 // Future possibilities
 //   Comments!
 
-using Colin.Common.Physics.Tools.Triangulation.Delaunay;
-using Colin.Common.Physics.Tools.Triangulation.Delaunay.Delaunay;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Tools.Triangulation.Delaunay.Delaunay.Sweep
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Delaunay.Sweep
 {
     internal static class DTSweep
     {

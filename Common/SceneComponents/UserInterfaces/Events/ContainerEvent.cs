@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Colin.Common.UserInterfaces.Events
+namespace Colin.Common.SceneComponents.UserInterfaces.Events
 {
     /// <summary>
     /// 容器事件.

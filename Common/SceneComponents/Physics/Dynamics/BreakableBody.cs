@@ -1,10 +1,10 @@
-﻿using Colin.Common.Physics.Collision.ContactSystem;
-using Colin.Common.Physics.Collision.Shapes;
-using Colin.Common.Physics.Dynamics.Solver;
-using Colin.Common.Physics.Factories;
-using Colin.Common.Physics.Shared;
+﻿using Colin.Common.SceneComponents.Physics.Collision.ContactSystem;
+using Colin.Common.SceneComponents.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Dynamics.Solver;
+using Colin.Common.SceneComponents.Physics.Factories;
+using Colin.Common.SceneComponents.Physics.Shared;
 
-namespace Colin.Common.Physics.Dynamics
+namespace Colin.Common.SceneComponents.Physics.Dynamics
 {
     /// <summary>A type of body that supports multiple fixtures that can break apart.</summary>
     public class BreakableBody

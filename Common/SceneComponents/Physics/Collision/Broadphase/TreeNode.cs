@@ -1,6 +1,6 @@
-using Colin.Common.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Shared;
 
-namespace Colin.Common.Physics.Collision.Broadphase
+namespace Colin.Common.SceneComponents.Physics.Collision.Broadphase
 {
     /// <summary>A node in the dynamic tree. The client does not interact with this directly.</summary>
     internal class TreeNode<T>

@@ -20,14 +20,14 @@
 * 3. This notice may not be removed or altered from any source distribution. 
 */
 
-using Colin.Common.Physics.Collision.ContactSystem;
-using Colin.Common.Physics.Collision.Distance;
-using Colin.Common.Physics.Collision.Shapes;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Shared.Optimization;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Collision.ContactSystem;
+using Colin.Common.SceneComponents.Physics.Collision.Distance;
+using Colin.Common.SceneComponents.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Shared.Optimization;
+using Colin.Common.SceneComponents.Physics.Utilities;
 
-namespace Colin.Common.Physics.Collision.Narrowphase
+namespace Colin.Common.SceneComponents.Physics.Collision.Narrowphase
 {
     /// <summary>Collision methods</summary>
     public static class Collision

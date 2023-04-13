@@ -38,10 +38,9 @@
 //   We have a lot of Add/Clear methods -- we may prefer to just expose the container
 //   Some self-explanitory methods may deserve commenting anyways
 
-using Colin.Common.Physics.Tools.Triangulation.Delaunay;
-using Colin.Common.Physics.Tools.Triangulation.Delaunay.Delaunay;
+using Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Delaunay;
 
-namespace Colin.Common.Physics.Tools.Triangulation.Delaunay.Polygon
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Polygon
 {
     internal class Polygon : Triangulatable
     {

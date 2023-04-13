@@ -1,6 +1,6 @@
-using Colin.Common.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Dynamics;
 
-namespace Colin.Common.Physics.Extensions.PhysicsLogics.PhysicsLogicBase
+namespace Colin.Common.SceneComponents.Physics.Extensions.PhysicsLogics.PhysicsLogicBase
 {
     public struct ShapeData
     {

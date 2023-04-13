@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Extensions.Controllers.Gravity
+namespace Colin.Common.SceneComponents.Physics.Extensions.Controllers.Gravity
 {
     public enum GravityType
     {

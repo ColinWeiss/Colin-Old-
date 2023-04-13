@@ -1,10 +1,10 @@
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Factories;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Tools.PolygonManipulation;
-using Colin.Common.Physics.Tools.Triangulation.TriangulationBase;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Factories;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Tools.PolygonManipulation;
+using Colin.Common.SceneComponents.Physics.Tools.Triangulation.TriangulationBase;
 
-namespace Colin.Common.Physics.Tools.TextureTools
+namespace Colin.Common.SceneComponents.Physics.Tools.TextureTools
 {
     /// <summary>Simple class to maintain a terrain. It can keep track</summary>
     public class Terrain

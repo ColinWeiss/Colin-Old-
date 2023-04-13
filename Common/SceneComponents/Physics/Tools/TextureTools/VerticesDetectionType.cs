@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Tools.TextureTools
+namespace Colin.Common.SceneComponents.Physics.Tools.TextureTools
 {
     /// <summary>The detection type affects the resulting polygon data.</summary>
     public enum VerticesDetectionType

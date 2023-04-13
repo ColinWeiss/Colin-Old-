@@ -29,7 +29,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Colin.Common.Physics.Tools.Triangulation.Delaunay
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay
 {
     /**
      * @author Thomas Åhlén, thahlen@gmail.com

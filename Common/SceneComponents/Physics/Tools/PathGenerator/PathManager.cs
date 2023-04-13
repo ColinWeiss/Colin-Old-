@@ -1,11 +1,11 @@
-﻿using Colin.Common.Physics.Collision.Shapes;
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Dynamics.Joints;
-using Colin.Common.Physics.Factories;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Tools.Triangulation.TriangulationBase;
+﻿using Colin.Common.SceneComponents.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints;
+using Colin.Common.SceneComponents.Physics.Factories;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Tools.Triangulation.TriangulationBase;
 
-namespace Colin.Common.Physics.Tools.PathGenerator
+namespace Colin.Common.SceneComponents.Physics.Tools.PathGenerator
 {
     /// <summary>An easy to use manager for creating paths.</summary>
     public static class PathManager

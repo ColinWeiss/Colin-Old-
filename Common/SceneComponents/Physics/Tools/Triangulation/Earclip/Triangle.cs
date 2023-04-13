@@ -1,6 +1,6 @@
-using Colin.Common.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Shared;
 
-namespace Colin.Common.Physics.Tools.Triangulation.Earclip
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Earclip
 {
     public class Triangle : Vertices
     {

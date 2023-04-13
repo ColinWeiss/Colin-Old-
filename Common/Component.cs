@@ -1,10 +1,4 @@
-﻿using Colin.Common.Physics.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.CompilerServices;
 
 namespace Colin.Common
 {
@@ -12,6 +6,7 @@ namespace Colin.Common
     {
         /// <summary>
         /// 指示组件绑定的实体.
+        /// 在被实体挂载时赋值.
         /// </summary>
         public Entity Entity;
 
@@ -20,7 +15,7 @@ namespace Colin.Common
         /// </summary>
         public Transform2D Transform
         {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            [MethodImpl( MethodImplOptions.AggressiveInlining )]
             get => Entity.Transform;
         }
 
@@ -28,29 +23,33 @@ namespace Colin.Common
         public bool Enable
         {
             get => Entity != null ? Entity.Enable && _enabled : _enabled;
-            set => SetEnabled(value);
+            set => SetEnabled( value );
         }
+
+        public virtual void LoadDatas( ) { }
+
+        public virtual void SaveDatas( ) { }
 
         /// <summary>
         /// 发生在组件启用时.
         /// </summary>
-        public virtual void OnEnabled() { }
+        public virtual void OnEnabled( ) { }
 
         /// <summary>
         /// 发生在组件禁用时.
         /// </summary>
-        public virtual void OnDisabled() { }
+        public virtual void OnDisabled( ) { }
 
-        public Component SetEnabled(bool isEnabled)
+        public Component SetEnabled( bool isEnabled )
         {
-            if (_enabled != isEnabled)
+            if( _enabled != isEnabled )
             {
                 _enabled = isEnabled;
 
-                if (_enabled)
-                    OnEnabled();
+                if( _enabled )
+                    OnEnabled( );
                 else
-                    OnDisabled();
+                    OnDisabled( );
             }
 
             return this;

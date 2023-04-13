@@ -35,10 +35,7 @@
 // Future possibilities
 //   Comments!
 
-using Colin.Common.Physics.Tools.Triangulation.Delaunay;
-using Colin.Common.Physics.Tools.Triangulation.Delaunay.Delaunay;
-
-namespace Colin.Common.Physics.Tools.Triangulation.Delaunay.Delaunay.Sweep
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Delaunay.Sweep
 {
     internal class AdvancingFrontNode
     {

@@ -1,7 +1,7 @@
-﻿using Colin.Common.Physics.Shared;
+﻿using Colin.Common.SceneComponents.Physics.Shared;
 using System.Text;
 
-namespace Colin.Common.Physics.Tools.PathGenerator
+namespace Colin.Common.SceneComponents.Physics.Tools.PathGenerator
 {
     //Contributed by Matthew Bettcher
 

@@ -1,10 +1,8 @@
-﻿using Colin.Common.UserInterfaces;
-using Colin.Resources;
-using Colin.Extensions;
+﻿using Colin.Resources;
 using FontStashSharp;
 using System.Runtime.Serialization;
 
-namespace Colin.Common.UserInterfaces.Renderers
+namespace Colin.Common.SceneComponents.UserInterfaces.Renderers
 {
     /// <summary>
     /// 可渲染文本的渲染器.
@@ -38,7 +36,7 @@ namespace Colin.Common.UserInterfaces.Renderers
         public SpriteFontBase Font;
 
         public override void RendererInit( ) { }
-        public override void RenderSelf( Container container )
+        public override void Render( Container container )
         {
             if( _needRefresh )
             {

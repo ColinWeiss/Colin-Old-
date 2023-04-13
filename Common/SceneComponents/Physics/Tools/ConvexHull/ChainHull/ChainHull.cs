@@ -1,7 +1,7 @@
-﻿using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+﻿using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 
-namespace Colin.Common.Physics.Tools.ConvexHull.ChainHull
+namespace Colin.Common.SceneComponents.Physics.Tools.ConvexHull.ChainHull
 {
     /// <summary>
     /// Andrew's Monotone Chain Convex Hull algorithm. Used to get the convex hull of a point cloud. Source:

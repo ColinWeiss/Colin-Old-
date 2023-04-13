@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.Networks
+﻿namespace Colin.Common.SceneComponents.Networks
 {
     public enum NetModeState
     {

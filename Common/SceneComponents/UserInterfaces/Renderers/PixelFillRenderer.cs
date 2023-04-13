@@ -1,7 +1,7 @@
 ﻿using Colin.Resources;
 using System.Runtime.Serialization;
 
-namespace Colin.Common.UserInterfaces.Renderers
+namespace Colin.Common.SceneComponents.UserInterfaces.Renderers
 {
     /// <summary>
     /// 以像素点填充 <see cref="LayoutInfo.RenderRectangle"/> 的渲染器.
@@ -12,7 +12,7 @@ namespace Colin.Common.UserInterfaces.Renderers
     {
         public sealed override void RendererInit( ) { }
 
-        public sealed override void RenderSelf( Container container )
+        public sealed override void Render( Container container )
         {
             EngineInfo.SpriteBatch.Draw(
                 PreloadResource.Pixel.Source,

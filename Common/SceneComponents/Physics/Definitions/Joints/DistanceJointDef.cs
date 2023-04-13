@@ -1,8 +1,8 @@
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Dynamics.Joints.Misc;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints.Misc;
+using Colin.Common.SceneComponents.Physics.Utilities;
 
-namespace Colin.Common.Physics.Definitions.Joints
+namespace Colin.Common.SceneComponents.Physics.Definitions.Joints
 {
     /// <summary>Distance joint definition. This requires defining an anchor point on both bodies and the non-zero length of
     /// the distance joint. The definition uses local anchor points so that the initial configuration can violate the

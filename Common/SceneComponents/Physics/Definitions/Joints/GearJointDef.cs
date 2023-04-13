@@ -1,7 +1,7 @@
-using Colin.Common.Physics.Dynamics.Joints;
-using Colin.Common.Physics.Dynamics.Joints.Misc;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints.Misc;
 
-namespace Colin.Common.Physics.Definitions.Joints
+namespace Colin.Common.SceneComponents.Physics.Definitions.Joints
 {
     public sealed class GearJointDef : JointDef
     {

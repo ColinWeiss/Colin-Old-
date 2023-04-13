@@ -1,8 +1,8 @@
-﻿using Colin.Common.Physics.Collision.Shapes;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+﻿using Colin.Common.SceneComponents.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 
-namespace Colin.Common.Physics.Collision.Narrowphase
+namespace Colin.Common.SceneComponents.Physics.Collision.Narrowphase
 {
     public static class CollideCircle
     {

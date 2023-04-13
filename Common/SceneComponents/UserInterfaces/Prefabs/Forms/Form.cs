@@ -1,15 +1,15 @@
-﻿using Colin.Common.Inputs;
-using Colin.Common.UserInterfaces.Renderers;
+﻿using Colin.Common.SceneComponents.UserInterfaces.Renderers;
+using Colin.Graphics;
+using Colin.Inputs;
 using Colin.Resources;
-using Colin.Common.Graphics;
-using Colin.Common.UserInterfaces;
+using Microsoft.Xna.Framework.Input;
 
-namespace Colin.Common.UserInterfaces.Prefabs.Forms
+namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs.Forms
 {
     /// <summary>
     /// 通用窗口.
     /// </summary>
-    public class Form : Canvas
+    public class Form : Canvas , Inputable
     {
         /// <summary>
         /// 事件: 发生于窗口开启状态时.
@@ -21,10 +21,6 @@ namespace Colin.Common.UserInterfaces.Prefabs.Forms
         /// </summary>
         public EventHandler<EventArgs> OnCloseStateEnable = ( s, e ) => { };
 
-        /// <summary>
-        /// 窗口行为.
-        /// </summary>
-        public FormBehavior Behavior;
 
         /// <summary>
         /// 窗体基底.
@@ -86,13 +82,12 @@ namespace Colin.Common.UserInterfaces.Prefabs.Forms
             }
         }
 
+        public Input InputHandle { get; set; } = new Input( );
+
         public string Title = "Form";
 
         public override sealed void ContainerInitialize( )
         {
-            Enable = false;
-            Visiable = false;
-
             if( LayoutInfo.Width <= 0 )
                 LayoutInfo.SetWidth( 520 );
             if( LayoutInfo.Height <= 0 )
@@ -144,13 +139,14 @@ namespace Colin.Common.UserInterfaces.Prefabs.Forms
             CloseButton.EventResponder.MouseLeftClickAfter += ( s, e ) =>
             {
                 (CloseButton.Renderer as PictureRenderer).Picture = new Sprite( TextureResource.Get( "UI/Forms/Default/Close" ) );
-                Close( );
+                Disactive( true );
             };
             TitleBlock.Register( CloseButton );
 
             Block = new Canvas( );
             Block.LayoutInfo.SetLocation( 6, TitleBlockHeight + 10 );
             Block.LayoutInfo.SetSize( LayoutInfo.Width, LayoutInfo.Height );
+            Block.InteractiveInfo.CanSeek = false;
 
             Container blockSubstrate = new Container( );
             blockSubstrate.Renderer = new NineCutRenderer( TextureResource.Get( "UI/Forms/Default/Block" ), 6 );
@@ -170,9 +166,8 @@ namespace Colin.Common.UserInterfaces.Prefabs.Forms
 
             FormInitialize( );
 
-            Behavior.SetDefault( );
-
             base.ContainerInitialize( );
+
         }
 
         public virtual void FormInitialize( ) { }
@@ -186,14 +181,18 @@ namespace Colin.Common.UserInterfaces.Prefabs.Forms
             if( Behavior.CloseState )
                 Behavior.UpdateCloseState( );
             FormUpdate( );
+            if( Input.Current != this )
+            {
+                Input.BindInput( this );
+            }
             base.SelfUpdate( );
         }
         public virtual void FormUpdate( ) { }
 
         public override void InteractiveInfoUpdate( ref InteractiveInfo info )
         {
-            if( info.Activation && MouseResponder.Instance.MouseLeftClickBeforeFlag )
-                UserInterface.Page.SetTop( this );
+            if( UserInterface.State.Seek( ) == this && InputHandle.Mouse.MouseLeftClickBeforeFlag )
+                UserInterface.State.SetTop( this );
             base.InteractiveInfoUpdate( ref info );
         }
 
@@ -224,27 +223,6 @@ namespace Colin.Common.UserInterfaces.Prefabs.Forms
         /// <param name="width">窗体宽度.</param>
         /// <param name="height">窗体高度.</param>
         public void SetSize( int width, int height ) => LayoutInfo.SetSize( width, height );
-
-        /// <summary>
-        /// 打开窗口.
-        /// </summary>
-        public void Open( )
-        {
-            Enable = true;
-            Visiable = true;
-            Behavior.CloseState = false;
-            Behavior.CloseTimer = Behavior.CloseTime;
-            Behavior.OnOpen( );
-        }
-
-        /// <summary>
-        /// 关闭窗口.
-        /// </summary>
-        public void Close( )
-        {
-            Behavior.CloseState = true;
-            Behavior.OnClose( );
-        }
 
     }
 }

@@ -1,19 +1,12 @@
-﻿using Colin.Common.Physics.Dynamics.Solver;
-using Colin.Common.Physics.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Colin.Common
 {
     [Serializable]
-    [DataContract(IsReference = true)]
+    [DataContract( IsReference = true )]
     public class Transform2D
     {
-        public Transform2D()
+        public Transform2D( )
         {
             Position = Vector2.Zero;
             Rotation = 0f;
@@ -25,39 +18,39 @@ namespace Colin.Common
             get => parent;
             set
             {
-                if (parent != value)
+                if( parent != value )
                 {
-                    if (parent != null)
+                    if( parent != null )
                     {
-                        parent.children.Remove(this);
+                        parent.children.Remove( this );
                     }
                     parent = value;
-                    if (parent != null)
+                    if( parent != null )
                     {
-                        parent.children.Add(this);
+                        parent.children.Add( this );
                     }
-                    SetNeedsAbsoluteUpdate();
+                    SetNeedsAbsoluteUpdate( );
                 }
             }
         }
 
         public IEnumerable<Transform2D> Children => children;
 
-        public float AbsoluteRotation => UpdateAbsoluteAndGet(ref absoluteRotation);
+        public float AbsoluteRotation => UpdateAbsoluteAndGet( ref absoluteRotation );
 
-        public Vector2 AbsoluteScale => UpdateAbsoluteAndGet(ref absoluteScale);
+        public Vector2 AbsoluteScale => UpdateAbsoluteAndGet( ref absoluteScale );
 
-        public Vector2 AbsolutePosition => UpdateAbsoluteAndGet(ref absolutePosition);
+        public Vector2 AbsolutePosition => UpdateAbsoluteAndGet( ref absolutePosition );
 
         public float Rotation
         {
             get => localRotation;
             set
             {
-                if (localRotation != value)
+                if( localRotation != value )
                 {
                     localRotation = value;
-                    SetNeedsLocalUpdate();
+                    SetNeedsLocalUpdate( );
                 }
             }
         }
@@ -67,10 +60,10 @@ namespace Colin.Common
             get => localPosition;
             set
             {
-                if (localPosition != value)
+                if( localPosition != value )
                 {
                     localPosition = value;
-                    SetNeedsLocalUpdate();
+                    SetNeedsLocalUpdate( );
                 }
             }
         }
@@ -80,71 +73,71 @@ namespace Colin.Common
             get => localScale;
             set
             {
-                if (localScale != value)
+                if( localScale != value )
                 {
                     localScale = value;
-                    SetNeedsLocalUpdate();
+                    SetNeedsLocalUpdate( );
                 }
             }
         }
 
-        public Matrix Local => UpdateLocalAndGet(ref absolute);
+        public Matrix Local => UpdateLocalAndGet( ref absolute );
 
-        public Matrix Absolute => UpdateAbsoluteAndGet(ref absolute);
+        public Matrix Absolute => UpdateAbsoluteAndGet( ref absolute );
 
-        public Matrix InvertAbsolute => UpdateAbsoluteAndGet(ref invertAbsolute);
+        public Matrix InvertAbsolute => UpdateAbsoluteAndGet( ref invertAbsolute );
 
-        public void ToLocalPosition(ref Vector2 absolute, out Vector2 local)
+        public void ToLocalPosition( ref Vector2 absolute, out Vector2 local )
         {
-            Vector2.Transform(ref absolute, ref invertAbsolute, out local);
+            Vector2.Transform( ref absolute, ref invertAbsolute, out local );
         }
 
-        public void ToAbsolutePosition(ref Vector2 local, out Vector2 absolute)
+        public void ToAbsolutePosition( ref Vector2 local, out Vector2 absolute )
         {
-            Vector2.Transform(ref local, ref this.absolute, out absolute);
+            Vector2.Transform( ref local, ref this.absolute, out absolute );
         }
 
-        public Vector2 ToLocalPosition(Vector2 absolute)
+        public Vector2 ToLocalPosition( Vector2 absolute )
         {
             Vector2 result;
-            ToLocalPosition(ref absolute, out result);
+            ToLocalPosition( ref absolute, out result );
             return result;
         }
 
-        public Vector2 ToAbsolutePosition(Vector2 local)
+        public Vector2 ToAbsolutePosition( Vector2 local )
         {
             Vector2 result;
-            ToAbsolutePosition(ref local, out result);
+            ToAbsolutePosition( ref local, out result );
             return result;
         }
 
-        private void SetNeedsLocalUpdate()
+        private void SetNeedsLocalUpdate( )
         {
             needsLocalUpdate = true;
-            SetNeedsAbsoluteUpdate();
+            SetNeedsAbsoluteUpdate( );
         }
 
-        private void SetNeedsAbsoluteUpdate()
+        private void SetNeedsAbsoluteUpdate( )
         {
             needsAbsoluteUpdate = true;
-            foreach (Transform2D transform in children)
+            foreach( Transform2D transform in children )
             {
-                transform.SetNeedsAbsoluteUpdate();
+                transform.SetNeedsAbsoluteUpdate( );
             }
         }
 
-        private void UpdateLocal()
+        private void UpdateLocal( )
         {
-            Matrix matrix = Matrix.CreateScale(Scale.X, Scale.Y, 1f);
-            matrix *= Matrix.CreateRotationZ(Rotation);
-            matrix *= Matrix.CreateTranslation(Position.X, Position.Y, 0f);
+            Matrix matrix = Matrix.CreateScale( Scale.X, Scale.Y, 1f );
+            matrix *= Matrix.CreateRotationZ( Rotation );
+            matrix *= Matrix.CreateTranslation( Position.X, Position.Y, 0f );
             local = matrix;
             needsLocalUpdate = false;
         }
 
-        private void UpdateAbsolute()
+        private void UpdateAbsolute( )
         {
-            if (Parent == null)
+            if( Parent == null )
             {
                 absolute = local;
                 absoluteScale = localScale;
@@ -154,35 +147,35 @@ namespace Colin.Common
             else
             {
                 Matrix matrix = Parent.Absolute;
-                Matrix.Multiply(ref local, ref matrix, out absolute);
+                Matrix.Multiply( ref local, ref matrix, out absolute );
                 absoluteScale = Parent.AbsoluteScale * Scale;
                 absoluteRotation = Parent.AbsoluteRotation + Rotation;
                 absolutePosition = Vector2.Zero;
-                ToAbsolutePosition(ref absolutePosition, out absolutePosition);
+                ToAbsolutePosition( ref absolutePosition, out absolutePosition );
             }
-            Matrix.Invert(ref absolute, out invertAbsolute);
+            Matrix.Invert( ref absolute, out invertAbsolute );
             needsAbsoluteUpdate = false;
         }
 
-        private T UpdateLocalAndGet<T>(ref T field)
+        private T UpdateLocalAndGet<T>( ref T field )
         {
-            if (needsLocalUpdate)
-                UpdateLocal();
+            if( needsLocalUpdate )
+                UpdateLocal( );
             return field;
         }
 
-        private T UpdateAbsoluteAndGet<T>(ref T field)
+        private T UpdateAbsoluteAndGet<T>( ref T field )
         {
-            if (needsLocalUpdate)
-                UpdateLocal();
-            if (needsAbsoluteUpdate)
-                UpdateAbsolute();
+            if( needsLocalUpdate )
+                UpdateLocal( );
+            if( needsAbsoluteUpdate )
+                UpdateAbsolute( );
             return field;
         }
 
         private Transform2D parent;
 
-        private List<Transform2D> children = new List<Transform2D>();
+        private List<Transform2D> children = new List<Transform2D>( );
 
         private Matrix absolute;
 

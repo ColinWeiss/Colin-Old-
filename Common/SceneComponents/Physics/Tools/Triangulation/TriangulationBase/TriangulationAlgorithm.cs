@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Tools.Triangulation.TriangulationBase
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.TriangulationBase
 {
     public enum TriangulationAlgorithm
     {

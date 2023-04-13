@@ -20,21 +20,21 @@
 * 3. This notice may not be removed or altered from any source distribution. 
 */
 
-using Colin.Common.Physics.Collision.Broadphase;
-using Colin.Common.Physics.Collision.ContactSystem;
-using Colin.Common.Physics.Collision.Filtering;
-using Colin.Common.Physics.Collision.Handlers;
-using Colin.Common.Physics.Collision.Shapes;
-using Colin.Common.Physics.Collision.TOI;
-using Colin.Common.Physics.Definitions;
-using Colin.Common.Physics.Dynamics.Joints.Misc;
-using Colin.Common.Physics.Extensions.Controllers.ControllerBase;
-using Colin.Common.Physics.Extensions.PhysicsLogics.PhysicsLogicBase;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Collision.Broadphase;
+using Colin.Common.SceneComponents.Physics.Collision.ContactSystem;
+using Colin.Common.SceneComponents.Physics.Collision.Filtering;
+using Colin.Common.SceneComponents.Physics.Collision.Handlers;
+using Colin.Common.SceneComponents.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Collision.TOI;
+using Colin.Common.SceneComponents.Physics.Definitions;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints.Misc;
+using Colin.Common.SceneComponents.Physics.Extensions.Controllers.ControllerBase;
+using Colin.Common.SceneComponents.Physics.Extensions.PhysicsLogics.PhysicsLogicBase;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Dynamics
+namespace Colin.Common.SceneComponents.Physics.Dynamics
 {
     public class Body
     {

@@ -1,7 +1,7 @@
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 
-namespace Colin.Common.Physics.Tools.TextureTools
+namespace Colin.Common.SceneComponents.Physics.Tools.TextureTools
 {
     // Ported by Matthew Bettcher - Feb 2011
 

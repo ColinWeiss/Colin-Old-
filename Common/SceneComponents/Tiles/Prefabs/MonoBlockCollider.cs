@@ -1,6 +1,6 @@
-﻿using Colin.Common.Physics.Collision.Shapes;
+﻿using Colin.Common.SceneComponents.Physics.Collision.Shapes;
 
-namespace Colin.Common.Tiles.Prefabs
+namespace Colin.Common.SceneComponents.Tiles.Prefabs
 {
     public class MonoBlockCollider : TileCollider
     {

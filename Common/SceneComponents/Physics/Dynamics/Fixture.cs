@@ -20,17 +20,17 @@
 * 3. This notice may not be removed or altered from any source distribution. 
 */
 
-using Colin.Common.Physics.Collision.Broadphase;
-using Colin.Common.Physics.Collision.ContactSystem;
-using Colin.Common.Physics.Collision.Filtering;
-using Colin.Common.Physics.Collision.Handlers;
-using Colin.Common.Physics.Collision.RayCast;
-using Colin.Common.Physics.Collision.Shapes;
-using Colin.Common.Physics.Definitions;
-using Colin.Common.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Collision.Broadphase;
+using Colin.Common.SceneComponents.Physics.Collision.ContactSystem;
+using Colin.Common.SceneComponents.Physics.Collision.Filtering;
+using Colin.Common.SceneComponents.Physics.Collision.Handlers;
+using Colin.Common.SceneComponents.Physics.Collision.RayCast;
+using Colin.Common.SceneComponents.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Definitions;
+using Colin.Common.SceneComponents.Physics.Shared;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Dynamics
+namespace Colin.Common.SceneComponents.Physics.Dynamics
 {
     /// <summary>A fixture is used to attach a Shape to a body for collision detection. A fixture inherits its transform from
     /// its parent. Fixtures hold additional non-geometric data such as friction, collision filters, etc. Fixtures are created

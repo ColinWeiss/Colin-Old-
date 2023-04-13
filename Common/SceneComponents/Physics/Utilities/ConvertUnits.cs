@@ -3,7 +3,7 @@
 * Copyright (c) 2017 Ian Qvist
 */
 
-namespace Colin.Common.Physics.Utilities
+namespace Colin.Common.SceneComponents.Physics.Utilities
 {
     /// <summary>Convert units between display and simulation units.</summary>
     public static class ConvertUnits

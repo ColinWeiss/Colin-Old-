@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.Physics.Collision.Filtering
+﻿namespace Colin.Common.SceneComponents.Physics.Collision.Filtering
 {
     public class Filter
     {

@@ -1,6 +1,6 @@
-using Colin.Common.Physics.Shared.Optimization;
+using Colin.Common.SceneComponents.Physics.Shared.Optimization;
 
-namespace Colin.Common.Physics.Collision.Narrowphase
+namespace Colin.Common.SceneComponents.Physics.Collision.Narrowphase
 {
     /// <summary>Used to warm start ComputeDistance. Set count to zero on first call.</summary>
     public struct SimplexCache

@@ -1,6 +1,6 @@
-﻿using Colin.Common.UserInterfaces.Prefabs;
+﻿using Colin.Common.SceneComponents.UserInterfaces.Prefabs;
 
-namespace Colin.Common.UserInterfaces
+namespace Colin.Common.SceneComponents.UserInterfaces
 {
     /// <summary>
     /// 下拉栏.
@@ -23,7 +23,7 @@ namespace Colin.Common.UserInterfaces
 
             LinerMenu.LayoutInfo.SetTop( LayoutInfo.Height );
             LinerMenu.Enable = false;
-            LinerMenu.Visiable = false;
+            LinerMenu.Visible = false;
             Register( LinerMenu );
 
             Button.LayoutInfo.SetSize( LayoutInfo.Size );
@@ -40,18 +40,18 @@ namespace Colin.Common.UserInterfaces
             if( Dropdown )
             {
                 LinerMenu.Enable = true;
-                LinerMenu.Visiable = true;
+                LinerMenu.Visible = true;
                 Panel.Enable = true;
-                Panel.Visiable = true;
+                Panel.Visible = true;
                 LinerMenu.RefreshSize( );
                 Panel.LayoutInfo.SetHeight( LinerMenu.LayoutInfo.Height + LayoutInfo.Height + (LinerMenu.Border ? LinerMenu.Interval : 0) );
             }
             else
             {
                 LinerMenu.Enable = false;
-                LinerMenu.Visiable = false;
+                LinerMenu.Visible = false;
                 Panel.Enable = false;
-                Panel.Visiable = false;
+                Panel.Visible = false;
                 LinerMenu.LayoutInfo.SetSize( 0 );
                 Panel.LayoutInfo.SetHeight( 0 );
             }

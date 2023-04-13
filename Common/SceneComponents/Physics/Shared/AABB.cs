@@ -1,7 +1,7 @@
-using Colin.Common.Physics.Collision.RayCast;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Collision.RayCast;
+using Colin.Common.SceneComponents.Physics.Utilities;
 
-namespace Colin.Common.Physics.Shared
+namespace Colin.Common.SceneComponents.Physics.Shared
 {
     /// <summary>An axis aligned bounding box.</summary>
     public struct AABB

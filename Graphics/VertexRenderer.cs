@@ -1,7 +1,7 @@
 ﻿using Colin.Resources;
 using Microsoft.Xna.Framework.Content;
 
-namespace Colin.Common.Graphics
+namespace Colin.Graphics
 {
     public struct VertexInfo : IVertexType
     {

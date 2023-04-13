@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Extensions.PhysicsLogics.Explosion
+namespace Colin.Common.SceneComponents.Physics.Extensions.PhysicsLogics.Explosion
 {
     /// <summary>This is a comparer used for detecting angle difference between rays</summary>
     internal class RayDataComparer : IComparer<float>

@@ -1,7 +1,7 @@
-﻿using Colin.Common.Physics.Collision.Filtering;
-using Colin.Common.Physics.Utilities;
+﻿using Colin.Common.SceneComponents.Physics.Collision.Filtering;
+using Colin.Common.SceneComponents.Physics.Utilities;
 
-namespace Colin.Common.Physics
+namespace Colin.Common.SceneComponents.Physics
 {
     public static class Settings
     {

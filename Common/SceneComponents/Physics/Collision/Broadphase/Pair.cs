@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Collision.Broadphase
+namespace Colin.Common.SceneComponents.Physics.Collision.Broadphase
 {
     internal struct Pair
     {

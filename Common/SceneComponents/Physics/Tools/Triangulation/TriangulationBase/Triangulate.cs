@@ -1,13 +1,13 @@
-﻿using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Tools.ConvexHull.GiftWrap;
-using Colin.Common.Physics.Tools.Triangulation.Bayazit;
-using Colin.Common.Physics.Tools.Triangulation.Delaunay;
-using Colin.Common.Physics.Tools.Triangulation.Earclip;
-using Colin.Common.Physics.Tools.Triangulation.FlipCode;
-using Colin.Common.Physics.Tools.Triangulation.Seidel;
+﻿using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Tools.ConvexHull.GiftWrap;
+using Colin.Common.SceneComponents.Physics.Tools.Triangulation.Bayazit;
+using Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay;
+using Colin.Common.SceneComponents.Physics.Tools.Triangulation.Earclip;
+using Colin.Common.SceneComponents.Physics.Tools.Triangulation.FlipCode;
+using Colin.Common.SceneComponents.Physics.Tools.Triangulation.Seidel;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Tools.Triangulation.TriangulationBase
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.TriangulationBase
 {
     public static class Triangulate
     {

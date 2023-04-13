@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.Networks
+﻿namespace Colin.Common.SceneComponents.Networks
 {
     /// <summary>
     /// 指示一个参与 <see cref="Network"/> 工作的对象.

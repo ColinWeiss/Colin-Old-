@@ -1,9 +1,9 @@
-﻿using Colin.Common.Physics.Collision.RayCast;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+﻿using Colin.Common.SceneComponents.Physics.Collision.RayCast;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Collision
+namespace Colin.Common.SceneComponents.Physics.Collision
 {
     public static class RayCastHelper
     {

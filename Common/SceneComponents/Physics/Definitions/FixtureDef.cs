@@ -1,7 +1,7 @@
-using Colin.Common.Physics.Collision.Filtering;
-using Colin.Common.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Collision.Filtering;
+using Colin.Common.SceneComponents.Physics.Collision.Shapes;
 
-namespace Colin.Common.Physics.Definitions
+namespace Colin.Common.SceneComponents.Physics.Definitions
 {
     public class FixtureDef : IDef
     {

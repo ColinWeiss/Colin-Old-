@@ -3,13 +3,12 @@
 * Copyright (c) 2017 Ian Qvist
 */
 
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Dynamics.Joints.Misc;
-using Colin.Common.Physics.Dynamics.Solver;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints.Misc;
+using Colin.Common.SceneComponents.Physics.Dynamics.Solver;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Dynamics.Joints
+namespace Colin.Common.SceneComponents.Physics.Dynamics.Joints
 {
     /// <summary>Maintains a fixed angle between two bodies</summary>
     public class AngleJoint : Joint

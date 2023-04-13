@@ -29,9 +29,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-using Colin.Common.Physics.Tools.Triangulation.Delaunay;
-
-namespace Colin.Common.Physics.Tools.Triangulation.Delaunay.Sets
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Sets
 {
     /*
      * Extends the PointSet by adding some Constraints on how it will be triangulated<br>

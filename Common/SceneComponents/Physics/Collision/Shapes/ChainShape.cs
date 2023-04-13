@@ -20,12 +20,12 @@
 * 3. This notice may not be removed or altered from any source distribution. 
 */
 
-using Colin.Common.Physics.Collision.RayCast;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Collision.RayCast;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Collision.Shapes
+namespace Colin.Common.SceneComponents.Physics.Collision.Shapes
 {
     /// <summary>
     /// A chain shape is a free form sequence of line segments. The chain has one-sided collision, with the surface

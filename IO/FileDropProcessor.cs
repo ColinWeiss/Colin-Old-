@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Colin.Common.IO
+namespace Colin.IO
 {
     public sealed class FileDropProcessor : GameComponent
     {

@@ -8,9 +8,9 @@ namespace Colin
     /// </summary>
     public class EngineInfo
     {
-        public static Random Random => new Random();
+        public static Random Random => new Random( );
 
-        public static string[] StartupParameter;
+        public static string[ ] StartupParameter;
 
         /// <summary>
         ///用于初始化和控制图形设备的显示.
@@ -45,9 +45,9 @@ namespace Colin
         {
             get
             {
-                if (_engineName == string.Empty)
+                if( _engineName == string.Empty )
                 {
-                    _engineName = Assembly.GetEntryAssembly().FullName.Split(',').First();
+                    _engineName = Assembly.GetEntryAssembly( ).FullName.Split( ',' ).First( );
                     return _engineName;
                 }
                 else
@@ -84,7 +84,7 @@ namespace Colin
         {
             get
             {
-                return new Vector2(ViewWidth, ViewHeight);
+                return new Vector2( ViewWidth, ViewHeight );
             }
         }
 
@@ -95,7 +95,7 @@ namespace Colin
         {
             get
             {
-                return new Point(ViewWidth, ViewHeight);
+                return new Point( ViewWidth, ViewHeight );
             }
         }
 
@@ -106,7 +106,7 @@ namespace Colin
         {
             get
             {
-                return new Vector2(ViewWidth / 2, ViewHeight / 2);
+                return new Vector2( ViewWidth / 2, ViewHeight / 2 );
             }
         }
 
@@ -117,23 +117,23 @@ namespace Colin
         {
             get
             {
-                return new Rectangle(0, 0, ViewWidth, ViewHeight);
+                return new Rectangle( 0, 0, ViewWidth, ViewHeight );
             }
         }
 
         /// <summary>
         /// 当前鼠标信息.
         /// </summary>
-        public static MouseState MouseState { get; private set; } = new MouseState();
+        public static MouseState MouseState { get; private set; } = new MouseState( );
 
         /// <summary>
         /// 上一帧鼠标信息.
         /// </summary>
-        public static MouseState MouseStateLast { get; private set; } = new MouseState();
+        public static MouseState MouseStateLast { get; private set; } = new MouseState( );
 
-        public static Vector2 MousePositionF => MouseState.Position.ToVector2();
+        public static Vector2 MousePositionF => MouseState.Position.ToVector2( );
 
-        public EngineInfo(Engine engine)
+        public EngineInfo( Engine engine )
         {
             Engine = engine;
         }
@@ -142,11 +142,11 @@ namespace Colin
         /// 从设备获取信息.
         /// </summary>
         /// <param name="gameTime">游戏刻.</param>
-        internal static void GetInformationFromDevice(GameTime gameTime)
+        internal static void GetInformationFromDevice( GameTime gameTime )
         {
             GameTimeCache = gameTime;
             MouseStateLast = MouseState;
-            MouseState = Mouse.GetState();
+            MouseState = Mouse.GetState( );
         }
     }
 }

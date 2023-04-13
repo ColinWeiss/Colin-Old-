@@ -1,7 +1,7 @@
-﻿using Colin.Common.Physics.Collision.Shapes;
-using Colin.Common.Physics.Dynamics;
+﻿using Colin.Common.SceneComponents.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Dynamics;
 
-namespace Colin.Common.Tiles
+namespace Colin.Common.SceneComponents.Tiles
 {
     public class TileCollider
     {

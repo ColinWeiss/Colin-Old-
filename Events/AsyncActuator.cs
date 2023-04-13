@@ -21,13 +21,13 @@ namespace Colin.Events
         /// </summary>
         /// <param name="action">带有进度标识的加载任务.</param>
         /// <param name="onCompleted">加载完成后执行.</param>
-        public async void ActuateAsync(IdentProgressAction action, IdentProgressAction onCompleted)
+        public async void ActuateAsync( IdentProgressAction action, IdentProgressAction onCompleted )
         {
-            await Task.Run(() =>
+            await Task.Run( ( ) =>
             {
-                action.Invoke(ref _progress);
-                onCompleted.Invoke(ref _progress);
-            });
+                action.Invoke( ref _progress );
+                onCompleted.Invoke( ref _progress );
+            } );
         }
     }
 }

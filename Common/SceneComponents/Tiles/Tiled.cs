@@ -1,10 +1,10 @@
-﻿using Colin.Common.Graphics;
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Tiles.Events;
+﻿using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Tiles.Events;
+using Colin.Graphics;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Colin.Common.Tiles
+namespace Colin.Common.SceneComponents.Tiles
 {
     /// <summary>
     /// 瓦片处理核心.

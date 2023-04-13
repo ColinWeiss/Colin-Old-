@@ -1,8 +1,8 @@
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Tools.TextureTools;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Tools.TextureTools;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Utilities
+namespace Colin.Common.SceneComponents.Physics.Utilities
 {
     public static class PolygonUtils
     {

@@ -1,6 +1,6 @@
-using Colin.Common.Physics.Dynamics.Joints.Misc;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints.Misc;
 
-namespace Colin.Common.Physics.Definitions.Joints
+namespace Colin.Common.SceneComponents.Physics.Definitions.Joints
 {
     /// <summary>Mouse joint definition. This requires a world target point, tuning parameters, and the time step.</summary>
     public sealed class FixedMouseJointDef : JointDef

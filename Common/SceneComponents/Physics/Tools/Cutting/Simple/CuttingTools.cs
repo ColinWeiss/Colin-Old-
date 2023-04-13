@@ -1,11 +1,11 @@
-﻿using Colin.Common.Physics.Collision.Shapes;
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Factories;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+﻿using Colin.Common.SceneComponents.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Factories;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Tools.Cutting.Simple
+namespace Colin.Common.SceneComponents.Physics.Tools.Cutting.Simple
 {
     public static class CuttingTools
     {

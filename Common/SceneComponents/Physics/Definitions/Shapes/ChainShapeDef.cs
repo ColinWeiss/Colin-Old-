@@ -1,7 +1,7 @@
-using Colin.Common.Physics.Collision.Shapes;
-using Colin.Common.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Shared;
 
-namespace Colin.Common.Physics.Definitions.Shapes
+namespace Colin.Common.SceneComponents.Physics.Definitions.Shapes
 {
     /// <summary>A chain shape is a free form sequence of line segments. The chain has two-sided collision, so you can use
     /// inside and outside collision. Therefore, you may use any winding order. Connectivity information is used to create

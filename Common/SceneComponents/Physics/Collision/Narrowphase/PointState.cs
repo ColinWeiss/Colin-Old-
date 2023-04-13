@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Collision.Narrowphase
+namespace Colin.Common.SceneComponents.Physics.Collision.Narrowphase
 {
     /// <summary>This is used for determining the state of contact points.</summary>
     public enum PointState

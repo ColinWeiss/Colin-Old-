@@ -29,12 +29,11 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-using Colin.Common.Physics.Shared.Optimization;
-using Colin.Common.Physics.Tools.Triangulation.Delaunay;
-using Colin.Common.Physics.Tools.Triangulation.Delaunay.Delaunay.Sweep;
+using Colin.Common.SceneComponents.Physics.Shared.Optimization;
+using Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Delaunay.Sweep;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Tools.Triangulation.Delaunay.Delaunay
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Delaunay
 {
     internal class DelaunayTriangle
     {

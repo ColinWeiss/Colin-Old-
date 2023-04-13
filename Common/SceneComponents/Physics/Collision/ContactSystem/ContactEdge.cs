@@ -1,6 +1,6 @@
-using Colin.Common.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Dynamics;
 
-namespace Colin.Common.Physics.Collision.ContactSystem
+namespace Colin.Common.SceneComponents.Physics.Collision.ContactSystem
 {
     /// <summary>
     /// A contact edge is used to connect bodies and contacts together in a contact graph where each body is a node

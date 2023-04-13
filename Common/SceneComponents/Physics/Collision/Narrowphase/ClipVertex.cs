@@ -1,6 +1,6 @@
-using Colin.Common.Physics.Collision.ContactSystem;
+using Colin.Common.SceneComponents.Physics.Collision.ContactSystem;
 
-namespace Colin.Common.Physics.Collision.Narrowphase
+namespace Colin.Common.SceneComponents.Physics.Collision.Narrowphase
 {
     /// <summary>Used for computing contact manifolds.</summary>
     internal struct ClipVertex

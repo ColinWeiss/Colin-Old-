@@ -1,6 +1,6 @@
-using Colin.Common.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Shared;
 
-namespace Colin.Common.Physics.Dynamics.Solver
+namespace Colin.Common.SceneComponents.Physics.Dynamics.Solver
 {
     public sealed class ContactVelocityConstraint
     {

@@ -1,9 +1,9 @@
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Dynamics.Joints.Misc;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints.Misc;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Definitions.Joints
+namespace Colin.Common.SceneComponents.Physics.Definitions.Joints
 {
     /// <summary>Pulley joint definition. This requires two ground anchors, two dynamic body anchor points, and a pulley ratio.</summary>
     public sealed class PulleyJointDef : JointDef

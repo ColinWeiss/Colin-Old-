@@ -17,7 +17,7 @@
 * 3. This notice may not be removed or altered from any source distribution. 
 */
 
-namespace Colin.Common.Physics.Dynamics
+namespace Colin.Common.SceneComponents.Physics.Dynamics
 {
     /// <summary>This is an internal structure.</summary>
     internal struct TimeStep

@@ -1,8 +1,8 @@
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Tools.Triangulation.Bayazit
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Bayazit
 {
     //From phed rev 36: http://code.google.com/p/phed/source/browse/trunk/Polygon.cpp
 

@@ -1,11 +1,10 @@
-using Colin.Common.Physics.Collision.Shapes;
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Extensions.Controllers.ControllerBase;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
-using Colin.Common.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Extensions.Controllers.ControllerBase;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 
-namespace Colin.Common.Physics.Extensions.Controllers.Buoyancy
+namespace Colin.Common.SceneComponents.Physics.Extensions.Controllers.Buoyancy
 {
     public sealed class BuoyancyController : Controller
     {

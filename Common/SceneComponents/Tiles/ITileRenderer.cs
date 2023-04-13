@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.Tiles
+﻿namespace Colin.Common.SceneComponents.Tiles
 {
     /// <summary>
     /// 以自定义操作进行物块渲染的渲染对象.

@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.Physics.Tools.Triangulation.Seidel
+﻿namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Seidel
 {
     // Directed Acyclic graph (DAG)
     // See "Computational Geometry", 3rd edition, by Mark de Berg et al, Chapter 6.2

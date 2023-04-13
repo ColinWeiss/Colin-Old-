@@ -14,7 +14,7 @@
 
         public void LoadResource( )
         {
-            if( !Directory.Exists( string.Concat( EngineInfo.Engine.Content.RootDirectory, "/Textures" ) ))
+            if( !Directory.Exists( string.Concat( EngineInfo.Engine.Content.RootDirectory, "/Textures" ) ) )
                 return;
             Texture2D _texture;
             string _fileName;
@@ -31,7 +31,7 @@
         /// <summary>
         /// 根据路径获取纹理贴图.
         /// <br>[!] 原版纹理资产的获取起始目录为 <![CDATA["Content/Textures"]]>.</br>
-        /// <br>若已进行模组加载, 则需要从模组主目录开始索引.</br>
+        /// <br>若进行模组纹理加载, 则需要从模组主目录开始索引.</br>
         /// </summary>
         /// <param name="path">路径.</param>
         /// <returns>纹理贴图.</returns>

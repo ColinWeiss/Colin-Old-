@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Shared
+namespace Colin.Common.SceneComponents.Physics.Shared
 {
     /// <summary>
     /// A transform contains translation and rotation. It is used to represent the position and orientation of rigid

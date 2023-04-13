@@ -1,8 +1,8 @@
-using Colin.Common.Physics.Collision.Shapes;
-using Colin.Common.Physics.Dynamics.Joints;
-using Colin.Common.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints;
+using Colin.Common.SceneComponents.Physics.Shared;
 
-namespace Colin.Common.Physics.Interfaces
+namespace Colin.Common.SceneComponents.Physics.Interfaces
 {
     public interface IDebugView
     {

@@ -1,7 +1,7 @@
-using Colin.Common.Physics.Collision.ContactSystem;
-using Colin.Common.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Collision.ContactSystem;
+using Colin.Common.SceneComponents.Physics.Dynamics;
 
-namespace Colin.Common.Physics.Collision.Handlers
+namespace Colin.Common.SceneComponents.Physics.Collision.Handlers
 {
     public delegate void OnSeparationHandler( Fixture fixtureA, Fixture fixtureB, Contact contact );
 }

@@ -20,13 +20,13 @@
 * 3. This notice may not be removed or altered from any source distribution. 
 */
 
-using Colin.Common.Physics.Collision.Broadphase;
-using Colin.Common.Physics.Collision.Filtering;
-using Colin.Common.Physics.Collision.Handlers;
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Dynamics.Handlers;
+using Colin.Common.SceneComponents.Physics.Collision.Broadphase;
+using Colin.Common.SceneComponents.Physics.Collision.Filtering;
+using Colin.Common.SceneComponents.Physics.Collision.Handlers;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Dynamics.Handlers;
 
-namespace Colin.Common.Physics.Collision.ContactSystem
+namespace Colin.Common.SceneComponents.Physics.Collision.ContactSystem
 {
     public class ContactManager
     {

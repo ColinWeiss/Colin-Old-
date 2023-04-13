@@ -1,7 +1,4 @@
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Dynamics.Joints;
-
-namespace Colin.Common.Physics.Dynamics.Joints.Misc
+namespace Colin.Common.SceneComponents.Physics.Dynamics.Joints.Misc
 {
     /// <summary>
     /// A joint edge is used to connect bodies and joints together in a joint graph where each body is a node and each

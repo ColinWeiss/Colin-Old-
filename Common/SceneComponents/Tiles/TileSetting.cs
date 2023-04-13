@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.Tiles
+﻿namespace Colin.Common.SceneComponents.Tiles
 {
     /// <summary>
     /// 有关Tiled的全局信息均存放于此.

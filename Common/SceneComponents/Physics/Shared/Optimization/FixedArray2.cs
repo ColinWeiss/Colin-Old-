@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Colin.Common.Physics.Shared.Optimization
+namespace Colin.Common.SceneComponents.Physics.Shared.Optimization
 {
     public struct FixedArray2<T> : IEnumerable<T>
     {

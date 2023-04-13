@@ -1,7 +1,7 @@
-﻿using Colin.Common.Graphics;
+﻿using Colin.Graphics;
 using System.Runtime.Serialization;
 
-namespace Colin.Common.UserInterfaces.Renderers
+namespace Colin.Common.SceneComponents.UserInterfaces.Renderers
 {
     /// <summary>
     /// 允许控制 <see cref="FillPattern"/> 的绘制纹理的渲染.
@@ -28,7 +28,7 @@ namespace Colin.Common.UserInterfaces.Renderers
             PictureFrame.Y = 0;
         }
 
-        public sealed override void RenderSelf( Container container )
+        public sealed override void Render( Container container )
         {
             PictureFrame.UpdateFrame( );
             if( Picture == null )
@@ -57,7 +57,7 @@ namespace Colin.Common.UserInterfaces.Renderers
                         EngineInfo.SpriteBatch.Draw(
                             Picture.Source,
                                 container.IsCanvas ?
-                                Vector2.Zero : container.LayoutInfo.RenderLocationF + container.DesignInfo.OriginF / 2,
+                                Vector2.Zero : container.LayoutInfo.RenderLocationF + container.DesignInfo.OriginF ,
                             PictureFrame.Frame,
                             container.DesignInfo.CurrentColor,
                             0f,

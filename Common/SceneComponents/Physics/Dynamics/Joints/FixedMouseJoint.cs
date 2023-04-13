@@ -20,14 +20,13 @@
 * 3. This notice may not be removed or altered from any source distribution. 
 */
 
-using Colin.Common.Physics.Definitions.Joints;
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Dynamics.Joints.Misc;
-using Colin.Common.Physics.Dynamics.Solver;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Definitions.Joints;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints.Misc;
+using Colin.Common.SceneComponents.Physics.Dynamics.Solver;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 
-namespace Colin.Common.Physics.Dynamics.Joints
+namespace Colin.Common.SceneComponents.Physics.Dynamics.Joints
 {
     // p = attached point, m = mouse point
     // C = p - m

@@ -1,8 +1,8 @@
-﻿using Colin.Common.Physics.Definitions.Joints;
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Dynamics.Joints;
+﻿using Colin.Common.SceneComponents.Physics.Definitions.Joints;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints;
 
-namespace Colin.Common.Physics.Factories
+namespace Colin.Common.SceneComponents.Physics.Factories
 {
     /// <summary>An easy to use factory for using joints.</summary>
     public static class JointFactory

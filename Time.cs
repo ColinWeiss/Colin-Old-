@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Colin
+﻿namespace Colin
 {
     /// <summary>
     /// 提供帧时信息.
@@ -52,9 +45,9 @@ namespace Colin
         /// </summary>
         public static float MaxDeltaTime = float.MaxValue;
 
-        internal static void Update(float dt)
+        internal static void Update( float dt )
         {
-            if (dt > MaxDeltaTime)
+            if( dt > MaxDeltaTime )
                 dt = MaxDeltaTime;
             TotalTime += dt;
             DeltaTime = dt * TimeScale;

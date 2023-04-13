@@ -1,5 +1,5 @@
-﻿using Colin.Common.Graphics;
-using Colin.Extensions;
+﻿using Colin.Extensions;
+using Colin.Graphics;
 
 namespace Colin.Common
 {
@@ -36,12 +36,12 @@ namespace Colin.Common
         /// </summary>
         public void BatchBegin( )
         {
-            EngineInfo.SpriteBatch.Begin( SpriteSortMode, Material.BlendState, Material.SamplerState, Material.DepthStencilState, null , Material.Effect, TransformMatrix );
+            EngineInfo.SpriteBatch.Begin( SpriteSortMode, Material.BlendState, Material.SamplerState, Material.DepthStencilState, null, Material.Effect, TransformMatrix );
         }
 
         public void DoRender_SceneModeCollectionUseIt( )
         {
-            EngineInfo.SpriteBatch.Begin( SpriteSortMode, Material.BlendState, Material.SamplerState, Material.DepthStencilState, null , Material.Effect, TransformMatrix );
+            EngineInfo.SpriteBatch.Begin( SpriteSortMode, Material.BlendState, Material.SamplerState, Material.DepthStencilState, null, Material.Effect, TransformMatrix );
             DoRender( );
             EngineInfo.SpriteBatch.End( );
         }

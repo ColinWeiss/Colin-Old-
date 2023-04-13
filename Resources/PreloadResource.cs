@@ -1,4 +1,4 @@
-﻿using Colin.Common.Graphics;
+﻿using Colin.Graphics;
 
 namespace Colin.Resources
 {

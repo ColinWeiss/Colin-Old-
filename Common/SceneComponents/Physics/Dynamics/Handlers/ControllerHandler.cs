@@ -1,6 +1,6 @@
-using Colin.Common.Physics.Extensions.Controllers.ControllerBase;
+using Colin.Common.SceneComponents.Physics.Extensions.Controllers.ControllerBase;
 
-namespace Colin.Common.Physics.Dynamics.Handlers
+namespace Colin.Common.SceneComponents.Physics.Dynamics.Handlers
 {
     public delegate void ControllerHandler( Controller controller );
 }

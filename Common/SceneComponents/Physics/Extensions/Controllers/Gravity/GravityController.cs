@@ -1,9 +1,8 @@
-﻿using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Extensions.Controllers.ControllerBase;
-using Colin.Common.Physics.Utilities;
-using Colin.Common.Physics.Dynamics;
+﻿using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Extensions.Controllers.ControllerBase;
+using Colin.Common.SceneComponents.Physics.Utilities;
 
-namespace Colin.Common.Physics.Extensions.Controllers.Gravity
+namespace Colin.Common.SceneComponents.Physics.Extensions.Controllers.Gravity
 {
     public class GravityController : Controller
     {

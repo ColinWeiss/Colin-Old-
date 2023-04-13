@@ -1,6 +1,4 @@
-﻿using Colin.Common.Physics.Tools.Triangulation.Delaunay;
-
-namespace Colin.Common.Physics.Tools.Triangulation.Delaunay.Util
+﻿namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Util
 {
     internal class PointGenerator
     {

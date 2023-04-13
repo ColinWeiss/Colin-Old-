@@ -1,7 +1,7 @@
-﻿using Colin.Common.Physics.Collision.ContactSystem;
-using Colin.Common.Physics.Collision.Narrowphase;
+﻿using Colin.Common.SceneComponents.Physics.Collision.ContactSystem;
+using Colin.Common.SceneComponents.Physics.Collision.Narrowphase;
 
-namespace Colin.Common.Physics.Dynamics.Handlers
+namespace Colin.Common.SceneComponents.Physics.Dynamics.Handlers
 {
     public delegate void PreSolveHandler( Contact contact, ref Manifold oldManifold );
 }

@@ -3,7 +3,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-namespace Colin.Common.Networks
+namespace Colin.Common.SceneComponents.Networks
 {
     /// <summary>
     /// 网络工作处理核心.

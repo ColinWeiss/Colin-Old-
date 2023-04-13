@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.Graphics
+﻿namespace Colin.Graphics
 {
     /// <summary>
     /// 标识一张Sprite.

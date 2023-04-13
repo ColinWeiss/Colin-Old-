@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Colin.Common.ECS
+﻿namespace Colin.Common
 {
     /// <summary>
     /// 表示一个可执行逻辑计算的组件.

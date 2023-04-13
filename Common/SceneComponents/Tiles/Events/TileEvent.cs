@@ -1,6 +1,4 @@
-﻿using Colin.Common.Tiles;
-
-namespace Colin.Common.Tiles.Events
+﻿namespace Colin.Common.SceneComponents.Tiles.Events
 {
     public class TileEvent : EventArgs
     {

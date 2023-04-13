@@ -34,9 +34,7 @@
 // Future possibilities
 //   Documentation!
 
-using Colin.Common.Physics.Tools.Triangulation.Delaunay;
-
-namespace Colin.Common.Physics.Tools.Triangulation.Delaunay.Polygon
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Polygon
 {
     internal class PolygonPoint : TriangulationPoint
     {

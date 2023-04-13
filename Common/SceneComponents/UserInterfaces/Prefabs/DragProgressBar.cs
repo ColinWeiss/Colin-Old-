@@ -1,12 +1,7 @@
-﻿using Colin.Common.UserInterfaces.Renderers;
+﻿using Colin.Common.SceneComponents.UserInterfaces.Renderers;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Colin.Common.UserInterfaces.Prefabs
+namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs
 {
     /// <summary>
     /// 拖动进度条.

@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.Physics.Shared.Contracts
+﻿namespace Colin.Common.SceneComponents.Physics.Shared.Contracts
 {
     public class RequiredException : Exception
     {

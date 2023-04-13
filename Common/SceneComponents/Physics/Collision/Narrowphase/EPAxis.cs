@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Collision.Narrowphase
+namespace Colin.Common.SceneComponents.Physics.Collision.Narrowphase
 {
     /// <summary>This structure is used to keep track of the best separating axis.</summary>
     public struct EPAxis

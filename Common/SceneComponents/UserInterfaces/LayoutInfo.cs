@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Colin.Common.UserInterfaces
+namespace Colin.Common.SceneComponents.UserInterfaces
 {
     /// <summary>
     /// 布局信息.
@@ -102,6 +102,10 @@ namespace Colin.Common.UserInterfaces
         [DataMember]
         public int PaddingBottom;
 
+        private Vector2 LocationPercent = Vector2.Zero;
+
+        private Vector2 SizePercent = Vector2.Zero;
+
         /// <summary>
         /// 获取容器大小.
         /// </summary>
@@ -182,6 +186,13 @@ namespace Colin.Common.UserInterfaces
 
         public void SetLocation( Vector2 position ) => SetLocation( (int)position.X, (int)position.Y );
 
+        bool NeedUpdateLocationFromPercent = false;
+        public void SetLocationPercent( float x, float y )
+        {
+            LocationPercent = new Vector2( x, y );
+            NeedUpdateLocationFromPercent = true;
+        }
+
         public void SetWidth( int width )
         {
             Width = width;
@@ -220,6 +231,13 @@ namespace Colin.Common.UserInterfaces
             Width = (int)size.X;
             Height = (int)size.Y;
             OnSizeChanged.Invoke( );
+        }
+
+        bool NeedUpdateSizeFromPercent = false;
+        public void SetSizePercent( float x, float y )
+        {
+            SizePercent = new Vector2( x, y );
+            NeedUpdateSizeFromPercent = true;
         }
 
         public void SetTop( int top )
@@ -294,6 +312,23 @@ namespace Colin.Common.UserInterfaces
         {
             if( container.Parent != null )
             {
+                if( NeedUpdateLocationFromPercent )
+                {
+                    NeedUpdateLocationFromPercent = false;
+                    SetLocation(
+                        (int)(container.Parent.LayoutInfo.Width * LocationPercent.X),
+                        (int)(container.Parent.LayoutInfo.Height * LocationPercent.Y) );
+                    LocationPercent = Vector2.Zero;
+                }
+                if( NeedUpdateSizeFromPercent )
+                {
+                    NeedUpdateSizeFromPercent = false;
+                    SetSize(
+                        (int)(container.Parent.LayoutInfo.Width * SizePercent.X),
+                        (int)(container.Parent.LayoutInfo.Height * SizePercent.Y) );
+                    SizePercent = Vector2.Zero;
+                }
+
                 _renderLocation.X = container.Parent.LayoutInfo._renderLocation.X + Left;
                 _renderLocation.Y = container.Parent.LayoutInfo._renderLocation.Y + Top;
                 InteractiveX = container.Parent.LayoutInfo.InteractiveX + Left;
@@ -305,11 +340,17 @@ namespace Colin.Common.UserInterfaces
                     InteractiveX = container.Parent.LayoutInfo._renderLocation.X + Left;
                     InteractiveY = container.Parent.LayoutInfo._renderLocation.Y + Top;
                 }
+                if( container.CanvasParent != null )
+                {
+                    InteractiveX = container.CanvasParent.LayoutInfo.InteractiveX + Left;
+                    InteractiveY = container.CanvasParent.LayoutInfo.InteractiveY + Top;
+                }
                 if( container.CanvasParent != null && container.CanvasParent != container.Parent )
                 {
                     InteractiveX = container.CanvasParent.LayoutInfo.InteractiveX + container.Parent.LayoutInfo._renderLocation.X + Left;
                     InteractiveY = container.CanvasParent.LayoutInfo.InteractiveY + container.Parent.LayoutInfo._renderLocation.Y + Top;
                 }
+
             }
             else
             {
@@ -318,8 +359,9 @@ namespace Colin.Common.UserInterfaces
                 InteractiveX = Left;
                 InteractiveY = Top;
             }
-        //    InteractiveX -= container.DesignInfo.Origin.X / 2;
-         //   InteractiveY -= container.DesignInfo.Origin.Y / 2;
+            //    InteractiveX -= container.DesignInfo.Origin.X / 2;
+            //   InteractiveY -= container.DesignInfo.Origin.Y / 2;
         }
+
     }
 }

@@ -1,8 +1,7 @@
 ﻿using Colin.Common;
-using Colin.Common.Inputs;
-using Colin.Common.IO;
+using Colin.Inputs;
+using Colin.IO;
 using Colin.Resources;
-using System.Text.Json;
 
 namespace Colin
 {
@@ -23,14 +22,14 @@ namespace Colin
 
         public virtual int TargetFrame => 120;
 
-        public Engine()
+        public Engine( )
         {
-            ProgramCheck.DoCheck();
-            if (EngineInfo.Engine == null)
+            ProgramCheck.DoCheck( );
+            if( EngineInfo.Engine == null )
                 EngineInfo.Engine = this;
-            if (EngineInfo.Graphics == null)
+            if( EngineInfo.Graphics == null )
             {
-                EngineInfo.Graphics = new GraphicsDeviceManager(this)
+                EngineInfo.Graphics = new GraphicsDeviceManager( this )
                 {
                     PreferHalfPixelOffset = true,
                     HardwareModeSwitch = false,
@@ -42,80 +41,79 @@ namespace Colin
             Window.AllowUserResizing = true;
             IsMouseVisible = true;
             IsFixedTimeStep = true;
-            TargetElapsedTime = new TimeSpan(0, 0, 0, 0, (int)Math.Round(1000f / TargetFrame));
+            TargetElapsedTime = new TimeSpan( 0, 0, 0, 0, (int)Math.Round( 1000f / TargetFrame ) );
         }
 
         /// <summary>
         /// 切换场景.
         /// </summary>
         /// <param name="scene">要切换到的场景对象.</param>
-        public void SetScene(Scene scene)
+        public void SetScene( Scene scene )
         {
-            if (CurrentScene != null)
+            if( CurrentScene != null )
             {
-                if (CurrentScene.InitializeOnSwitch)
+                if( CurrentScene.InitializeOnSwitch )
                     Window.ClientSizeChanged -= CurrentScene.InitRenderTarget;
-                Components.Remove(CurrentScene);
+                Components.Remove( CurrentScene );
             }
-            Components.Add(scene);
+            Components.Add( scene );
             CurrentScene = scene;
         }
 
-        protected override sealed void Initialize()
+        protected override sealed void Initialize( )
         {
-            EngineInfo.SpriteBatch = new SpriteBatch(EngineInfo.Graphics.GraphicsDevice);
-            Preloader.LoadResources();
-            EngineInfo.Config = new Config();
-            EngineInfo.Config.Load();
-            Components.Add(FileDropProcessor.Instance);
-            Components.Add(KeyboardResponder.Instance);
-            Components.Add(MouseResponder.Instance);
-            DoInitialize();
-            base.Initialize();
+            EngineInfo.SpriteBatch = new SpriteBatch( EngineInfo.Graphics.GraphicsDevice );
+            Preloader.LoadResources( );
+            EngineInfo.Config = new Config( );
+            EngineInfo.Config.Load( );
+            Components.Add( FileDropProcessor.Instance );
+            DoInitialize( );
+            base.Initialize( );
         }
 
-        public virtual void DoInitialize() { }
+        public virtual void DoInitialize( ) { }
 
-        protected override sealed void LoadContent()
+        protected override sealed void LoadContent( )
         {
-            base.LoadContent();
+            base.LoadContent( );
         }
 
-        public virtual void Start() { }
+        public virtual void Start( ) { }
 
         private bool Started = false;
-        protected override sealed void Update(GameTime gameTime)
+        protected override sealed void Update( GameTime gameTime )
         {
-            if (!Enable)
+            if( !Enable )
                 return;
-            Time.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-            if (!Started)
+            Input.Current?.InputHandle.UpdateInput( gameTime );
+            Time.Update( (float)gameTime.ElapsedGameTime.TotalSeconds );
+            if( !Started )
             {
-                ResourceLoader = new ResourceLoader();
-                ResourceLoader.OnLoadComplete += (s, e) => Start();
-                SetScene(ResourceLoader);
+                ResourceLoader = new ResourceLoader( );
+                ResourceLoader.OnLoadComplete += ( s, e ) => Start( );
+                SetScene( ResourceLoader );
                 Started = true;
             }
-            EngineInfo.GetInformationFromDevice(gameTime);
-            DoUpdate();
-            base.Update(gameTime);
+            EngineInfo.GetInformationFromDevice( gameTime );
+            DoUpdate( );
+            base.Update( gameTime );
         }
-        public virtual void DoUpdate() { }
+        public virtual void DoUpdate( ) { }
 
-        protected override sealed void Draw(GameTime gameTime)
+        protected override sealed void Draw( GameTime gameTime )
         {
-            if (!Visiable)
+            if( !Visiable )
                 return;
-            GraphicsDevice.Clear(Color.Black);
-            DoRender();
-            base.Draw(gameTime);
+            GraphicsDevice.Clear( Color.Black );
+            DoRender( );
+            base.Draw( gameTime );
         }
-        public virtual void DoRender() { }
+        public virtual void DoRender( ) { }
 
-        protected override void OnExiting(object sender, EventArgs args)
+        protected override void OnExiting( object sender, EventArgs args )
         {
-            EngineInfo.Config.Save();
-            base.OnExiting(sender, args);
+            EngineInfo.Config.Save( );
+            base.OnExiting( sender, args );
         }
     }
 }

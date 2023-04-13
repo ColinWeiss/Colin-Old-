@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Colin.Common.Physics.Shared
+namespace Colin.Common.SceneComponents.Physics.Shared
 {
     public class Pool<T>
     {

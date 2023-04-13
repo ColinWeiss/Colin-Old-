@@ -20,14 +20,14 @@
 * 3. This notice may not be removed or altered from any source distribution. 
 */
 
-using Colin.Common.Physics.Collision.Narrowphase;
-using Colin.Common.Physics.Collision.Shapes;
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Shared.Optimization;
+using Colin.Common.SceneComponents.Physics.Collision.Narrowphase;
+using Colin.Common.SceneComponents.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Shared.Optimization;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Collision.ContactSystem
+namespace Colin.Common.SceneComponents.Physics.Collision.ContactSystem
 {
     /// <summary>
     /// The class manages contact between two shapes. A contact exists for each overlapping AABB in the broad-phase

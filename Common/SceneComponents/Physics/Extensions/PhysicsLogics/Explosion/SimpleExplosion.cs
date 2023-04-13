@@ -1,8 +1,8 @@
-﻿using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Extensions.PhysicsLogics.PhysicsLogicBase;
-using Colin.Common.Physics.Shared;
+﻿using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Extensions.PhysicsLogics.PhysicsLogicBase;
+using Colin.Common.SceneComponents.Physics.Shared;
 
-namespace Colin.Common.Physics.Extensions.PhysicsLogics.Explosion
+namespace Colin.Common.SceneComponents.Physics.Extensions.PhysicsLogics.Explosion
 {
     /// <summary>Creates a simple explosion that ignores other bodies hiding behind static bodies.</summary>
     public sealed class SimpleExplosion : PhysicsLogic

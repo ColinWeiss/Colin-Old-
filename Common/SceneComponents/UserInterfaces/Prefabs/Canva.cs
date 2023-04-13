@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.UserInterfaces.Prefabs
+﻿namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs
 {
     public class Canvas : Container
     {

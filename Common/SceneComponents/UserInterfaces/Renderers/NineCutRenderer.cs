@@ -1,7 +1,7 @@
-﻿using Colin.Common.Graphics;
-using Colin.Extensions;
+﻿using Colin.Extensions;
+using Colin.Graphics;
 
-namespace Colin.Common.UserInterfaces.Renderers
+namespace Colin.Common.SceneComponents.UserInterfaces.Renderers
 {
     public class NineCutRenderer : ContainerRenderer
     {
@@ -11,7 +11,7 @@ namespace Colin.Common.UserInterfaces.Renderers
 
         public override void RendererInit( ) { }
 
-        public override void RenderSelf( Container container )
+        public override void Render( Container container )
         {
             if( container.LayoutInfo.Width == 0 || container.LayoutInfo.Height == 0 )
                 return;

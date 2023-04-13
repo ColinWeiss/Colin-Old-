@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Collision.Narrowphase
+namespace Colin.Common.SceneComponents.Physics.Collision.Narrowphase
 {
     /// <summary>Reference face used for clipping</summary>
     public struct ReferenceFace

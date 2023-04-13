@@ -1,7 +1,7 @@
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Dynamics.Joints.Misc;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints.Misc;
 
-namespace Colin.Common.Physics.Definitions.Joints
+namespace Colin.Common.SceneComponents.Physics.Definitions.Joints
 {
     /// <summary>Revolute joint definition. This requires defining an anchor point where the bodies are joined. The definition
     /// uses local anchor points so that the initial configuration can violate the constraint slightly. You also need to

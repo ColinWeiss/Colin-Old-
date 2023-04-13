@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Collision.Shapes
+namespace Colin.Common.SceneComponents.Physics.Collision.Shapes
 {
     public enum ShapeType
     {

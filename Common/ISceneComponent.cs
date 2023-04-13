@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Colin.Common
+﻿namespace Colin.Common
 {
     /// <summary>
     /// 标识一个可用于场景的模块.

@@ -1,7 +1,6 @@
-﻿using Colin.Common.Physics.Shared.Contracts;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
-namespace Colin.Common.Physics.Shared.Contracts
+namespace Colin.Common.SceneComponents.Physics.Shared.Contracts
 {
     public static class Contract
     {

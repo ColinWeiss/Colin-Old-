@@ -1,6 +1,6 @@
-using Colin.Common.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Collision.Shapes;
 
-namespace Colin.Common.Physics.Definitions.Shapes
+namespace Colin.Common.SceneComponents.Physics.Definitions.Shapes
 {
     /// <summary>A line segment (edge) shape. These can be connected in chains or loops to other edge shapes. The connectivity
     /// information is used to ensure correct contact normals.</summary>

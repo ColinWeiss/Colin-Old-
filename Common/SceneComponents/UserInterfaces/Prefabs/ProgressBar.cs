@@ -1,6 +1,6 @@
-﻿using Colin.Common.UserInterfaces.Renderers;
+﻿using Colin.Common.SceneComponents.UserInterfaces.Renderers;
 
-namespace Colin.Common.UserInterfaces.Prefabs
+namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs
 {
     public class ProgressBar : Container
     {

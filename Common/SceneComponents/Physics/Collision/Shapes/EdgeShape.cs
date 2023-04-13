@@ -20,10 +20,10 @@
 * 3. This notice may not be removed or altered from any source distribution. 
 */
 
-using Colin.Common.Physics.Collision.RayCast;
-using Colin.Common.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Collision.RayCast;
+using Colin.Common.SceneComponents.Physics.Shared;
 
-namespace Colin.Common.Physics.Collision.Shapes
+namespace Colin.Common.SceneComponents.Physics.Collision.Shapes
 {
     /// <summary>
     /// A line segment (edge) shape. These can be connected in chains or loops to other edge shapes. Edges created

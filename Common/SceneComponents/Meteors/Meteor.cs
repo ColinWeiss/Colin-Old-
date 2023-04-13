@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.SceneModes.Meteors
+﻿namespace Colin.Common.SceneComponents.Meteors
 {
     public class Meteor
     {

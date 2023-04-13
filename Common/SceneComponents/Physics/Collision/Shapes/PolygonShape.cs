@@ -20,12 +20,12 @@
 * 3. This notice may not be removed or altered from any source distribution. 
 */
 
-using Colin.Common.Physics.Collision.RayCast;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Collision.RayCast;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Collision.Shapes
+namespace Colin.Common.SceneComponents.Physics.Collision.Shapes
 {
     /// <summary>Represents a simple non-self intersecting convex polygon. Create a convex hull from the given array of points.</summary>
     public class PolygonShape : Shape

@@ -1,7 +1,7 @@
-﻿using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Extensions.Controllers.ControllerBase;
+﻿using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Extensions.Controllers.ControllerBase;
 
-namespace Colin.Common.Physics.Extensions.Controllers.Wind
+namespace Colin.Common.SceneComponents.Physics.Extensions.Controllers.Wind
 {
     public abstract class AbstractForceController : Controller
     {

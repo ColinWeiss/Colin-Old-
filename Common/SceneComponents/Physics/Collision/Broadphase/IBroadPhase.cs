@@ -1,9 +1,9 @@
-﻿using Colin.Common.Physics.Collision.Handlers;
-using Colin.Common.Physics.Collision.RayCast;
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Shared;
+﻿using Colin.Common.SceneComponents.Physics.Collision.Handlers;
+using Colin.Common.SceneComponents.Physics.Collision.RayCast;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Shared;
 
-namespace Colin.Common.Physics.Collision.Broadphase
+namespace Colin.Common.SceneComponents.Physics.Collision.Broadphase
 {
     public interface IBroadPhase
     {

@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.IO
+﻿namespace Colin.IO
 {
     /// <summary>
     /// 游戏数据; 通常用于标识一个文件.

@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.Tiles
+﻿namespace Colin.Common.SceneComponents.Tiles
 {
     /// <summary>
     /// 瓦片信息记录集合.

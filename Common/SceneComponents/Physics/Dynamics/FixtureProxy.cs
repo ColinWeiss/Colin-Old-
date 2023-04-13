@@ -1,6 +1,6 @@
-using Colin.Common.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Shared;
 
-namespace Colin.Common.Physics.Dynamics
+namespace Colin.Common.SceneComponents.Physics.Dynamics
 {
     /// <summary>This proxy is used internally to connect fixtures to the broad-phase.</summary>
     public struct FixtureProxy

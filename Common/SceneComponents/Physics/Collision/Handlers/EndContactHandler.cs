@@ -20,9 +20,9 @@
 * 3. This notice may not be removed or altered from any source distribution. 
 */
 
-using Colin.Common.Physics.Collision.ContactSystem;
+using Colin.Common.SceneComponents.Physics.Collision.ContactSystem;
 
-namespace Colin.Common.Physics.Collision.Handlers
+namespace Colin.Common.SceneComponents.Physics.Collision.Handlers
 {
     /// <summary>This delegate is called when a contact is deleted</summary>
     public delegate void EndContactHandler( Contact contact );

@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.Backgrounds
+﻿namespace Colin.Common.SceneComponents.Backgrounds
 {
     /// <summary>
     /// 背景样式.

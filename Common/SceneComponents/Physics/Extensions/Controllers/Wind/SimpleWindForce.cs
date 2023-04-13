@@ -1,7 +1,6 @@
-﻿using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Dynamics;
+﻿using Colin.Common.SceneComponents.Physics.Dynamics;
 
-namespace Colin.Common.Physics.Extensions.Controllers.Wind
+namespace Colin.Common.SceneComponents.Physics.Extensions.Controllers.Wind
 {
     /// <summary>
     /// Reference implementation for forces based on AbstractForceController It supports all features provided by the

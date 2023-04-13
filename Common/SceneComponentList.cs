@@ -1,13 +1,12 @@
 ﻿using Colin.Collections;
 using Colin.Extensions;
-using System.Collections.ObjectModel;
 
 namespace Colin.Common
 {
     /// <summary>
     /// 场景模块集合.
     /// </summary>
-    public class SceneComponentList
+    public class SceneComponentList : ITraceable
     {
         private readonly Scene Scene;
 
@@ -26,6 +25,10 @@ namespace Colin.Common
         public LiteList<ISceneComponent> Components = new LiteList<ISceneComponent>( );
 
         public LiteList<IRenderableSceneComponent> RenderableComponents = new LiteList<IRenderableSceneComponent>( );
+
+        public string Name => nameof( SceneComponentList );
+
+        public string DisplayName => Name;
 
         public void DoUpdate( GameTime gameTime )
         {

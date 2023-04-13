@@ -1,6 +1,6 @@
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Utilities;
 
-namespace Colin.Common.Physics.Shared
+namespace Colin.Common.SceneComponents.Physics.Shared
 {
     /// <summary>A 3-by-3 matrix. Stored in column-major order.</summary>
     public struct Mat33

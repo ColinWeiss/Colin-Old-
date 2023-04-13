@@ -1,6 +1,6 @@
-﻿using Colin.Common.Physics.Dynamics;
+﻿using Colin.Common.SceneComponents.Physics.Dynamics;
 
-namespace Colin.Common.Physics
+namespace Colin.Common.SceneComponents.Physics
 {
     public class PhysicCore : ISceneComponent
     {

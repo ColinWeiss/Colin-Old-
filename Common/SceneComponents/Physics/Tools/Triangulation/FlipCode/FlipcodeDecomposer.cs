@@ -1,8 +1,8 @@
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Tools.Triangulation.FlipCode
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.FlipCode
 {
     /// <summary>
     /// Convex decomposition algorithm created by unknown

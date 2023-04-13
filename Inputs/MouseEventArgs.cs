@@ -1,7 +1,7 @@
-﻿using Colin.Common.Events;
+﻿using Colin.Events;
 using Microsoft.Xna.Framework.Input;
 
-namespace Colin.Common.Inputs
+namespace Colin.Inputs
 {
     /// <summary>
     /// 鼠标事件类.

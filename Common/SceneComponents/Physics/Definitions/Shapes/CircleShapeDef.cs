@@ -1,6 +1,6 @@
-﻿using Colin.Common.Physics.Collision.Shapes;
+﻿using Colin.Common.SceneComponents.Physics.Collision.Shapes;
 
-namespace Colin.Common.Physics.Definitions.Shapes
+namespace Colin.Common.SceneComponents.Physics.Definitions.Shapes
 {
     public sealed class CircleShapeDef : ShapeDef
     {

@@ -29,9 +29,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-using Colin.Common.Physics.Tools.Triangulation.Delaunay.Delaunay.Sweep;
+using Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Delaunay.Sweep;
 
-namespace Colin.Common.Physics.Tools.Triangulation.Delaunay
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay
 {
     internal class TriangulationPoint
     {

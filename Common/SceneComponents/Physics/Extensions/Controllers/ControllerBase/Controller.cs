@@ -1,7 +1,7 @@
-﻿using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Extensions.PhysicsLogics.PhysicsLogicBase;
+﻿using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Extensions.PhysicsLogics.PhysicsLogicBase;
 
-namespace Colin.Common.Physics.Extensions.Controllers.ControllerBase
+namespace Colin.Common.SceneComponents.Physics.Extensions.Controllers.ControllerBase
 {
     public abstract class Controller : FilterData
     {

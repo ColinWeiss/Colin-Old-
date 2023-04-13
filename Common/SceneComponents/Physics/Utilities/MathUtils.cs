@@ -20,9 +20,9 @@
 * 3. This notice may not be removed or altered from any source distribution. 
 */
 
-using Colin.Common.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Shared;
 
-namespace Colin.Common.Physics.Utilities
+namespace Colin.Common.SceneComponents.Physics.Utilities
 {
     public static class MathUtils
     {

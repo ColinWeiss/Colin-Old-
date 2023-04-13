@@ -1,9 +1,9 @@
-using Colin.Common.Physics.Collision.Narrowphase;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Collision.Narrowphase;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Dynamics.Solver
+namespace Colin.Common.SceneComponents.Physics.Dynamics.Solver
 {
     public static class PositionSolverManifold
     {

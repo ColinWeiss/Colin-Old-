@@ -1,7 +1,7 @@
-﻿using Colin.Common.Physics.Shared.Contracts;
+﻿using Colin.Common.SceneComponents.Physics.Shared.Contracts;
 using System.Collections;
 
-namespace Colin.Common.Physics.Shared
+namespace Colin.Common.SceneComponents.Physics.Shared
 {
     /// <summary>This graph is a doubly linked circular list. It is circular to avoid branches in Add/Remove methods.</summary>
     public class Graph<T> : IEnumerable<T>

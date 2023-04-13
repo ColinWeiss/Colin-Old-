@@ -1,7 +1,7 @@
-﻿using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Extensions.Controllers.ControllerBase;
+﻿using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Extensions.Controllers.ControllerBase;
 
-namespace Colin.Common.Physics.Extensions.Controllers.Velocity
+namespace Colin.Common.SceneComponents.Physics.Extensions.Controllers.Velocity
 {
     /// <summary>
     /// Put a limit on the linear (translation - the move speed) and angular (rotation) velocity of bodies added to

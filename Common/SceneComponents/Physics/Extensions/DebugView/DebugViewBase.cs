@@ -3,10 +3,10 @@
 * Copyright (c) 2017 Ian Qvist
 */
 
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Shared;
 
-namespace Colin.Common.Physics.Extensions.DebugView
+namespace Colin.Common.SceneComponents.Physics.Extensions.DebugView
 {
     /// <summary>Implement and register this class with a World to provide debug drawing of physics entities in your game.</summary>
     public abstract class DebugViewBase

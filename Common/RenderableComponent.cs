@@ -1,9 +1,4 @@
-﻿using Colin.Common.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Colin.Graphics;
 
 namespace Colin.Common
 {
@@ -13,7 +8,7 @@ namespace Colin.Common
 
         public Material Material = null;
 
-        public virtual void DoRender() { }
+        public virtual void DoRender( ) { }
 
     }
 }

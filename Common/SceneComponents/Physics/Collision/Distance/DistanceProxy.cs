@@ -1,7 +1,7 @@
-using Colin.Common.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Collision.Shapes;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Collision.Distance
+namespace Colin.Common.SceneComponents.Physics.Collision.Distance
 {
     /// <summary>A distance proxy is used by the GJK algorithm. It encapsulates any shape.</summary>
     public struct DistanceProxy

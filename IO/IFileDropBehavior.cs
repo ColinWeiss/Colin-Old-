@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.IO
+﻿namespace Colin.IO
 {
     public interface IFileDropBehavior
     {

@@ -1,10 +1,10 @@
-using Colin.Common.Physics.Collision.Distance;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Shared.Optimization;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Collision.Distance;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Shared.Optimization;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Collision.Narrowphase
+namespace Colin.Common.SceneComponents.Physics.Collision.Narrowphase
 {
     internal struct Simplex
     {

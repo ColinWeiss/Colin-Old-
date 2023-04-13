@@ -1,7 +1,5 @@
 ﻿using Colin.Common;
-using Colin.Common.Events;
-using Colin.Extensions;
-using System;
+using Colin.Events;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -37,8 +35,9 @@ namespace Colin.Resources
                 EngineConsole.WriteLine( ConsoleTextType.Remind, "游戏资源加载完成." );
                 BasicEvent onResourceLoadComplete = new BasicEvent( );
                 onResourceLoadComplete.Name = "Event_GameResources_LoadComplete";
-                this.EventRaise( OnLoadComplete, onResourceLoadComplete );
+                OnLoadComplete?.Invoke( this, onResourceLoadComplete );
             } );
         }
+
     }
 }

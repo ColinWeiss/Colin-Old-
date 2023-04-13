@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Colin.Common.IO
+namespace Colin.IO
 {
     /// <summary>
     /// 游戏数据文件包.

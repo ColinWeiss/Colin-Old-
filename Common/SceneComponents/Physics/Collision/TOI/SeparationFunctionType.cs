@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Collision.TOI
+namespace Colin.Common.SceneComponents.Physics.Collision.TOI
 {
     public enum SeparationFunctionType
     {

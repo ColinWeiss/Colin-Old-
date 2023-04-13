@@ -1,8 +1,8 @@
-﻿using Colin.Common.Physics.Utilities;
+﻿using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 using System.Text;
 
-namespace Colin.Common.Physics.Shared
+namespace Colin.Common.SceneComponents.Physics.Shared
 {
     [DebuggerDisplay( "Count = {Count} Vertices = {ToString()}" )]
     public class Vertices : List<Vector2>

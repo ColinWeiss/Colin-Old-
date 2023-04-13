@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Shared
+namespace Colin.Common.SceneComponents.Physics.Shared
 {
     /// <summary>Rotation</summary>
     public struct Rot

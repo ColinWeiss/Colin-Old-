@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.Noises.Berlin
+﻿namespace Colin.Noises.Berlin
 {
     /// <summary>
     /// <see cref="BerlinNoiseCreator"/> 的配置信息.

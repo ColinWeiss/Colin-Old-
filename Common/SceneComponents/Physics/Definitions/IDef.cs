@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Definitions
+namespace Colin.Common.SceneComponents.Physics.Definitions
 {
     public interface IDef
     {

@@ -1,6 +1,7 @@
-﻿using Microsoft.Xna.Framework.Audio;
+﻿using Colin.Common;
+using Microsoft.Xna.Framework.Audio;
 
-namespace Colin.Common.Audios
+namespace Colin.Audios
 {
     /// <summary>
     /// 声音模块.

@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Collision.Shapes
+namespace Colin.Common.SceneComponents.Physics.Collision.Shapes
 {
     /// <summary>This holds the mass data computed for a shape.</summary>
     public struct MassData : IEquatable<MassData>

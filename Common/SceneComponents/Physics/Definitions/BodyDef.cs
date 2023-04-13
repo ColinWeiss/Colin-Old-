@@ -1,6 +1,6 @@
-﻿using Colin.Common.Physics.Dynamics;
+﻿using Colin.Common.SceneComponents.Physics.Dynamics;
 
-namespace Colin.Common.Physics.Definitions
+namespace Colin.Common.SceneComponents.Physics.Definitions
 {
     public class BodyDef : IDef
     {

@@ -1,6 +1,6 @@
-using Colin.Common.Physics.Collision.Narrowphase;
+using Colin.Common.SceneComponents.Physics.Collision.Narrowphase;
 
-namespace Colin.Common.Physics.Dynamics.Solver
+namespace Colin.Common.SceneComponents.Physics.Dynamics.Solver
 {
     public sealed class ContactPositionConstraint
     {

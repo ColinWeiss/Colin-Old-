@@ -1,11 +1,11 @@
-﻿using Colin.Common.Physics.Collision.Shapes;
-using Colin.Common.Physics.Definitions;
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Tools.Triangulation.TriangulationBase;
-using Colin.Common.Physics.Utilities;
+﻿using Colin.Common.SceneComponents.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Definitions;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Tools.Triangulation.TriangulationBase;
+using Colin.Common.SceneComponents.Physics.Utilities;
 
-namespace Colin.Common.Physics.Factories
+namespace Colin.Common.SceneComponents.Physics.Factories
 {
     /// <summary>An easy to use factory for creating bodies</summary>
     public static class FixtureFactory

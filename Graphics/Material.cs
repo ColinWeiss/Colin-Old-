@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Colin.Common.Graphics
+﻿namespace Colin.Graphics
 {
     public class Material : IComparable<Material>, IDisposable
     {
         public static SamplerState DefaultSamplerState = new SamplerState
         {
-            Filter = TextureFilter.Point
+            Filter = TextureFilter.Point,
+            BorderColor = Color.Red
         };
 
         public static Material DefaultMaterial = new Material( );

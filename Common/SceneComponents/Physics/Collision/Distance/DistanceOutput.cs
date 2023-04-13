@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Collision.Distance
+namespace Colin.Common.SceneComponents.Physics.Collision.Distance
 {
     /// <summary>Output for Distance.ComputeDistance().</summary>
     public struct DistanceOutput

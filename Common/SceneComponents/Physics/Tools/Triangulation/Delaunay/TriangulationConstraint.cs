@@ -32,6 +32,7 @@
 
 
 
+
 /**
 * Forces a triangle edge between two points p and q
 * when triangulating. For example used to enforce
@@ -39,7 +40,7 @@
 * 
 * @author Thomas Åhlén, thahlen@gmail.com
 */
-namespace Colin.Common.Physics.Tools.Triangulation.Delaunay
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay
 {
     internal class TriangulationConstraint
     {

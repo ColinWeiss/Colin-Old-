@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.Tiles
+﻿namespace Colin.Common.SceneComponents.Tiles
 {
     public class TileChunkManager
     {

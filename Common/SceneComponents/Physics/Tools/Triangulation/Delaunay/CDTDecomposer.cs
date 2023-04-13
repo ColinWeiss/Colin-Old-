@@ -3,12 +3,12 @@
 * Copyright (c) 2017 Ian Qvist
 */
 
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Tools.Triangulation.Delaunay.Delaunay;
-using Colin.Common.Physics.Tools.Triangulation.Delaunay.Delaunay.Sweep;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Delaunay;
+using Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Delaunay.Sweep;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Tools.Triangulation.Delaunay
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay
 {
     /// <summary>
     /// 2D constrained Delaunay triangulation algorithm.

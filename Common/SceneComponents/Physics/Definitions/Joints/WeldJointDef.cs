@@ -1,7 +1,7 @@
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Dynamics.Joints.Misc;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints.Misc;
 
-namespace Colin.Common.Physics.Definitions.Joints
+namespace Colin.Common.SceneComponents.Physics.Definitions.Joints
 {
     /// <summary>Weld joint definition. You need to specify local anchor points where they are attached and the relative body
     /// angle. The position of the anchor points is important for computing the reaction torque.</summary>

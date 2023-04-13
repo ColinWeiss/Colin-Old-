@@ -1,7 +1,7 @@
-using Colin.Common.Physics.Collision.Filtering;
-using Colin.Common.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Collision.Filtering;
+using Colin.Common.SceneComponents.Physics.Dynamics;
 
-namespace Colin.Common.Physics.Extensions.PhysicsLogics.PhysicsLogicBase
+namespace Colin.Common.SceneComponents.Physics.Extensions.PhysicsLogics.PhysicsLogicBase
 {
     /// <summary>Contains filter data that can determine whether an object should be processed or not.</summary>
     public abstract class FilterData

@@ -138,12 +138,12 @@ This might be faster than computing sin+cos.
 However, we can compute sin+cos of the same angle fast.
 */
 
-using Colin.Common.Physics.Collision.ContactSystem;
-using Colin.Common.Physics.Dynamics.Joints;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Collision.ContactSystem;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Dynamics.Solver
+namespace Colin.Common.SceneComponents.Physics.Dynamics.Solver
 {
     /// <summary>This is an internal class.</summary>
     internal class Island

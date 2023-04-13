@@ -24,14 +24,14 @@
 * SOFTWARE.
 */
 
-using Colin.Common.Physics.Definitions.Joints;
-using Colin.Common.Physics.Dynamics.Joints.Misc;
-using Colin.Common.Physics.Dynamics.Solver;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Definitions.Joints;
+using Colin.Common.SceneComponents.Physics.Dynamics.Joints.Misc;
+using Colin.Common.SceneComponents.Physics.Dynamics.Solver;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Dynamics.Joints
+namespace Colin.Common.SceneComponents.Physics.Dynamics.Joints
 {
     // 1-D constrained system
     // m (v2 - v1) = lambda

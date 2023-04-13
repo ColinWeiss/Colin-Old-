@@ -35,10 +35,9 @@
 //   Eliminate Add/RemoveNode ?
 //   Comments comments and more comments!
 
-using Colin.Common.Physics.Tools.Triangulation.Delaunay;
 using System.Text;
 
-namespace Colin.Common.Physics.Tools.Triangulation.Delaunay.Delaunay.Sweep
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Delaunay.Sweep
 {
     /**
      * @author Thomas Åhlen (thahlen@gmail.com)

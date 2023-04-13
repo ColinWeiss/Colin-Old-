@@ -1,7 +1,7 @@
-﻿using Colin.Common.Graphics;
+﻿using Colin.Graphics;
 using Colin.Resources;
 
-namespace Colin.Common.Backgrounds
+namespace Colin.Common.SceneComponents.Backgrounds
 {
     /// <summary>
     /// 场景背景.
@@ -112,7 +112,7 @@ namespace Colin.Common.Backgrounds
             LeftRightLoopEffect.Parameters["DrawCount"].SetValue( drawCount );
             LeftRightLoopEffect.Parameters["Offset"].SetValue( offset );
             EngineInfo.SpriteBatch.End( );
-            EngineInfo.SpriteBatch.Begin( SpriteSortMode , Material.BlendState, Material.SamplerState, null , null , LeftRightLoopEffect , null );
+            EngineInfo.SpriteBatch.Begin( SpriteSortMode, Material.BlendState, Material.SamplerState, null, null, LeftRightLoopEffect, null );
             EngineInfo.SpriteBatch.Draw( _screenMap, new Rectangle( 0, 0, EngineInfo.ViewWidth, EngineInfo.ViewHeight ), Color.White );
             EngineInfo.SpriteBatch.End( );
             (this as IRenderableSceneComponent).BatchBegin( );

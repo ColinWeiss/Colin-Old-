@@ -18,10 +18,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-using Colin.Common.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Shared;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Tools.PolygonManipulation
+namespace Colin.Common.SceneComponents.Physics.Tools.PolygonManipulation
 {
     /// <summary>
     /// Combines a list of triangles into a list of convex polygons. Starts with a seed triangle, keep adding

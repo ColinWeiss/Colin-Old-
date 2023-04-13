@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Dynamics.Handlers
+namespace Colin.Common.SceneComponents.Physics.Dynamics.Handlers
 {
     public delegate void FixtureHandler( Fixture fixture );
 }

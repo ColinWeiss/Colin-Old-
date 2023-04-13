@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Colin.Common.Graphics
+namespace Colin.Graphics
 {
     /// <summary>
     /// Sprite等大帧格.

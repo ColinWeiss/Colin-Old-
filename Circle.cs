@@ -20,7 +20,7 @@ namespace Colin
         /// <summary>
         /// 构建一个新的圆.
         /// </summary>
-        public Circle(Vector2 position, float radius)
+        public Circle( Vector2 position, float radius )
         {
             Center = position;
             Radius = radius;
@@ -29,21 +29,21 @@ namespace Colin
         /// <summary>
         /// 确定该圆是否与指定圆有重叠.
         /// </summary>
-        public bool Intersects(Circle circle)
+        public bool Intersects( Circle circle )
         {
-            return Vector2.Distance(Center, circle.Center) < Radius + circle.Radius;
+            return Vector2.Distance( Center, circle.Center ) < Radius + circle.Radius;
         }
 
         /// <summary>
         /// 确定该圆是否与指定矩形相交.
         /// </summary>
-        public bool Intersects(Rectangle rectangle)
+        public bool Intersects( Rectangle rectangle )
         {
             Vector2 v = new Vector2(
-                MathHelper.Clamp(Center.X, rectangle.Left, rectangle.Right),
-                MathHelper.Clamp(Center.Y, rectangle.Top, rectangle.Bottom));
+                MathHelper.Clamp( Center.X, rectangle.Left, rectangle.Right ),
+                MathHelper.Clamp( Center.Y, rectangle.Top, rectangle.Bottom ) );
             Vector2 direction = Center - v;
-            float distanceSquared = direction.LengthSquared();
+            float distanceSquared = direction.LengthSquared( );
             return distanceSquared > 0 && distanceSquared < Radius * Radius;
         }
 

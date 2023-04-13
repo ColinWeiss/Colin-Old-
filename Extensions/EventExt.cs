@@ -2,12 +2,12 @@
 {
     public static class EventExt
     {
-        public static void EventRaise<TEventArgs>( this object sender, EventHandler<TEventArgs> handler, TEventArgs e )
+        public static void EventRaise<TEventArgs>( this ITraceable sender, EventHandler<TEventArgs> handler, TEventArgs e )
         {
             handler?.Invoke( sender, e );
         }
 
-        public static void EventRaise( this object sender, EventHandler handler, EventArgs e )
+        public static void EventRaise( this ITraceable sender, EventHandler handler, EventArgs e )
         {
             handler?.Invoke( sender, e );
         }

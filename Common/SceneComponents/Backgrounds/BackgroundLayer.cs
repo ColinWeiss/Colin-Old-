@@ -1,6 +1,6 @@
-﻿using Colin.Common.Graphics;
+﻿using Colin.Graphics;
 
-namespace Colin.Common.Backgrounds
+namespace Colin.Common.SceneComponents.Backgrounds
 {
     /// <summary>
     /// 背景层.

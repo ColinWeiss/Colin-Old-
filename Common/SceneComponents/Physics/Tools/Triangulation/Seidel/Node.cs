@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.Physics.Tools.Triangulation.Seidel
+﻿namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Seidel
 {
     // Node for a Directed Acyclic graph (DAG)
     internal abstract class Node

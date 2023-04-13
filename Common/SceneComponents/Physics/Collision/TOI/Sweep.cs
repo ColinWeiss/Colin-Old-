@@ -1,8 +1,8 @@
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Collision.TOI
+namespace Colin.Common.SceneComponents.Physics.Collision.TOI
 {
     /// <summary>
     /// This describes the motion of a body/shape for TOI computation. Shapes are defined with respect to the body

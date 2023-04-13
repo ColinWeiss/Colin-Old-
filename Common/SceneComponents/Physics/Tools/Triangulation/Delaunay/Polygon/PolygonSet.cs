@@ -35,7 +35,7 @@
 //   Replace Add(Polygon) with exposed container?
 //   Replace entire class with HashSet<Polygon> ?
 
-namespace Colin.Common.Physics.Tools.Triangulation.Delaunay.Polygon
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Polygon
 {
     internal class PolygonSet
     {

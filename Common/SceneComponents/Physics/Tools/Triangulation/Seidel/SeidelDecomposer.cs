@@ -3,10 +3,10 @@
 * Copyright (c) 2017 Ian Qvist
 */
 
-using Colin.Common.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Shared;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Tools.Triangulation.Seidel
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Seidel
 {
     /// <summary>
     /// Convex decomposition algorithm created by Raimund Seidel

@@ -20,12 +20,12 @@
 * 3. This notice may not be removed or altered from any source distribution. 
 */
 
-using Colin.Common.Physics.Collision.RayCast;
-using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Collision.RayCast;
+using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Collision.Broadphase
+namespace Colin.Common.SceneComponents.Physics.Collision.Broadphase
 {
     /// <summary>
     /// A dynamic tree arranges data in a binary tree to accelerate queries such as volume queries and ray casts.

@@ -1,15 +1,13 @@
-﻿using Colin.Common;
-using Colin.Common.UserInterfaces.Events;
-using Colin.Common.UserInterfaces.Renderers;
+﻿using Colin.Common.SceneComponents.UserInterfaces.Events;
+using Colin.Common.SceneComponents.UserInterfaces.Prefabs.Forms;
+using Colin.Common.SceneComponents.UserInterfaces.Renderers;
 using Colin.Extensions;
-using Colin.Common.UserInterfaces.Prefabs;
+using Colin.Resources;
 using Microsoft.Xna.Framework.Input;
-using System.ComponentModel;
+using System.Reflection.PortableExecutable;
 using System.Runtime.Serialization;
-using System;
-using Colin.Common.UserInterfaces.Prefabs.Forms;
 
-namespace Colin.Common.UserInterfaces
+namespace Colin.Common.SceneComponents.UserInterfaces
 {
     /// <summary>
     /// 一个容器; 可用于在用户交互界面中表达具象.
@@ -22,7 +20,7 @@ namespace Colin.Common.UserInterfaces
         public bool Enable = true;
 
         [DataMember]
-        public bool Visiable = true;
+        public bool Visible = true;
 
         /// <summary>
         /// 容器名称.
@@ -77,6 +75,11 @@ namespace Colin.Common.UserInterfaces
         public RenderTarget2D Canvas;
 
         /// <summary>
+        /// 容器行为.
+        /// </summary>
+        public ContainerBehavior Behavior;
+
+        /// <summary>
         /// 容器渲染器.
         /// <br>可自由定制自己的渲染方式.</br>
         /// </summary>
@@ -93,11 +96,11 @@ namespace Colin.Common.UserInterfaces
         public Container CanvasParent { get; internal set; } = null;
 
         /// <summary>
-        /// 指示该容器所属的 <see cref="ContainerPage"/>.
+        /// 指示该容器所属的 <see cref="ContainerState"/>.
         /// <br>[!] 一个容器页的 <see cref="Page"/> 是其本身.</br>
         /// </summary>
         [IgnoreDataMember]
-        public ContainerPage Page { get; internal set; } = null;
+        public ContainerState Page { get; internal set; } = null;
 
         public Container( )
         {
@@ -112,7 +115,7 @@ namespace Colin.Common.UserInterfaces
             DesignInfo.SetScale( Vector2.One );
             DesignInfo.ColorConversionTime = 48;
             DesignInfo.ScaleConversionTime = 48;
-            if( this is ContainerPage page )
+            if( this is ContainerState page )
                 Page = page;
         }
 
@@ -126,6 +129,9 @@ namespace Colin.Common.UserInterfaces
             ContainerInitialize( );
             Renderer?.RendererInit( );
             LayoutInfo.UpdateInfo( this ); //刷新一下.
+            if( Behavior == null )
+                Behavior = new ContainerBehavior( this );
+            Behavior?.SetDefault( );
             DoSubInitialize( );
             if( IsCanvas )
             {
@@ -151,6 +157,7 @@ namespace Colin.Common.UserInterfaces
                 if( IsCanvas )
                     _sub.CanvasParent = this;
                 _sub.DoInitialize( );
+                _sub.LayoutInfo.UpdateInfo( _sub );
             }
         }
 
@@ -231,6 +238,9 @@ namespace Colin.Common.UserInterfaces
             EventResponder.UpdateIndependentEvent( );
 
             SelfUpdate( );
+            Behavior?.UpdateFormStyle( );
+            if( Behavior != null && Behavior.CloseState )
+                Behavior?.UpdateCloseState( );
 
             if( DesignInfo.ScaleConversionTimer < DesignInfo.ScaleConversionTime )
                 DesignInfo.ScaleConversionTimer += 120f * dt;
@@ -239,7 +249,9 @@ namespace Colin.Common.UserInterfaces
             if( DesignInfo.ColorConversionTimer < DesignInfo.ColorConversionTime )
                 DesignInfo.ColorConversionTimer += 120f * dt;
             DesignInfo.CurrentColor.GetCloserColor( DesignInfo.TargetColor, DesignInfo.ColorConversionTimer, DesignInfo.ColorConversionTime );
-            SubUpdate( time );
+            if( DesignInfo.CurrentColor.A >= 254 )
+                DesignInfo.CurrentColor.A = 255;
+           SubUpdate( time );
         }
         public virtual void UpdateStart( ) { }
         public virtual void LayoutInfoUpdate( ref LayoutInfo info ) { }
@@ -252,21 +264,15 @@ namespace Colin.Common.UserInterfaces
             for( int count = Sub.Count - 1; count >= 0; count-- )
             {
                 _sub = Sub[count];
-                if( UserInterface != null )
-                    _sub.UserInterface = UserInterface;
-                if( CanvasParent != null )
-                    _sub.CanvasParent = CanvasParent;
-                if( IsCanvas )
-                    _sub.CanvasParent = this;
                 _sub.Page = Page;
-                _sub.Parent = this;
-                _sub.DoUpdate( time );
+                if( _sub.Enable )
+                    _sub.DoUpdate( time );
             }
         }
 
         public void DoRender( )
         {
-            if( !Visiable )
+            if( !Visible )
                 return;
             if( IsCanvas )
             {
@@ -275,13 +281,10 @@ namespace Colin.Common.UserInterfaces
                 EngineInfo.Graphics.GraphicsDevice.Clear( Color.Transparent );
                 EngineInfo.SpriteBatch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap );
             }
-            Renderer?.RenderSelf( this );
-            Container _sub;
-            for( int count = 0; count < Sub.Count; count++ )
-            {
-                _sub = Sub[count];
-                _sub.DoRender( );
-            }
+            Renderer?.Render( this );
+            PreRender( );
+            RenderSubs( );
+            PostRender( );
             if( IsCanvas )
             {
                 EngineInfo.SpriteBatch.End( );
@@ -301,12 +304,69 @@ namespace Colin.Common.UserInterfaces
                     EngineInfo.SpriteBatch.Draw( Canvas, LayoutInfo.RenderLocationF + DesignInfo.OriginF, new Rectangle( 0, 0, LayoutInfo.Width, LayoutInfo.Height ), DesignInfo.CurrentColor, 0f, DesignInfo.OriginF, DesignInfo.CurrentScale, SpriteEffects.None, 1f );
             }
         }
+        public virtual void PreRender( ) { }
+        public virtual void RenderSubs()
+        {
+            Container _sub;
+            for( int count = 0; count < Sub.Count; count++ )
+            {
+                _sub = Sub[count];
+                if( _sub.Visible )
+                    _sub.DoRender( );
+            }
+        }
+        public virtual void PostRender( ) { }
+
+        public void Active( bool subActive )
+        {
+            Enable = true;
+            Visible = true;
+            Behavior?.OnActive( );
+            if( subActive )
+            {
+                Container _sub;
+                for( int count = 0; count < Sub.Count; count++ )
+                {
+                    _sub = Sub[count];
+                    _sub.Active( subActive );
+                }
+            }
+        }
+
+        public void Disactive( bool subDisactive )
+        {
+            Enable = false;
+            Visible = false;
+            Behavior?.OnDisactive( );
+            if( subDisactive )
+            {
+                Container _sub;
+                for( int count = 0; count < Sub.Count; count++ )
+                {
+                    _sub = Sub[count];
+                    _sub.Disactive( subDisactive );
+                }
+            }
+        }
 
         public virtual void Register( Container container )
         {
             container.Page = Page;
             container.Parent = this;
-            Sub.Add( container );
+            if( !Sub.Contains( container ))
+                Sub.Add( container );
+        }
+
+        public IEnumerable<Container> GetContainers( )
+        {
+            IEnumerable<Container> result = Sub;
+            Container _sub;
+            for( int count = 0; count < Sub.Count; count++ )
+            {
+                _sub = Sub[count];
+                result = result.Concat( _sub.GetContainers( ) );
+            }
+            return result;
         }
 
         /// <summary>

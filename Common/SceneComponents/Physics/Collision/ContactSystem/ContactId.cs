@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Colin.Common.Physics.Collision.ContactSystem
+namespace Colin.Common.SceneComponents.Physics.Collision.ContactSystem
 {
     /// <summary>Contact ids to facilitate warm starting.</summary>
     [StructLayout( LayoutKind.Explicit )]

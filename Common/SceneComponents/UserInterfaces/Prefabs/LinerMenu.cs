@@ -1,4 +1,4 @@
-﻿namespace Colin.Common.UserInterfaces.Prefabs
+﻿namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs
 {
     public class LinerMenu : Container
     {
@@ -80,5 +80,6 @@
             base.Register( container );
             RefreshSize( );
         }
+
     }
 }

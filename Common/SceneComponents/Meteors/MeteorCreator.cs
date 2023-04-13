@@ -1,7 +1,7 @@
-﻿using Colin.Common.Graphics;
+﻿using Colin.Graphics;
 using Colin.Resources;
 
-namespace Colin.Common.SceneModes.Meteors
+namespace Colin.Common.SceneComponents.Meteors
 {
     public class MeteorCreator : ISceneComponent, IRenderableSceneComponent
     {
@@ -81,6 +81,8 @@ namespace Colin.Common.SceneModes.Meteors
 
         public void New( int leftFrame, Vector2 position, Vector2 velocity, float rotation, float scale )
         {
+            if( EngineInfo.Config.PictureQuality == PictureQuality.Low )
+                return;
             Meteor meteor;
             for( int count = 0; count < Pool.Length; count++ )
             {

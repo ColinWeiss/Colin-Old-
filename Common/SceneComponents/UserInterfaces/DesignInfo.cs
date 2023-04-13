@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Colin.Common.UserInterfaces
+namespace Colin.Common.SceneComponents.UserInterfaces
 {
     /// <summary>
     /// 容器设计信息.

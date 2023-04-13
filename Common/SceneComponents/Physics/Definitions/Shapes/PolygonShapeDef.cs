@@ -1,7 +1,7 @@
-using Colin.Common.Physics.Collision.Shapes;
-using Colin.Common.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Collision.Shapes;
+using Colin.Common.SceneComponents.Physics.Shared;
 
-namespace Colin.Common.Physics.Definitions.Shapes
+namespace Colin.Common.SceneComponents.Physics.Definitions.Shapes
 {
     public sealed class PolygonShapeDef : ShapeDef
     {

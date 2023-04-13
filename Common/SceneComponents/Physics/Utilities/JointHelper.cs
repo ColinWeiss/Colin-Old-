@@ -1,6 +1,6 @@
-﻿using Colin.Common.Physics.Dynamics;
+﻿using Colin.Common.SceneComponents.Physics.Dynamics;
 
-namespace Colin.Common.Physics.Utilities
+namespace Colin.Common.SceneComponents.Physics.Utilities
 {
     public static class JointHelper
     {

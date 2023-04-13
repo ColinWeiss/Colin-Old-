@@ -1,8 +1,8 @@
-using Colin.Common.Physics.Collision.ContactSystem;
-using Colin.Common.Physics.Dynamics;
-using Colin.Common.Physics.Dynamics.Solver;
+using Colin.Common.SceneComponents.Physics.Collision.ContactSystem;
+using Colin.Common.SceneComponents.Physics.Dynamics;
+using Colin.Common.SceneComponents.Physics.Dynamics.Solver;
 
-namespace Colin.Common.Physics.Collision.Handlers
+namespace Colin.Common.SceneComponents.Physics.Collision.Handlers
 {
     public delegate void AfterCollisionHandler( Fixture fixtureA, Fixture fixtureB, Contact contact, ContactVelocityConstraint impulse );
 }

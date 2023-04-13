@@ -1,10 +1,10 @@
-﻿using Colin.Common.Physics.Shared;
-using Colin.Common.Physics.Tools.Cutting.Simple;
-using Colin.Common.Physics.Tools.PolygonManipulation;
-using Colin.Common.Physics.Utilities;
+﻿using Colin.Common.SceneComponents.Physics.Shared;
+using Colin.Common.SceneComponents.Physics.Tools.Cutting.Simple;
+using Colin.Common.SceneComponents.Physics.Tools.PolygonManipulation;
+using Colin.Common.SceneComponents.Physics.Utilities;
 using System.Diagnostics;
 
-namespace Colin.Common.Physics.Tools.Cutting
+namespace Colin.Common.SceneComponents.Physics.Tools.Cutting
 {
     //Clipper contributed by Helge Backhaus
 

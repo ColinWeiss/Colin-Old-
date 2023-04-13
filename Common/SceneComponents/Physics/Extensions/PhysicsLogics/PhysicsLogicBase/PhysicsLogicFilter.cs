@@ -1,4 +1,4 @@
-namespace Colin.Common.Physics.Extensions.PhysicsLogics.PhysicsLogicBase
+namespace Colin.Common.SceneComponents.Physics.Extensions.PhysicsLogics.PhysicsLogicBase
 {
     public struct PhysicsLogicFilter
     {

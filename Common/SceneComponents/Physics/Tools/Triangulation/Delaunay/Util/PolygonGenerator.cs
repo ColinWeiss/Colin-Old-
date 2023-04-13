@@ -29,10 +29,10 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-using Colin.Common.Physics.Tools.Triangulation.Delaunay.Polygon;
-using Colin.Common.Physics.Utilities;
+using Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Polygon;
+using Colin.Common.SceneComponents.Physics.Utilities;
 
-namespace Colin.Common.Physics.Tools.Triangulation.Delaunay.Util
+namespace Colin.Common.SceneComponents.Physics.Tools.Triangulation.Delaunay.Util
 {
     internal class PolygonGenerator
     {
