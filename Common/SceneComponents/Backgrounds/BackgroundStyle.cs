@@ -1,4 +1,6 @@
-﻿namespace Colin.Common.SceneComponents.Backgrounds
+﻿using Colin.Resources;
+
+namespace Colin.Common.SceneComponents.Backgrounds
 {
     /// <summary>
     /// 背景样式.
@@ -35,6 +37,11 @@
         public virtual void SetDefault( ) { }
 
         public virtual void UpdateStyle( ) { }
+
+        protected Texture2D GetBackgroundTexture( string path )
+        {
+            return TextureResource.Get( string.Concat( "Contents/Backgrounds/" , path ) );
+        }
 
     }
 }

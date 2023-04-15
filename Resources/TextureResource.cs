@@ -1,4 +1,5 @@
-﻿namespace Colin.Resources
+﻿
+namespace Colin.Resources
 {
     /// <summary>
     /// 包含游戏已加载的纹理资产类.
@@ -46,17 +47,6 @@
                 Textures.Add( string.Concat( "Textures\\", path ), _texture );
                 return _texture;
             }
-        }
-
-        /// <summary>
-        /// 获取物块纹理贴图.
-        /// <para>[!] 起始目录为 Texture/Tiles.</para>
-        /// </summary>
-        /// <param name="path">路径.</param>
-        /// <returns>物块纹理.</returns>
-        public static Texture2D GetTileTexture( string path )
-        {
-            return Get( string.Concat( "Tiles/", path ) );
         }
 
     }

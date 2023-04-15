@@ -1,5 +1,4 @@
 ﻿using Colin.Common.SceneComponents.UserInterfaces.Events;
-using Colin.Common.SceneComponents.UserInterfaces.Prefabs.Forms;
 using Colin.Common.SceneComponents.UserInterfaces.Renderers;
 using Colin.Events;
 using Colin.Extensions;
@@ -16,7 +15,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
     /// </summary>
     [Serializable]
     [DataContract( IsReference = true, Name = "Container" )]
-    public class Container : IGetDeviceInputable
+    public class Container
     {
         [DataMember]
         public bool Enable = true;
@@ -447,31 +446,5 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             return target;
         }
 
-        public virtual InputEvent GetDeviceInput( )
-        {
-            InputEvent target = null;
-            InputEvent _sub;
-            for( int sub = Sub.Count - 1; sub >= 0; sub-- )
-            {
-                _sub = Sub[sub].GetDeviceInput( );
-                if( _sub == null )
-                {
-                    target = null;
-                }
-                else if( _sub != null )// && _sub.Enable )
-                {
-                    target = _sub;
-                    return target;
-                }
-            }
-            if( InteractiveInfo.CanSeek && Enable )
-            {
-                InputEvent inputEvent = new InputEvent( );
-                inputEvent.Keyboard = KeyboardResponder.Instance;
-                inputEvent.Mouse = MouseResponder.Instance;
-                return inputEvent;
-            }
-            return target;
-        }
     }
 }

@@ -7,7 +7,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
     /// <summary>
     /// 用户交互界面核心.
     /// </summary>
-    public sealed class UserInterface : ISceneComponent, IRenderableSceneComponent , IGetDeviceInputable
+    public sealed class UserInterface : ISceneComponent, IRenderableSceneComponent
     {
         /// <summary>
         /// 当前焦点容器.
@@ -63,12 +63,6 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         }
 
         public void Register( Container container ) => State?.Register( container );
-
-        public InputEvent GetDeviceInput( )
-        {
-            InputEvent inputEvent = State.GetDeviceInput( );
-            return inputEvent;
-        }
 
     }
 }
