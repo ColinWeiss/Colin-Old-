@@ -60,6 +60,10 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs
         {
             Slider.InteractiveInfo.CanSeek = true;
             Slider.InteractiveInfo.CanDrag = true;
+            if( Slider.LayoutInfo.Width <= 0 )
+                Slider.LayoutInfo.Width = 4;
+            if( Slider.LayoutInfo.Height <= 0 )
+                Slider.LayoutInfo.Height = 4;
             Register( Slider );
             EventResponder.MouseLeftClickBefore += ( s, e ) =>
             {
@@ -102,7 +106,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs
             Slider.LayoutInfo.SetLeft( Math.Clamp( Slider.LayoutInfo.Left, 0, LayoutInfo.Width - Slider.LayoutInfo.Width ) );
             Slider.LayoutInfo.SetTop( Math.Clamp( Slider.LayoutInfo.Top, 0, LayoutInfo.Height - Slider.LayoutInfo.Height ) );
 
-            if( info.Activation || (ControlledStandard != null ? ControlledStandard.InteractiveInfo.Activation : false) )
+            if( info.Activation || (ControlledStandard != null ? ControlledStandard.InteractiveInfo.Activation : false ) )
             {
                 if( KeyboardResponder.Instance.IsKeyDown( Keys.LeftShift ) )
                 {

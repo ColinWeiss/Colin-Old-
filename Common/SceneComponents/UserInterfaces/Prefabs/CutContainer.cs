@@ -17,7 +17,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs
 
         public override void PreRender( )
         {
-            if( CanvasParent != null )
+            if( CanvasParent != null && (CanvasParent.LayoutInfo.Width < LayoutInfo.Width || CanvasParent.LayoutInfo.Height < LayoutInfo.Height) )
                 EngineInfo.Engine.GraphicsDevice.ScissorRectangle = CanvasParent.Canvas.Bounds;
             else
                 EngineInfo.Engine.GraphicsDevice.ScissorRectangle = LayoutInfo.RenderRectangle;

@@ -44,7 +44,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         /// <summary>
         /// 允许你自由定制关于容器样式的逻辑计算.
         /// </summary>
-        public virtual void UpdateFormStyle( ) { }
+        public virtual void UpdateStyle( ) { }
 
         /// <summary>
         /// 当容器处于正在关闭状态时执行.

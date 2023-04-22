@@ -55,7 +55,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
 
         }
 
-        public override void SelfUpdate( )
+        public override void SelfUpdate( GameTime gameTime )
         {
             SeekInteractive( )?.EventResponder.UpdateEvent( );
             if( KeyboardResponder.Instance.IsKeyDown( Keys.LeftShift ) && KeyboardResponder.Instance.IsKeyClickBefore( Keys.U ) )
@@ -80,7 +80,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
                 DebugText.Enable = false;
                 DebugText.Visible = false;
             }
-            base.SelfUpdate( );
+            base.SelfUpdate( gameTime );
         }
 
         public override void Register( Container container )

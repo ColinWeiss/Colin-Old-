@@ -31,7 +31,7 @@ namespace Colin
             {
                 EngineInfo.Graphics = new GraphicsDeviceManager( this )
                 {
-                    PreferHalfPixelOffset = true,
+                    PreferHalfPixelOffset = false,
                     HardwareModeSwitch = false,
                     SynchronizeWithVerticalRetrace = true,
                     PreferMultiSampling = true,
@@ -57,6 +57,7 @@ namespace Colin
                 Components.Remove( CurrentScene );
             }
             Components.Clear( );
+            Components.Add( TextInputResponder.Instance );
             Components.Add( MouseResponder.Instance );
             Components.Add( KeyboardResponder.Instance );
             Components.Add( scene );

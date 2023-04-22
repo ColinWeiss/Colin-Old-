@@ -51,6 +51,5 @@
             TextureFrame = new TileFrame( );
             BorderFrame = new TileFrame( );
         }
-
     }
 }

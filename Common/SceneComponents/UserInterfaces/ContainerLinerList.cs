@@ -89,7 +89,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         public void BindSlideBar( Scrollbar slideBar )
         {
             _slideBar = slideBar;
+            _slideBar.BindControlledStandard( this );
         }
-
     }
 }

@@ -58,9 +58,9 @@ namespace Colin.Common.SceneComponents.UserInterfaces
 
             base.LayoutInfoUpdate( ref info );
         }
-        public override void SelfUpdate( )
+        public override void SelfUpdate( GameTime gameTime )
         {
-            base.SelfUpdate( );
+            base.SelfUpdate( gameTime );
         }
     }
 }

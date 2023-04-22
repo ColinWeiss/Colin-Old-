@@ -114,8 +114,8 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             InteractiveInfo.CanDrag = false;
             DesignInfo.SetColor( Color.White );
             DesignInfo.SetScale( Vector2.One );
-            DesignInfo.ColorConversionTime = 48;
-            DesignInfo.ScaleConversionTime = 48;
+            DesignInfo.ColorConversionTime = 60;
+            DesignInfo.ScaleConversionTime = 60;
             if( this is ContainerState page )
                 Page = page;
         }
@@ -128,10 +128,9 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         public void DoInitialize( )
         {
             ContainerInitialize( );
-            Renderer?.RendererInit( );
-            LayoutInfo.UpdateInfo( this ); //刷新一下.
-
+            Renderer?.RendererInit( ); 
             Behavior?.SetDefault( );
+            LayoutInfo.UpdateInfo( this ); //刷新一下.
             DoSubInitialize( );
             if( IsCanvas )
             {
@@ -237,17 +236,17 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             InteractiveInfoUpdate( ref InteractiveInfo );
             EventResponder.UpdateIndependentEvent( );
 
-            SelfUpdate( );
-            Behavior?.UpdateFormStyle( );
+            SelfUpdate( time );
+            Behavior?.UpdateStyle( );
             if( Behavior != null && Behavior.CloseState )
                 Behavior?.UpdateCloseState( );
 
             if( DesignInfo.ScaleConversionTimer < DesignInfo.ScaleConversionTime )
-                DesignInfo.ScaleConversionTimer += 120f * dt;
+                DesignInfo.ScaleConversionTimer += 144f * dt;
             DesignInfo.CurrentScale.GetCloserVector2( DesignInfo.TargetScale, DesignInfo.ScaleConversionTimer, DesignInfo.ScaleConversionTime );
 
             if( DesignInfo.ColorConversionTimer < DesignInfo.ColorConversionTime )
-                DesignInfo.ColorConversionTimer += 120f * dt;
+                DesignInfo.ColorConversionTimer += 144f * dt;
             DesignInfo.CurrentColor.GetCloserColor( DesignInfo.TargetColor, DesignInfo.ColorConversionTimer, DesignInfo.ColorConversionTime );
             if( DesignInfo.CurrentColor.A >= 254 )
                 DesignInfo.CurrentColor.A = 255;
@@ -257,7 +256,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         public virtual void LayoutInfoUpdate( ref LayoutInfo info ) { }
         public virtual void DesignInfoUpdate( ref DesignInfo info ) { }
         public virtual void InteractiveInfoUpdate( ref InteractiveInfo info ) { }
-        public virtual void SelfUpdate( ) { }
+        public virtual void SelfUpdate( GameTime gameTime ) { }
         public virtual void SubUpdate( GameTime time )
         {
             Container _sub;

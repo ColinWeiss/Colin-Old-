@@ -40,21 +40,13 @@
         /// </summary>
         public static uint FrameCount;
 
-        /// <summary>
-        /// <see cref="DeltaTime"/> 的最大值, 这有助于防止在拖动游戏窗口或游戏失败时破坏物理.
-        /// </summary>
-        public static float MaxDeltaTime = float.MaxValue;
-
         internal static void Update( float dt )
         {
-            if( dt > MaxDeltaTime )
-                dt = MaxDeltaTime;
             TotalTime += dt;
             DeltaTime = dt * TimeScale;
             AltDeltaTime = dt * AltTimeScale;
             UnscaledDeltaTime = dt;
             FrameCount++;
         }
-
     }
 }

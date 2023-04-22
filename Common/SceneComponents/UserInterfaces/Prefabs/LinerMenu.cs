@@ -69,10 +69,10 @@
             base.LayoutInfoUpdate( ref info );
         }
 
-        public override void SelfUpdate( )
+        public override void SelfUpdate( GameTime gameTime )
         {
             RefreshSize( );
-            base.SelfUpdate( );
+            base.SelfUpdate( gameTime );
         }
 
         public override void Register( Container container )
