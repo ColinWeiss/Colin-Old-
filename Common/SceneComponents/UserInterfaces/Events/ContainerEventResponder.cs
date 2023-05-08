@@ -1,5 +1,7 @@
-﻿using Colin.Inputs;
+﻿using Colin.Events;
+using Colin.Inputs;
 using Microsoft.Xna.Framework.Input;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 
 namespace Colin.Common.SceneComponents.UserInterfaces.Events
@@ -214,5 +216,25 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
             }
 
         }
+
+       public void Clear()
+        {
+            MouseLeftUp = null;
+            MouseLeftDown = null;
+            MouseLeftClickBefore = null;
+            MouseLeftClickAfter = null;
+            MouseRightUp = null;
+            MouseRightDown = null;
+            MouseRightClickBefore = null;
+            MouseRightClickAfter = null;
+            DragStart = null;
+            Dragging = null;
+            DragEnd = null;
+            MouseRelease = null;
+            MousePulleySliding = null;
+            ActivationStart = null;
+            ActivationEnd = null;
+        }
+
     }
 }

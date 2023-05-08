@@ -15,7 +15,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
     /// </summary>
     [Serializable]
     [DataContract( IsReference = true, Name = "Container" )]
-    public class Container
+    public class Container : IDisposable
     {
         [DataMember]
         public bool Enable = true;
@@ -135,13 +135,15 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             if( IsCanvas )
             {
                 Canvas = RenderTargetExt.CreateDefault( LayoutInfo.Width, LayoutInfo.Height );
-                LayoutInfo.OnSizeChanged += ( ) =>
-                {
-                    Canvas.Dispose( );
-                    Canvas = RenderTargetExt.CreateDefault( LayoutInfo.Width, LayoutInfo.Height );
-                };
+                LayoutInfo.OnSizeChanged += LayoutInfo_OnSizeChanged;
             }
             InitializeComplete = true;
+        }
+
+        private void LayoutInfo_OnSizeChanged( )
+        {
+            Canvas.Dispose( );
+            Canvas = RenderTargetExt.CreateDefault( LayoutInfo.Width, LayoutInfo.Height );
         }
 
         public void DoSubInitialize( )
@@ -216,6 +218,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         private MouseState MouseState => Mouse.GetState( );
 
         private bool Started = false;
+
         public void DoUpdate( GameTime time )
         {
             float dt = (float)time.ElapsedGameTime.TotalSeconds;
@@ -463,6 +466,30 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             if( InteractiveInfo.Activation && Enable )
                 return this;
             return target;
+        }
+
+        private bool disposed;
+
+        protected void Dispose( bool disposing )
+        {
+            if( !disposed )
+            {
+                if( disposing )
+                {
+                    LayoutInfo.OnSizeChanged -= LayoutInfo_OnSizeChanged;
+                    OnDispose( );
+                }
+
+                disposed = true;
+            }
+        }
+
+        protected virtual void OnDispose( ) { }
+
+        public void Dispose( )
+        {
+            Dispose( disposing: true );
+            GC.SuppressFinalize( this );
         }
 
     }

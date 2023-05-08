@@ -27,14 +27,17 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             Register( LinerMenu );
 
             Button.LayoutInfo.SetSize( LayoutInfo.Size );
-            Button.EventResponder.MouseLeftClickAfter += ( s, e ) =>
-            {
-                Dropdown = !Dropdown;
-            };
+            Button.EventResponder.MouseLeftClickAfter += EventResponder_MouseLeftClickAfter;
             Register( Button );
 
             base.ContainerInitialize( );
         }
+
+        private void EventResponder_MouseLeftClickAfter( object sender, Events.ContainerEvent e )
+        {
+            Dropdown = !Dropdown;
+        }
+
         public override void LayoutInfoUpdate( ref LayoutInfo info )
         {
             if( Dropdown )
@@ -58,9 +61,11 @@ namespace Colin.Common.SceneComponents.UserInterfaces
 
             base.LayoutInfoUpdate( ref info );
         }
-        public override void SelfUpdate( GameTime gameTime )
+
+        protected override void OnDispose( )
         {
-            base.SelfUpdate( gameTime );
+            Button.EventResponder.MouseLeftClickAfter -= EventResponder_MouseLeftClickAfter;
+            base.OnDispose( );
         }
     }
 }

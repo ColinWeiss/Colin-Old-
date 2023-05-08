@@ -52,7 +52,7 @@ namespace Colin.Inputs
                 {
                     KeyboardEvent.Name = "Event.Keyboard.KeyClickBefore";
                     KeyboardEvent.Keys = key;
-                    KeyClickBefore.Invoke( this, KeyboardEvent );
+                    KeyClickBefore?.Invoke( this, KeyboardEvent );
                 }
             }
             foreach( Keys keyLast in keyboardStateLast.GetPressedKeys( ) )
@@ -61,7 +61,7 @@ namespace Colin.Inputs
                 {
                     KeyboardEvent.Name = "Event.Keyboard.KeyClickAfter";
                     KeyboardEvent.Keys = keyLast;
-                    KeyClickAfter.Invoke( this, KeyboardEvent );
+                    KeyClickAfter?.Invoke( this, KeyboardEvent );
                 }
             }
             base.Update( gameTime );

@@ -31,5 +31,6 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs
             Fill.LayoutInfo.SetWidth( (int)(Progress * info.Width) );
             base.LayoutInfoUpdate( ref info );
         }
+
     }
 }

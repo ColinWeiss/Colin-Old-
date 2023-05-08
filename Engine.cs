@@ -54,6 +54,7 @@ namespace Colin
             {
                 if( CurrentScene.InitializeOnSwitch )
                     Window.ClientSizeChanged -= CurrentScene.InitRenderTarget;
+                CurrentScene.UnLoad( );
                 Components.Remove( CurrentScene );
             }
             Components.Clear( );
@@ -62,6 +63,7 @@ namespace Colin
             Components.Add( KeyboardResponder.Instance );
             Components.Add( scene );
             CurrentScene = scene;
+            GC.Collect( );
         }
 
         protected override sealed void Initialize( )

@@ -31,13 +31,8 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             InteractiveInfo.CanSeek = true;
             LayoutInfo.SetLocation( 0, 0 );
             LayoutInfo.SetSize( EngineInfo.ViewWidth, EngineInfo.ViewHeight );
-            EngineInfo.Engine.Window.ClientSizeChanged += ( s, e ) =>
-            {
-                LayoutInfo.SetLocation( 0, 0 );
-                LayoutInfo.SetSize( EngineInfo.ViewWidth, EngineInfo.ViewHeight );
-            };
+            EngineInfo.Engine.Window.ClientSizeChanged += Window_ClientSizeChanged;
             InitializeContainers( );
-
             DebugText = new Label( );
             DebugText.Name = "ContainerPage DebugText";
             DebugText.DesignInfo.SetColor( Color.Red );
@@ -45,6 +40,12 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             Register( DebugText );
 
             base.ContainerInitialize( );
+        }
+
+        private void Window_ClientSizeChanged( object sender, EventArgs e )
+        {
+            LayoutInfo.SetLocation( 0, 0 );
+            LayoutInfo.SetSize( EngineInfo.ViewWidth, EngineInfo.ViewHeight );
         }
 
         /// <summary>
@@ -97,6 +98,12 @@ namespace Colin.Common.SceneComponents.UserInterfaces
                 Register( container );
                 Register( DebugText );
             }
+        }
+
+        protected override void OnDispose( )
+        {
+            EngineInfo.Engine.Window.ClientSizeChanged -= Window_ClientSizeChanged;
+            base.OnDispose( );
         }
     }
 }

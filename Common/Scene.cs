@@ -109,6 +109,11 @@ namespace Colin.Common
         /// </summary>
         public virtual void SaveDatas( ) { }
 
+        /// <summary>
+        ///  卸载场景时执行.
+        /// </summary>
+        public virtual void UnLoad( ) { }
+
         public Scene( ) : base( EngineInfo.Engine ) { }
 
     }
