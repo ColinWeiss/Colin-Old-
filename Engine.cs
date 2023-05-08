@@ -115,6 +115,7 @@ namespace Colin
 
         protected override void OnExiting( object sender, EventArgs args )
         {
+            CurrentScene?.SaveDatas( );
             EngineInfo.Config.Save( );
             base.OnExiting( sender, args );
         }

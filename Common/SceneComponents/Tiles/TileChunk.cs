@@ -27,11 +27,6 @@ namespace Colin.Common.SceneComponents.Tiles
 
         public const int Height = 64;
 
-        /// <summary>
-        /// 区块文件的路径.
-        /// </summary>
-        public string Path => string.Concat( DirPhonebook.ArchiveChunkDir, "\\", X, "_", Y, ".chunk" );
-
         public void UpdateChunk( )
         {
             Tile _Tile;
@@ -60,41 +55,6 @@ namespace Colin.Common.SceneComponents.Tiles
             }
         }
 
-        /// <summary>
-        /// 从指定数据文件异步保存区块.
-        /// </summary>
-        public async void SaveChunkAsync( ) => await Task.Run( ( ) => SaveChunk( ) );
-
-        /// <summary>
-        /// 保存区块至 <see cref="DirPhonebook.ArchiveChunkDir"/>.
-        /// </summary>
-        public void SaveChunk( )
-        {
-            FileStream _fileStream;
-            using( _fileStream = File.Create( Path ) )
-            {
-                XmlSerializer xmlSerializer = new XmlSerializer( typeof( TileInfoMap ) );
-                xmlSerializer.Serialize( _fileStream, TileInfoMap );
-            }
-        }
-
-        /// <summary>
-        /// 从指定数据文件异步加载区块.
-        /// </summary>
-        public async void LoadChunkAsync( ) => await Task.Run( ( ) => LoadChunk( ) );
-
-        /// <summary>
-        /// 从指定数据文件加载区块.
-        /// </summary>
-        public void LoadChunk( )
-        {
-            FileStream _fileStream;
-            using( _fileStream = File.OpenRead( Path ) )
-            {
-                XmlSerializer xmlSerializer = new XmlSerializer( typeof( TileInfoMap ) );
-                TileInfoMap = (TileInfoMap)xmlSerializer.Deserialize( _fileStream );
-            }
-        }
 
     }
 }

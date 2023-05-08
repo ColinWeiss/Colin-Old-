@@ -356,6 +356,19 @@ namespace Colin.Common.SceneComponents.UserInterfaces
                 Sub.Add( container );
         }
 
+        public virtual bool Remove( Container container , bool dispose )
+        {
+            bool result = Sub.Remove( container );
+            if( result && dispose )
+            {
+                if( container is IDisposable disposable )
+                {
+                    disposable.Dispose( );
+                }
+            }
+            return result;
+        }
+
         public IEnumerable<Container> GetContainers( )
         {
             IEnumerable<Container> result = Sub;

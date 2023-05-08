@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Colin.Common;
+using System;
+using System.Collections;
 using System.Diagnostics;
 
 namespace Colin.Collections
@@ -119,9 +121,20 @@ namespace Colin.Collections
                 if( comp.Equals( Buffer[i], item ) )
                     return true;
             }
-
             return false;
         }
+
+        public T Contains<TType>( ) where TType : T
+        {
+            var comp = EqualityComparer<Type>.Default;
+            for( var i = 0; i < Length; ++i )
+            {
+                if( comp.Equals( Buffer[i].GetType( ), typeof( TType ) ) )
+                    return Buffer[i];
+            }
+            return default( T );
+        }
+
 
         /// <summary>
         /// 如果缓冲区达到最大值，则将分配更多空间来容纳.
@@ -165,6 +178,5 @@ namespace Colin.Collections
         {
             Array.Sort( Buffer, 0, Length, comparer );
         }
-
     }
 }

@@ -37,7 +37,7 @@
         /// </summary>  
         /// <param name="informationType">信息类型.</param>  
         /// <param name="output">输出内容.</param>  
-        internal static void WriteLine( ConsoleTextType informationType, object output )
+        public static void WriteLine( ConsoleTextType informationType, object output )
         {
             WriteLine( informationType, output.ToString( ) );
         }
@@ -47,10 +47,12 @@
         /// </summary>  
         /// <param name="informationType">信息类型.</param>  
         /// <param name="output">输出内容.</param>  
-        internal static void WriteLine( ConsoleTextType informationType, string output )
+        public static void WriteLine( ConsoleTextType informationType, string output )
         {
             Console.ForegroundColor = GetConsoleColor( informationType );
-            Console.WriteLine( string.Concat( "[", EngineInfo.EngineName, "] ", output ) );
+            string NowTime = string.Concat( "[", DateTime.Now.ToString( "yyyy-MM-dd HH:mm:ss" ), "]" );
+            string outPutText = string.Concat( NowTime, "\n =>", "[", EngineInfo.EngineName, "] ", output, "\n" );
+            Console.WriteLine( outPutText );
         }
 
         /// <summary>  

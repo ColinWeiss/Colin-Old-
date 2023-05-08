@@ -53,6 +53,9 @@ namespace Colin.Common.SceneComponents.UserInterfaces
                 Offset.X = (int)(_slideBar.Percentage.X * (contentSize.X - info.Width));
                 Offset.Y = (int)(_slideBar.Percentage.Y * (contentSize.Y - info.Height));
             }
+            Offset.X = Math.Clamp( Offset.X , 0 , int.MaxValue );
+            Offset.Y = Math.Clamp( Offset.Y, 0, int.MaxValue );
+
             for( int count = 0; count < Sub.Count; count++ )
             {
                 if( count > 0 )
@@ -74,14 +77,12 @@ namespace Colin.Common.SceneComponents.UserInterfaces
                     else
                         sub.LayoutInfo.SetLeft( -Offset.X );
                 }
-
                 sub.LayoutInfoUpdate( ref sub.LayoutInfo );
                 sub.LayoutInfo.UpdateInfo( sub );
                 if( sub.LayoutInfo.RenderRectangle.Intersects( LayoutInfo.RenderRectangle ) )
                     sub.Active( true );
                 else
                     sub.Disactive( true );
-
             }
             base.LayoutInfoUpdate( ref info );
         }
@@ -91,5 +92,6 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             _slideBar = slideBar;
             _slideBar.BindControlledStandard( this );
         }
+
     }
 }

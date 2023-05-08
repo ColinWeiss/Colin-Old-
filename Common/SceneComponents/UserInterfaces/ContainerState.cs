@@ -98,6 +98,5 @@ namespace Colin.Common.SceneComponents.UserInterfaces
                 Register( DebugText );
             }
         }
-
     }
 }

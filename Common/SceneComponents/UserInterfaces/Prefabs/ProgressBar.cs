@@ -11,11 +11,17 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs
         public override void ContainerInitialize( )
         {
             InteractiveInfo.CanDrag = true;
-            Renderer = new PixelFillRenderer( );
-            DesignInfo.SetColor( Color.Gray );
-            Fill = new Container( );
-            Fill.Renderer = new PixelFillRenderer( );
-            Fill.DesignInfo.SetColor( Color.White );
+            if( Renderer == null )
+            {
+                Renderer = new PixelFillRenderer( );
+                DesignInfo.SetColor( Color.Gray );
+            }
+            if( Fill.Renderer == null )
+            {
+                Fill = new Container( );
+                Fill.Renderer = new PixelFillRenderer( );
+                Fill.DesignInfo.SetColor( Color.White );
+            }
             Register( Fill );
             base.ContainerInitialize( );
         }

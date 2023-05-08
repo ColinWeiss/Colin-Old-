@@ -35,15 +35,14 @@ namespace Colin.Resources
         public static SoundEffect Get( string path )
         {
             SoundEffect _sound;
-            if( Sounds.TryGetValue( string.Concat( "Sounds/", path ), out _sound ) )
+            if( Sounds.TryGetValue( string.Concat( "Sounds\\", path ), out _sound ) )
                 return _sound;
             else
             {
-                Sounds.Add( string.Concat( "Sounds/", path ), _sound );
-                _sound = EngineInfo.Engine.Content.Load<SoundEffect>( string.Concat( "Sounds/", path ) );
+                _sound = EngineInfo.Engine.Content.Load<SoundEffect>( string.Concat( "Sounds\\", path ) );
+                Sounds.Add( string.Concat( "Sounds\\", path ), _sound );
                 return _sound;
             }
         }
-
     }
 }

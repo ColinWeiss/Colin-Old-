@@ -64,6 +64,11 @@ namespace Colin
             {
                 return Graphics.GraphicsDevice.Viewport.Width;
             }
+            set
+            {
+                Graphics.PreferredBackBufferWidth = value;
+                Graphics.ApplyChanges( );
+            }
         }
 
         /// <summary>
@@ -74,6 +79,11 @@ namespace Colin
             get
             {
                 return Graphics.GraphicsDevice.Viewport.Height;
+            }
+            set
+            {
+                Graphics.PreferredBackBufferHeight = value;
+                Graphics.ApplyChanges( );
             }
         }
 

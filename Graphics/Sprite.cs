@@ -56,6 +56,5 @@
             Source = texture;
             AddThisToGraphicCoreSpritePool( );
         }
-
     }
 }

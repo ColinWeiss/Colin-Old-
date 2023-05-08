@@ -80,6 +80,5 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Renderers
         {
             Picture = new Sprite( picture );
         }
-
     }
 }

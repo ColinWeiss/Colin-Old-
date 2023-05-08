@@ -17,7 +17,7 @@ namespace Colin.Common
         /// <summary>
         /// 获取场景组件列表.
         /// </summary>
-        public SceneComponentList Components => _components;
+        public SceneComponentList ComponentList => _components;
 
         /// <summary>
         /// 指示场景在切换时是否执行初始化的值.
@@ -61,7 +61,7 @@ namespace Colin.Common
                 Start( );
                 Started = true;
             }
-            Components.DoUpdate( gameTime );
+            ComponentList.DoUpdate( gameTime );
             SceneUpdate( );
             base.Update( gameTime );
         }
@@ -73,9 +73,9 @@ namespace Colin.Common
         {
             IRenderableSceneComponent renderMode;
             RenderTarget2D frameRenderLayer;
-            for( int count = 0; count < Components.RenderableComponents.Length; count++ )
+            for( int count = 0; count < ComponentList.RenderableComponents.Length; count++ )
             {
-                renderMode = Components.RenderableComponents[count];
+                renderMode = ComponentList.RenderableComponents[count];
                 if( renderMode.Visiable )
                 {
                     frameRenderLayer = renderMode.RenderTarget;
@@ -104,7 +104,8 @@ namespace Colin.Common
 
         /// <summary>
         /// 我不在乎你加不加载, 但我希望玩家的电脑犯病的时候我们能把重要数据保存下来.
-        /// <br>这个方法将伴随 <see cref="Game.Exit"/> 一起执行.</br>
+        /// <br>这个方法将在 <see cref="Game.Exit"/> 执行时跟着执行执行.</br>
+        /// <br>你也可以把它写成能手动调用用来保存数据的样子.</br>
         /// </summary>
         public virtual void SaveDatas( ) { }
 

@@ -48,6 +48,5 @@ namespace Colin.Resources
                 return _texture;
             }
         }
-
     }
 }

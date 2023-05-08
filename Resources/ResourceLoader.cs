@@ -29,10 +29,10 @@ namespace Colin.Resources
                     {
                         asset = (IGameResource)Activator.CreateInstance( item );
                         asset.LoadResource( );
-                        EngineConsole.WriteLine( ConsoleTextType.Remind, asset.Name + " 正在加载..." );
+                        EngineConsole.WriteLine( ConsoleTextType.Remind, string.Concat( "正在加载 " , asset.Name ));
                     }
                 }
-                EngineConsole.WriteLine( ConsoleTextType.Remind, "游戏资源加载完成." );
+                EngineConsole.WriteLine( ConsoleTextType.Remind, "资源加载完成." );
                 BasicEvent onResourceLoadComplete = new BasicEvent( );
                 onResourceLoadComplete.Name = "Event_GameResources_LoadComplete";
                 OnLoadComplete?.Invoke( this, onResourceLoadComplete );

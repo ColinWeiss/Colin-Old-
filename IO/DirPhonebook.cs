@@ -12,10 +12,5 @@
         /// </summary>
         public static string ArchiveDir => string.Concat( ProgramDir, "\\Archive" );
 
-        /// <summary>
-        /// 指示区块文件夹路径.
-        /// </summary>
-        public static string ArchiveChunkDir => string.Concat( ProgramDir, "\\Archive\\Chunks" );
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Colin.Inputs;
+using Microsoft.Xna.Framework.Input;
 using System.Runtime.Serialization;
 
 namespace Colin.Common.SceneComponents.UserInterfaces.Events
@@ -102,12 +103,16 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
         /// </summary>
         public bool DraggingState = false;
 
+        public bool Invariable = false;
+
         MouseState _mouseState = new MouseState( );
 
         MouseState _mouseStateLast = new MouseState( );
 
         public void UpdateEvent( )
         {
+            _mouseState = MouseResponder.Instance.MouseState;
+            _mouseStateLast = MouseResponder.Instance.MouseStateLast;
             ContainerEvent containerEvent = new ContainerEvent( Container );
             if( Container.InteractiveInfo.Activation )
             {
@@ -120,6 +125,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
                 MouseHoverOn.Invoke( this, containerEvent );
                 if( _mouseState.LeftButton == ButtonState.Pressed && _mouseStateLast.LeftButton == ButtonState.Released )
                 {
+                    Invariable = true;
                     UserInterface.CurrentFocu = Container;
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseLeftClickBefore" );
                     MouseLeftClickBefore.Invoke( this, containerEvent );
@@ -135,8 +141,9 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseLeftDown" );
                     MouseLeftDown.Invoke( this, containerEvent );
                 }
-                if( _mouseState.LeftButton == ButtonState.Released && _mouseStateLast.LeftButton == ButtonState.Pressed )
+                if( _mouseState.LeftButton == ButtonState.Released && _mouseStateLast.LeftButton == ButtonState.Pressed && Invariable )
                 {
+                    Invariable = false;
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseLeftClickAfter" );
                     MouseLeftClickAfter.Invoke( this, containerEvent );
                 }
@@ -148,6 +155,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
                 }
                 if( _mouseState.RightButton == ButtonState.Pressed && _mouseStateLast.RightButton == ButtonState.Released )
                 {
+                    Invariable = true;
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseRightClickBefore" );
                     MouseRightClickBefore.Invoke( this, containerEvent );
                 }
@@ -156,8 +164,9 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseRightDown" );
                     MouseRightDown.Invoke( this, containerEvent );
                 }
-                if( _mouseState.RightButton == ButtonState.Released && _mouseStateLast.RightButton == ButtonState.Pressed )
+                if( _mouseState.RightButton == ButtonState.Released && _mouseStateLast.RightButton == ButtonState.Pressed && Invariable )
                 {
+                    Invariable = false;
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseRightClickAfter" );
                     MouseRightClickAfter.Invoke( this, containerEvent );
                 }
@@ -171,6 +180,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MousePulleySliding" );
                     MousePulleySliding.Invoke( this, containerEvent );
                 }
+
             }
         }
 
@@ -202,7 +212,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
                 containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_DragEnd" );
                 DragEnd.Invoke( this, containerEvent );
             }
-        }
 
+        }
     }
 }

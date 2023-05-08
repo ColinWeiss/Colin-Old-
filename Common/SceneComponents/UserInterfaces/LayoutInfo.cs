@@ -186,10 +186,12 @@ namespace Colin.Common.SceneComponents.UserInterfaces
 
         public void SetLocation( Vector2 position ) => SetLocation( (int)position.X, (int)position.Y );
 
+        Vector2 _locationFromPercentOffset = Vector2.Zero;
         bool NeedUpdateLocationFromPercent = false;
-        public void SetLocationPercent( float x, float y )
+        public void SetLocationPercent( float x, float y , float offsetX = 0 , float offsetY = 0 )
         {
-            LocationPercent = new Vector2( x, y );
+            _locationFromPercentOffset = new Vector2( offsetX , offsetY );
+            LocationPercent = new Vector2( x , y );
             NeedUpdateLocationFromPercent = true;
         }
 
@@ -316,9 +318,10 @@ namespace Colin.Common.SceneComponents.UserInterfaces
                 {
                     NeedUpdateLocationFromPercent = false;
                     SetLocation(
-                        (int)(container.Parent.LayoutInfo.Width * LocationPercent.X),
-                        (int)(container.Parent.LayoutInfo.Height * LocationPercent.Y) );
+                        (int)(container.Parent.LayoutInfo.Width * LocationPercent.X + _locationFromPercentOffset.X)  ,
+                        (int)(container.Parent.LayoutInfo.Height * LocationPercent.Y + _locationFromPercentOffset.Y) );
                     LocationPercent = Vector2.Zero;
+                    _locationFromPercentOffset = Vector2.Zero;
                 }
                 if( NeedUpdateSizeFromPercent )
                 {

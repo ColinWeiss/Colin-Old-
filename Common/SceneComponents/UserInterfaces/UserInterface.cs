@@ -24,7 +24,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
 
         public Material Material => Material.DefaultMaterial;
 
-        public Matrix? TransformMatrix { get; }
+        public Matrix? TransformMatrix { get; set; }
 
         public RenderTarget2D RenderTarget { get; set; }
 
@@ -54,7 +54,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         /// </summary>
         /// <param name="containerPage">容器页.</param>
         /// <param name="doInit">指示是否执行初始化.</param>
-        public void SetPage( ContainerState containerPage, bool doInit )
+        public void SetState( ContainerState containerPage, bool doInit )
         {
             State = containerPage;
             State.UserInterface = this;
@@ -63,6 +63,8 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         }
 
         public void Register( Container container ) => State?.Register( container );
+
+        public void Remove( Container container , bool dispose ) => State?.Remove( container , dispose );
 
     }
 }

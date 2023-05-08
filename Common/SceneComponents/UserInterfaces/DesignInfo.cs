@@ -24,7 +24,11 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         /// <summary>
         /// 容器的缩放起点.
         /// </summary>
-        public Vector2 OriginF => new Vector2( Origin.X, Origin.Y );
+        public Vector2 OriginF
+        {
+            get => Origin.ToVector2( );
+            set => Origin = value.ToPoint( );
+        }
 
         /// <summary>
         /// 容器的缩放.
