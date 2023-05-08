@@ -58,8 +58,8 @@ namespace Colin.Common
         {
             if( !Started )
             {
-                Start( );
                 Started = true;
+                Start( );
             }
             ComponentList.DoUpdate( gameTime );
             SceneUpdate( );

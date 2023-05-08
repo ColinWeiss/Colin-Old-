@@ -8,6 +8,7 @@ namespace Colin.Resources
         public void PreLoadResource( )
         {
             Texture2D _pixelSource = new Texture2D( EngineInfo.Graphics.GraphicsDevice, 1, 1 );
+            _pixelSource.Name = "PreloadResource_Pixel";
             _pixelSource.SetData( new Color[ ] { Color.White } );
             Pixel = new Sprite( _pixelSource );
         }

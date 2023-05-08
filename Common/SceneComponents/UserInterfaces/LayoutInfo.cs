@@ -34,73 +34,46 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         /// 上边缘相对于父容器的坐标.
         /// </summary>
         [DataMember]
-        public int Top;
+        public int Top
+        {
+            get => _top;
+            set => SetTop( value );
+        }
+        private int _top;
 
         /// <summary>
         /// 左边缘相对于父容器的坐标.
         /// </summary>
         [DataMember]
-        public int Left;
+        public int Left
+        {
+            get => _left;
+            set => SetLeft( value );
+        }
+        private int _left;
 
         /// <summary>
         /// 容器宽度.
         /// </summary>
         [DataMember]
-        public int Width;
+        public int Width
+        {
+            get => _width;
+            set => SetWidth( value );
+        }
+        private int _width;
 
         /// <summary>
         /// 容器高度.
+        /// <br>直接对该值赋值将不引发 <see cref="OnSizeChanged"/> 事件.</br>
         /// </summary>
         [DataMember]
-        public int Height;
-
-        /// <summary>
-        /// 容器外左边缘大小.
-        /// </summary>
-        [DataMember]
-        public int MarginLeft;
-
-        /// <summary>
-        /// 容器外右边缘大小.
-        /// </summary>
-        [DataMember]
-        public int MarginRight;
-
-        /// <summary>
-        /// 容器外顶边缘大小.
-        /// </summary>
-        [DataMember]
-        public int MarginTop;
-
-        /// <summary>
-        /// 容器外底边缘大小.
-        /// </summary>
-        [DataMember]
-        public int MarginBottom;
-
-        /// <summary>
-        /// 容器内左边缘大小.
-        /// </summary>
-        [DataMember]
-        public int PaddingLeft;
-
-        /// <summary>
-        /// 容器内右边缘大小.
-        /// </summary>
-        [DataMember]
-        public int PaddingRight;
-
-        /// <summary>
-        /// 容器内顶边缘大小.
-        /// </summary>
-        [DataMember]
-        public int PaddingTop;
-
-        /// <summary>
-        /// 容器内底边缘大小.
-        /// </summary>
-        [DataMember]
-        public int PaddingBottom;
+        public int Height
+        {
+            get => _height;
+            set => SetHeight( value );
+        }
+        private int _height;
 
         private Vector2 LocationPercent = Vector2.Zero;
 
@@ -129,25 +102,17 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             }
         }
 
-        public int InteractiveX;
+        public int InteractiveX { get; private set; }
 
-        public int InteractiveY;
+        public int InteractiveY { get; private set; }
 
         public LayoutInfo( )
         {
             _renderLocation = Point.Zero;
-            Top = 0;
-            Left = 0;
-            Width = 0;
-            Height = 0;
-            MarginLeft = 0;
-            MarginRight = 0;
-            MarginTop = 0;
-            MarginBottom = 0;
-            PaddingLeft = 0;
-            PaddingRight = 0;
-            PaddingTop = 0;
-            PaddingBottom = 0;
+            _top = 0;
+            _left = 0;
+            _width = 0;
+            _height = 0;
             InteractiveX = 0;
             InteractiveY = 0;
         }
@@ -175,17 +140,6 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         /// </summary>
         public event Action OnLocationChanged = ( ) => { };
 
-        public void SetLocation( int x, int y )
-        {
-            Left = x;
-            Top = y;
-            OnLocationChanged.Invoke( );
-        }
-
-        public void SetLocation( Point point ) => SetLocation( point.X, point.Y );
-
-        public void SetLocation( Vector2 position ) => SetLocation( (int)position.X, (int)position.Y );
-
         Vector2 _locationFromPercentOffset = Vector2.Zero;
         bool NeedUpdateLocationFromPercent = false;
         public void SetLocationPercent( float x, float y , float offsetX = 0 , float offsetY = 0 )
@@ -195,44 +149,73 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             NeedUpdateLocationFromPercent = true;
         }
 
+        /// <summary>
+        /// 设置容器宽度.
+        /// </summary>
+        /// <param name="width">要设置的宽度.</param>
         public void SetWidth( int width )
         {
-            Width = width;
-            OnSizeChanged.Invoke( );
+            if( _width != width )
+            {
+                _width = width;
+                OnSizeChanged.Invoke( );
+            }
         }
 
+        /// <summary>
+        /// 设置容器高度.
+        /// </summary>
+        /// <param name="height">要设置的高度.</param>
         public void SetHeight( int height )
         {
-            Height = height;
+            _height = height;
             OnSizeChanged.Invoke( );
         }
 
+        /// <summary>
+        /// 设置大小.
+        /// <br>只引发一次 <see cref="OnSizeChanged"/> 事件.</br>
+        /// </summary>
+        /// <param name="width">宽度.</param>
+        /// <param name="height">高度.</param>
         public void SetSize( int width, int height )
         {
-            Width = width;
-            Height = height;
-            OnSizeChanged.Invoke( );
+            if( _width != width || _height != height )
+            {
+                _width = width;
+                _height = height;
+                OnSizeChanged.Invoke( );
+            }
         }
 
+        /// <summary>
+        /// 设置大小.
+        /// <br>只引发一次 <see cref="OnSizeChanged"/> 事件.</br>
+        /// </summary>
+        /// <param name="size">长宽.</param>
         public void SetSize( int size )
         {
-            Width = size;
-            Height = size;
-            OnSizeChanged.Invoke( );
+            SetSize( size );
         }
 
+        /// <summary>
+        /// 设置大小.
+        /// <br>只引发一次 <see cref="OnSizeChanged"/> 事件.</br>
+        /// </summary>
+        /// <param name="size">长宽.</param>
         public void SetSize( Point size )
         {
-            Width = size.X;
-            Height = size.Y;
-            OnSizeChanged.Invoke( );
+            SetSize( size.X , size.Y );
         }
 
+        /// <summary>
+        /// 设置大小.
+        /// <br>只引发一次 <see cref="OnSizeChanged"/> 事件.</br>
+        /// </summary>
+        /// <param name="size">长宽.</param>
         public void SetSize( Vector2 size )
         {
-            Width = (int)size.X;
-            Height = (int)size.Y;
-            OnSizeChanged.Invoke( );
+            SetSize( (int)size.X, (int)size.Y );
         }
 
         bool NeedUpdateSizeFromPercent = false;
@@ -242,73 +225,61 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             NeedUpdateSizeFromPercent = true;
         }
 
+        /// <summary>
+        /// 设置容器顶部相对于父容器的位置.
+        /// </summary>
+        /// <param name="top">要设置的位置.</param>
         public void SetTop( int top )
         {
-            Top = top;
-            OnLocationChanged.Invoke( );
+            if( _top != top )
+            {
+                _top = top;
+                OnLocationChanged.Invoke( );
+            }
         }
 
+        /// <summary>
+        /// 设置容器左部相对于父容器的位置.
+        /// </summary>
+        /// <param name="left">要设置的位置.</param>
         public void SetLeft( int left )
         {
-            Left = left;
-            OnLocationChanged.Invoke( );
+            if( _left != left)
+            {
+                _left = left;
+                OnLocationChanged.Invoke( );
+            }
         }
 
-        public void SetMarginLeft( int left )
+        /// <summary>
+        /// 设置容器相对于父容器的位置.
+        /// <br>只引发一次 <see cref="OnLocationChanged"/> 事件.</br>
+        /// </summary>
+        /// <param name="top">顶部位置.</param>
+        /// <param name="left">左部位置.</param>
+        public void SetLocation( int left, int top )
         {
-            MarginLeft = left;
+            if( _left != left || _top != top )
+            {
+                _left = left;
+                _top = top;
+                OnLocationChanged.Invoke( );
+            }
         }
 
-        public void SetMarginRight( int right )
-        {
-            MarginRight = right;
-        }
+        /// <summary>
+        /// 设置容器相对于父容器的位置.
+        /// <br>只引发一次 <see cref="OnLocationChanged"/> 事件.</br>
+        /// </summary>
+        /// <param name="point">位置.</param>
+        public void SetLocation( Point point ) => SetLocation( point.X, point.Y );
 
-        public void SetMarginTop( int top )
-        {
-            MarginTop = top;
-        }
-
-        public void SetMarginBottom( int bottom )
-        {
-            MarginBottom = bottom;
-        }
-
-        public void SetMargin( int left, int right, int top, int bottom )
-        {
-            SetMarginLeft( left );
-            SetMarginRight( right );
-            SetMarginTop( top );
-            SetMarginBottom( bottom );
-        }
-
-        public void SetPaddingLeft( int left )
-        {
-            PaddingLeft = left;
-        }
-
-        public void SetPaddingRight( int right )
-        {
-            PaddingRight = right;
-        }
-
-        public void SetPaddingTop( int top )
-        {
-            PaddingTop = top;
-        }
-
-        public void SetPaddingBottom( int bottom )
-        {
-            PaddingBottom = bottom;
-        }
-
-        public void SetPadding( int left, int right, int top, int bottom )
-        {
-            SetPaddingLeft( left );
-            SetPaddingRight( right );
-            SetPaddingTop( top );
-            SetPaddingBottom( bottom );
-        }
+        /// <summary>
+        /// 设置容器相对于父容器的位置.
+        /// <br>只引发一次 <see cref="OnLocationChanged"/> 事件.</br>
+        /// </summary>
+        /// <param name="position">位置.</param>
+        public void SetLocation( Vector2 position ) => SetLocation( (int)position.X, (int)position.Y );
 
         public void UpdateInfo( Container container )
         {

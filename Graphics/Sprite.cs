@@ -41,14 +41,14 @@
 
         private void AddThisToGraphicCoreSpritePool( )
         {
-            if( SpritePool.Instance.ContainsKey( GetHashCode( ) ) )
+            if( SpritePool.Instance.ContainsKey( Source.Name ))
             {
                 Sprite _sprite;
-                SpritePool.Instance.TryGetValue( GetHashCode( ), out _sprite );
+                SpritePool.Instance.TryGetValue( Source.Name, out _sprite );
                 Depth = _sprite.Depth;
             }
             else
-                SpritePool.Instance.Add( GetHashCode( ), this );
+                SpritePool.Instance.Add( Source.Name, this );
         }
 
         public Sprite( Texture2D texture )

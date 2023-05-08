@@ -137,6 +137,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
                 Canvas = RenderTargetExt.CreateDefault( LayoutInfo.Width, LayoutInfo.Height );
                 LayoutInfo.OnSizeChanged += ( ) =>
                 {
+                    Canvas.Dispose( );
                     Canvas = RenderTargetExt.CreateDefault( LayoutInfo.Width, LayoutInfo.Height );
                 };
             }
@@ -237,7 +238,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             EventResponder.UpdateIndependentEvent( );
 
             SelfUpdate( time );
-            Behavior?.UpdateStyle( );
+
             if( Behavior != null && Behavior.CloseState )
                 Behavior?.UpdateCloseState( );
 
@@ -316,11 +317,14 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         }
         public virtual void PostRender( ) { }
 
+        /// <summary>
+        /// 激活容器.
+        /// </summary>
+        /// <param name="subActive">在激活容器时是否激活其所有子容器</param>
         public virtual void Active( bool subActive )
         {
             Enable = true;
             Visible = true;
-            Behavior?.OnActive( );
             if( subActive )
             {
                 Container _sub;
@@ -332,11 +336,14 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             }
         }
 
+        /// <summary>
+        /// 休眠容器.
+        /// </summary>
+        /// <param name="subDisactive">在休眠容器时是否休眠其所有子容器</param>
         public virtual void Disactive( bool subDisactive )
         {
             Enable = false;
             Visible = false;
-            Behavior?.OnDisactive( );
             if( subDisactive )
             {
                 Container _sub;

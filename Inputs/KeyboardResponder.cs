@@ -24,12 +24,12 @@ namespace Colin.Inputs
         /// <summary>
         /// 事件: 发生于键盘上任何键单击按下时.
         /// </summary>
-        public EventHandler<KeyboardEventArgs> KeyClickBefore = ( s, e ) => { };
+        public EventHandler<KeyboardEventArgs> KeyClickBefore;
 
         /// <summary>
         /// 事件: 发生于键盘上任何键单击松开时.
         /// </summary>
-        public EventHandler<KeyboardEventArgs> KeyClickAfter = ( s, e ) => { };
+        public EventHandler<KeyboardEventArgs> KeyClickAfter;
 
         internal KeyboardState keyboardState = new KeyboardState( );
 

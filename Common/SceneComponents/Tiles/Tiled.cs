@@ -30,12 +30,12 @@ namespace Colin.Common.SceneComponents.Tiles
         /// <summary>
         /// 事件: 发生于物块被放置时.
         /// </summary>
-        public EventHandler<TileEvent> OnTilePlace = ( s, e ) => { };
+        public EventHandler<TileEvent> OnTilePlace;
 
         /// <summary>
         /// 事件: 发生于物块被破坏时.
         /// </summary>
-        public EventHandler<TileEvent> OnTileDestruction = ( s, e ) => { };
+        public EventHandler<TileEvent> OnTileDestruction;
 
         /// <summary>
         /// 记录的信息.
@@ -82,46 +82,6 @@ namespace Colin.Common.SceneComponents.Tiles
             TileInfoMap = new TileInfoMap( width, height );
             Tiles = new Tile[width * height];
             ScreenChunk.Region = EngineInfo.ViewRectangle;
-        }
-
-        /// <summary>
-        /// 从指定数据文件异步保存 Tiled .
-        /// </summary>
-        /// <param name="path">数据文件存储路径.</param>
-        public async void SaveTiledAsync( string path ) => await Task.Run( ( ) => SaveTiled( path ) );
-
-        /// <summary>
-        /// 保存 Tiled 至数据文件.
-        /// </summary>
-        /// <param name="path">数据文件存储路径.</param>
-        public void SaveTiled( string path )
-        {
-            FileStream _fileStream;
-            using( _fileStream = File.Create( path ) )
-            {
-                XmlSerializer xmlSerializer = new XmlSerializer( typeof( TileInfoMap ) );
-                xmlSerializer.Serialize( _fileStream, TileInfoMap );
-            }
-        }
-
-        /// <summary>
-        /// 从指定数据文件异步加载 Tiled .
-        /// </summary>
-        /// <param name="path">数据文件存储路径.</param>
-        public async void LoadTiledAsync( string path ) => await Task.Run( ( ) => LoadTiled( path ) );
-
-        /// <summary>
-        /// 从指定数据文件加载 Tiled .
-        /// </summary>
-        /// <param name="path">文件路径.</param>
-        public void LoadTiled( string path )
-        {
-            FileStream _fileStream;
-            using( _fileStream = File.OpenRead( path ) )
-            {
-                XmlSerializer xmlSerializer = new XmlSerializer( typeof( TileInfoMap ) );
-                TileInfoMap = (TileInfoMap)xmlSerializer.Deserialize( _fileStream );
-            }
         }
 
         /// <summary>

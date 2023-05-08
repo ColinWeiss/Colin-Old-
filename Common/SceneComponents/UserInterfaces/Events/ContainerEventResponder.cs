@@ -21,82 +21,82 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
         /// <summary>
         /// 事件: 发生于鼠标悬停于该容器上持续激活交互状态时.
         /// </summary>
-        public EventHandler<ContainerEvent> MouseHoverOn = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> MouseHoverOn;
 
         /// <summary>
         /// 事件: 发生于鼠标与之交互, 左键单击按下时.
         /// </summary>
-        public EventHandler<ContainerEvent> MouseLeftClickBefore = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> MouseLeftClickBefore;
 
         /// <summary>
         /// 事件: 发生于鼠标与之交互, 左键长按时.
         /// </summary>
-        public EventHandler<ContainerEvent> MouseLeftDown = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> MouseLeftDown;
 
         /// <summary>
         /// 事件: 发生于鼠标与之交互, 左键单击抬起时.
         /// </summary>
-        public EventHandler<ContainerEvent> MouseLeftClickAfter = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> MouseLeftClickAfter;
 
         /// <summary>
         /// 事件: 发生于鼠标与之交互, 左键松开时.
         /// </summary>
-        public EventHandler<ContainerEvent> MouseLeftUp = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> MouseLeftUp;
 
         /// <summary>
         /// 事件: 发生于鼠标与之交互, 右键单击按下时.
         /// </summary>
-        public EventHandler<ContainerEvent> MouseRightClickBefore = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> MouseRightClickBefore;
 
         /// <summary>
         /// 事件: 发生于鼠标与之交互, 右键长按时.
         /// </summary>
-        public EventHandler<ContainerEvent> MouseRightDown = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> MouseRightDown;
 
         /// <summary>
         /// 事件: 发生于鼠标与之交互, 右键单击抬起时.
         /// </summary>
-        public EventHandler<ContainerEvent> MouseRightClickAfter = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> MouseRightClickAfter;
 
         /// <summary>
         /// 事件: 发生于鼠标与之交互, 右键松开时.
         /// </summary>
-        public EventHandler<ContainerEvent> MouseRightUp = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> MouseRightUp;
 
         /// <summary>
         /// 事件: 发生于鼠标双键松开时.
         /// </summary>
-        public EventHandler<ContainerEvent> MouseRelease = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> MouseRelease;
 
         /// <summary>
         /// 事件: 发生于容器开始拖拽状态时.
         /// </summary>
-        public EventHandler<ContainerEvent> DragStart = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> DragStart;
 
         /// <summary>
         /// 事件: 发生于容器拖拽状态时.
         /// </summary>
-        public EventHandler<ContainerEvent> Dragging = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> Dragging;
 
         /// <summary>
         /// 事件: 发生于容器结束拖拽状态时.
         /// </summary>
-        public EventHandler<ContainerEvent> DragEnd = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> DragEnd;
 
         /// <summary>
         /// 事件: 发生于鼠标滑轮滑动时.
         /// </summary>
-        public EventHandler<ContainerEvent> MousePulleySliding = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> MousePulleySliding;
 
         /// <summary>
         /// 事件: 发生于容器启用交互状态时.
         /// </summary>
-        public EventHandler<ContainerEvent> ActivationStart = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> ActivationStart;
 
         /// <summary>
         /// 事件: 发生于容器结束交互状态时.
         /// </summary>
-        public EventHandler<ContainerEvent> ActivationEnd = ( s, e ) => { };
+        public event EventHandler<ContainerEvent> ActivationEnd;
 
         /// <summary>
         /// 指示拖拽状态.
@@ -119,66 +119,66 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
                 if( !Container.InteractiveInfo.ActivationLast )
                 {
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Activation_ActivationStart" );
-                    ActivationStart.Invoke( this, containerEvent );
+                    ActivationStart?.Invoke( this, containerEvent );
                 }
                 containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseHoverOn" );
-                MouseHoverOn.Invoke( this, containerEvent );
+                MouseHoverOn?.Invoke( this, containerEvent );
                 if( _mouseState.LeftButton == ButtonState.Pressed && _mouseStateLast.LeftButton == ButtonState.Released )
                 {
                     Invariable = true;
                     UserInterface.CurrentFocu = Container;
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseLeftClickBefore" );
-                    MouseLeftClickBefore.Invoke( this, containerEvent );
+                    MouseLeftClickBefore?.Invoke( this, containerEvent );
                     if( Container.InteractiveInfo.CanDrag && Container.InteractiveInfo.ActivationLast )
                     {
                         containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_DragStart" );
-                        DragStart.Invoke( this, containerEvent );
+                        DragStart?.Invoke( this, containerEvent );
                         DraggingState = true;
                     }
                 }
                 if( _mouseState.LeftButton == ButtonState.Pressed && _mouseStateLast.LeftButton == ButtonState.Pressed )
                 {
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseLeftDown" );
-                    MouseLeftDown.Invoke( this, containerEvent );
+                    MouseLeftDown?.Invoke( this, containerEvent );
                 }
                 if( _mouseState.LeftButton == ButtonState.Released && _mouseStateLast.LeftButton == ButtonState.Pressed && Invariable )
                 {
                     Invariable = false;
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseLeftClickAfter" );
-                    MouseLeftClickAfter.Invoke( this, containerEvent );
+                    MouseLeftClickAfter?.Invoke( this, containerEvent );
                 }
                 if( _mouseState.LeftButton == ButtonState.Released && _mouseStateLast.LeftButton == ButtonState.Released )
                 {
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseLeftUp" );
-                    MouseLeftUp.Invoke( this, containerEvent );
+                    MouseLeftUp?.Invoke( this, containerEvent );
                     DraggingState = false;
                 }
                 if( _mouseState.RightButton == ButtonState.Pressed && _mouseStateLast.RightButton == ButtonState.Released )
                 {
                     Invariable = true;
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseRightClickBefore" );
-                    MouseRightClickBefore.Invoke( this, containerEvent );
+                    MouseRightClickBefore?.Invoke( this, containerEvent );
                 }
                 if( _mouseState.RightButton == ButtonState.Pressed && _mouseStateLast.RightButton == ButtonState.Pressed )
                 {
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseRightDown" );
-                    MouseRightDown.Invoke( this, containerEvent );
+                    MouseRightDown?.Invoke( this, containerEvent );
                 }
                 if( _mouseState.RightButton == ButtonState.Released && _mouseStateLast.RightButton == ButtonState.Pressed && Invariable )
                 {
                     Invariable = false;
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseRightClickAfter" );
-                    MouseRightClickAfter.Invoke( this, containerEvent );
+                    MouseRightClickAfter?.Invoke( this, containerEvent );
                 }
                 if( _mouseState.RightButton == ButtonState.Released && _mouseStateLast.RightButton == ButtonState.Released )
                 {
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseRightUp" );
-                    MouseRightUp.Invoke( this, containerEvent );
+                    MouseRightUp?.Invoke( this, containerEvent );
                 }
                 if( _mouseState.ScrollWheelValue != _mouseStateLast.ScrollWheelValue )
                 {
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MousePulleySliding" );
-                    MousePulleySliding.Invoke( this, containerEvent );
+                    MousePulleySliding?.Invoke( this, containerEvent );
                 }
 
             }
@@ -198,19 +198,19 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
                 if( !Container.InteractiveInfo.Activation )
                 {
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Activation_ActivationEnd" );
-                    ActivationEnd.Invoke( this, containerEvent );
+                    ActivationEnd?.Invoke( this, containerEvent );
                 }
             }
             if( DraggingState && Container.InteractiveInfo.CanDrag )
             {
                 containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_Dragging" );
-                Dragging.Invoke( this, containerEvent );
+                Dragging?.Invoke( this, containerEvent );
             }
             if( _mouseState.LeftButton == ButtonState.Released && Container.InteractiveInfo.CanDrag )
             {
                 DraggingState = false;
                 containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_DragEnd" );
-                DragEnd.Invoke( this, containerEvent );
+                DragEnd?.Invoke( this, containerEvent );
             }
 
         }

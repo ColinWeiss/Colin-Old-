@@ -40,7 +40,7 @@ namespace Colin.Common.SceneComponents.Backgrounds
 
         protected Texture2D GetBackgroundTexture( string path )
         {
-            return TextureResource.Get( string.Concat( "Contents/Backgrounds/" , path ) );
+            return TextureResource.Get( string.Concat( "Backgrounds/" , path ) );
         }
 
     }

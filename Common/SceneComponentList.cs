@@ -68,6 +68,12 @@ namespace Colin.Common
             Components.Remove( sceneMode );
         }
 
+        public void Clear( )
+        {
+            Components.Clear( );
+            RenderableComponents.Clear( );
+        }
+
         private void OnComponentAdded( SceneComponentListEventArgs eventArgs ) => this.EventRaise( OnAdd, eventArgs );
 
         private void OnComponentRemoved( SceneComponentListEventArgs eventArgs ) => this.EventRaise( OnRemove, eventArgs );
