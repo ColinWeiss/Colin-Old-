@@ -102,30 +102,26 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs
         public override void InteractiveInfoUpdate( ref InteractiveInfo info )
         {
             if( sliderDragState )
-                Slider.LayoutInfo.SetLocation( EngineInfo.MousePositionF - LayoutInfo.InteractiveRectangle.Location.ToVector2( ) - Vector2.UnitY * Slider.LayoutInfo.Height / 2 );
-            Slider.LayoutInfo.SetLeft( Math.Clamp( Slider.LayoutInfo.Left, 0, LayoutInfo.Width - Slider.LayoutInfo.Width ) );
-            Slider.LayoutInfo.SetTop( Math.Clamp( Slider.LayoutInfo.Top, 0, LayoutInfo.Height - Slider.LayoutInfo.Height ) );
+                Slider.LayoutInfo.SetLocation( Input.InteractionPoint - LayoutInfo.InteractiveRectangle.Location.ToVector2( ) - Vector2.UnitY * Slider.LayoutInfo.Height / 2 );
 
-            if( info.Activation || (ControlledStandard != null ? ControlledStandard.InteractiveInfo.Activation : false ) )
+            if( info.Activation || (ControlledStandard != null ? ControlledStandard.InteractiveInfo.Activation : false) )
             {
-                if( KeyboardResponder.Instance.IsKeyDown( Keys.LeftShift ) )
+                if( KeyboardResponder.Instance.IsKeyDown( Keys.LeftShift ) || ControllerResponder.state.Buttons.LeftShoulder == ButtonState.Pressed )
                 {
-                    if( EngineInfo.MouseState.ScrollWheelValue > EngineInfo.MouseStateLast.ScrollWheelValue )
-                        Slider.LayoutInfo.SetLeft( Slider.LayoutInfo.Left - ScrollValue );
-                    else if( EngineInfo.MouseState.ScrollWheelValue < EngineInfo.MouseStateLast.ScrollWheelValue )
-                        Slider.LayoutInfo.SetLeft( Slider.LayoutInfo.Left + ScrollValue );
+                    Slider.LayoutInfo.SetLeft( (int)(Slider.LayoutInfo.Left + Input.Wipe) );
                 }
                 else
                 {
-                    if( EngineInfo.MouseState.ScrollWheelValue > EngineInfo.MouseStateLast.ScrollWheelValue )
-                        Slider.LayoutInfo.SetTop( Slider.LayoutInfo.Top - ScrollValue );
-                    else if( EngineInfo.MouseState.ScrollWheelValue < EngineInfo.MouseStateLast.ScrollWheelValue )
-                        Slider.LayoutInfo.SetTop( Slider.LayoutInfo.Top + ScrollValue );
+                    Slider.LayoutInfo.SetTop( (int)(Slider.LayoutInfo.Top + Input.Wipe * ScrollValue) );
                 }
             }
+            Slider.LayoutInfo.SetLeft( Math.Clamp( Slider.LayoutInfo.Left, 0, LayoutInfo.Width - Slider.LayoutInfo.Width ) );
+            Slider.LayoutInfo.SetTop( Math.Clamp( Slider.LayoutInfo.Top, 0, LayoutInfo.Height - Slider.LayoutInfo.Height ) );
 
-            if( EngineInfo.MouseState.LeftButton == ButtonState.Released )
+            if( Input.Interactive1_Up )
+            {
                 sliderDragState = false;
+            }
 
             base.InteractiveInfoUpdate( ref info );
         }

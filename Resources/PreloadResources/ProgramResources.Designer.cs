@@ -8,8 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Colin.Resources.PreLoadResources
-{
+namespace Colin.Resources.PreLoadResources {
     using System;
     
     
@@ -40,7 +39,7 @@ namespace Colin.Resources.PreLoadResources
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Colin.Resources.PreloadResources.ProgramResources", typeof(ProgramResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Colin.Resources.PreLoadResources.ProgramResources", typeof(ProgramResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -58,6 +57,16 @@ namespace Colin.Resources.PreLoadResources
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        public static byte[] ControllerCursor {
+            get {
+                object obj = ResourceManager.GetObject("ControllerCursor", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Colin.Inputs;
+using Microsoft.Xna.Framework.Input;
 
 namespace Colin.Extensions
 {
@@ -37,24 +38,13 @@ namespace Colin.Extensions
         }
 
         /// <summary>
-        /// 判断光标是否与指定的 <seealso cref="Rectangle"/> 重合.
+        /// 判断交互点是否与指定的 <seealso cref="Rectangle"/> 重合.
         /// </summary>
         /// <param name="rectangle">指定的 <seealso cref="Rectangle"/>.</param>
         /// <returns>如若是, 返回 <see href="true"/>, 否则返回 <see href="false"/>.</returns>
-        public static bool IntersectMouse( this Rectangle rectangle )
+        public static bool IntersectInteractive( this Rectangle rectangle )
         {
-            return rectangle.Intersects( new Rectangle( Mouse.GetState( ).Position, Point.Zero ) );
+            return rectangle.Intersects( new Rectangle( Input.InteractionPoint.ToPoint(), Point.Zero ) );
         }
-
-        /// <summary>
-        /// 判断上一帧光标是否与指定的 <seealso cref="Rectangle"/> 重合.
-        /// </summary>
-        /// <param name="rectangle">指定的 <seealso cref="Rectangle"/>.</param>
-        /// <returns>如若是, 返回 <see href="true"/>, 否则返回 <see href="false"/>.</returns>
-        public static bool IntersectMouseLast( this Rectangle rectangle )
-        {
-            return rectangle.Intersects( new Rectangle( Mouse.GetState( ).Position, Point.Zero ) );
-        }
-
     }
 }

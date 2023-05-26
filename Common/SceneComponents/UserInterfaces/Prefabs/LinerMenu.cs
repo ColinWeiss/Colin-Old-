@@ -36,6 +36,7 @@
 
         public override void ContainerInitialize( )
         {
+            InteractiveInfo.CanSeek = false;
             RefreshSize( );
             base.ContainerInitialize( );
         }

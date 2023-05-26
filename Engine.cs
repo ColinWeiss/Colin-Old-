@@ -20,7 +20,12 @@ namespace Colin
 
         public ResourceLoader ResourceLoader { get; private set; }
 
-        public virtual int TargetFrame => 120;
+        private int _targetFrame = 60;
+        public int TargetFrame
+        {
+            get => _targetFrame;
+            set => SetTargetFrame( value );
+        }
 
         public Engine( )
         {
@@ -41,7 +46,12 @@ namespace Colin
             Window.AllowUserResizing = true;
             IsMouseVisible = true;
             IsFixedTimeStep = true;
-            TargetElapsedTime = new TimeSpan( 0, 0, 0, 0, (int)Math.Round( 1000f / TargetFrame ) );
+        }
+
+        public void SetTargetFrame( int frame )
+        {
+            _targetFrame = frame;
+            TargetElapsedTime = new TimeSpan( 0, 0, 0, 0, (int)Math.Round( 1000f / frame ) );
         }
 
         /// <summary>
@@ -59,8 +69,10 @@ namespace Colin
             }
             Components.Clear( );
             Components.Add( TextInputResponder.Instance );
+            Components.Add( ControllerResponder.Instance );
             Components.Add( MouseResponder.Instance );
             Components.Add( KeyboardResponder.Instance );
+            Components.Add( Input.Instance );
             Components.Add( scene );
             CurrentScene = scene;
             GC.Collect( );
@@ -72,6 +84,7 @@ namespace Colin
             Preloader.LoadResources( );
             EngineInfo.Config = new Config( );
             EngineInfo.Config.Load( );
+            TargetElapsedTime = new TimeSpan( 0, 0, 0, 0, (int)Math.Round( 1000f / TargetFrame ) );
             Components.Add( FileDropProcessor.Instance );
             DoInitialize( );
             base.Initialize( );
@@ -112,6 +125,13 @@ namespace Colin
             GraphicsDevice.Clear( Color.Black );
             DoRender( );
             base.Draw( gameTime );
+            if( ControllerResponder.state.IsConnected )
+            {
+                EngineInfo.SpriteBatch.Begin( );
+                EngineInfo.SpriteBatch.Draw( PreloadResource.ControllerCursor.Source, Input.InteractionPoint - Vector2.One * 8 , Color.White );
+
+                EngineInfo.SpriteBatch.End( );
+            }
         }
         public virtual void DoRender( ) { }
 

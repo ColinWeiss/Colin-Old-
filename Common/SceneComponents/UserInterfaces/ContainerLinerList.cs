@@ -34,6 +34,12 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         /// </summary>
         private Scrollbar _slideBar;
 
+        public override void ContainerInitialize( )
+        {
+            InteractiveInfo.CanSeek = false;
+            base.ContainerInitialize( );
+        }
+
         public override void LayoutInfoUpdate( ref LayoutInfo info )
         {
             Point Offset = Point.Zero;

@@ -57,6 +57,21 @@ namespace Colin
         public float SoundEffectVolume { get; set; } = 1f;
 
         /// <summary>
+        /// 指示目标音效.
+        /// </summary>
+        public int TargetFrame
+        {
+            get
+            {
+                return EngineInfo.Engine.TargetFrame;
+            }
+            set
+            {
+                EngineInfo.Engine.SetTargetFrame( value );
+            }
+        }
+
+        /// <summary>
         /// 指示图形质量.
         /// </summary>
         public PictureQuality PictureQuality { get; set; }
@@ -87,11 +102,15 @@ namespace Colin
             SoundEffectVolume = result.SoundEffectVolume;
             PictureQuality = result.PictureQuality;
             IsMouseVisiable = result.IsMouseVisiable;
+            TargetFrame = result.TargetFrame;
         }
         public void Save( )
         {
-            string config = JsonSerializer.Serialize( this );
+            JsonSerializerOptions serializerOptions = new JsonSerializerOptions( );
+            serializerOptions.WriteIndented = true;
+            string config = JsonSerializer.Serialize( this, serializerOptions );
             File.WriteAllText( ConfigPath, config );
         }
+
     }
 }

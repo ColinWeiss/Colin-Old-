@@ -23,12 +23,19 @@ namespace Colin.Common.SceneComponents.UserInterfaces
 
         public Label DebugText;
 
+        /// <summary>
+        /// 指示当前选择的容器.
+        /// </summary>
+        public Container Selected;
+
+        public int ContainerPointer = 0;
+
         public override sealed void ContainerInitialize( )
         {
             Renderer = new DefaultContainerRenderer( );
             InteractiveInfo.Activation = false;
             InteractiveInfo.CanDrag = false;
-            InteractiveInfo.CanSeek = true;
+            InteractiveInfo.CanSeek = false;
             LayoutInfo.SetLocation( 0, 0 );
             LayoutInfo.SetSize( EngineInfo.ViewWidth, EngineInfo.ViewHeight );
             EngineInfo.Engine.Window.ClientSizeChanged += Window_ClientSizeChanged;
@@ -56,9 +63,18 @@ namespace Colin.Common.SceneComponents.UserInterfaces
 
         }
 
+        public override void UpdateStart( )
+        {
+            if( ControllerResponder.state.IsConnected )
+                Selected = GetCanSeekContainers( ).ToList( )[ContainerPointer];
+            base.UpdateStart( );
+        }
+
         public override void SelfUpdate( GameTime gameTime )
         {
             SeekInteractive( )?.EventResponder.UpdateEvent( );
+            Selected?.EventResponder.UpdateEvent( );
+
             if( KeyboardResponder.Instance.IsKeyDown( Keys.LeftShift ) && KeyboardResponder.Instance.IsKeyClickBefore( Keys.U ) )
                 OnDebug = !OnDebug;
             if( KeyboardResponder.Instance.IsKeyDown( Keys.LeftShift ) && KeyboardResponder.Instance.IsKeyClickBefore( Keys.L ) )
@@ -71,16 +87,34 @@ namespace Colin.Common.SceneComponents.UserInterfaces
                     "    Size: ", SeekInteractive( )?.LayoutInfo.Size, "\n",
                     "    Absolute Location: ", SeekInteractive( )?.LayoutInfo.RenderLocation, "\n",
                     "    Location: ", SeekInteractive( )?.LayoutInfo.Location, "\n",
-                    "    Interactive Rectangle: ", SeekInteractive( )?.LayoutInfo.InteractiveRectangle
+                    "    Interactive Rectangle: ", SeekInteractive( )?.LayoutInfo.InteractiveRectangle , "\n",
+                    "    Selected: " , Selected?.GetType( )
                     );
                 DebugText.Enable = true;
                 DebugText.Visible = true;
+
+                if( ControllerResponder.DPad_Down_ClickBefore )
+                {
+                    ContainerPointer++;
+                    ContainerPointer = Math.Clamp( ContainerPointer, 0, GetCanSeekContainers( ).Count( ) - 1 );
+                    Selected = GetCanSeekContainers( ).ToList( )[ContainerPointer];
+                    Input.SetInteractionPoint( Selected.LayoutInfo.InteractiveRectangle.Location + (Selected.LayoutInfo.InteractiveRectangle.Size.ToVector2( ) / 2).ToPoint( ) );
+                }
+                if( ControllerResponder.DPad_Up_ClickBefore )
+                {
+                    ContainerPointer--; 
+                    ContainerPointer = Math.Clamp( ContainerPointer, 0, GetCanSeekContainers( ).Count( ) - 1 );
+                    Selected = GetCanSeekContainers( ).ToList( )[ContainerPointer];
+                    Input.SetInteractionPoint( Selected.LayoutInfo.InteractiveRectangle.Location + (Selected.LayoutInfo.InteractiveRectangle.Size.ToVector2( ) / 2).ToPoint( ) );
+                }
             }
             else if( DebugText != null )
             {
                 DebugText.Enable = false;
                 DebugText.Visible = false;
             }
+
+
             base.SelfUpdate( gameTime );
         }
 

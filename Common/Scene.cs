@@ -31,6 +31,7 @@ namespace Colin.Common
 
         public override sealed void Initialize( )
         {
+            Started = false;
             if( InitializeOnSwitch )
             {
                 InitRenderTarget( this, new EventArgs( ) );
@@ -45,6 +46,7 @@ namespace Colin.Common
 
         internal void InitRenderTarget( object s, EventArgs e )
         {
+            SceneRenderTarget?.Dispose( );
             SceneRenderTarget = RenderTargetExt.CreateDefault( );
         }
 

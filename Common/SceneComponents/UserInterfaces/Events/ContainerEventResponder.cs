@@ -21,9 +21,9 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
         public ContainerEventResponder( Container container ) => Container = container;
 
         /// <summary>
-        /// 事件: 发生于鼠标悬停于该容器上持续激活交互状态时.
+        /// 事件: 发生于交互点悬停于该容器上持续激活交互状态时.
         /// </summary>
-        public event EventHandler<ContainerEvent> MouseHoverOn;
+        public event EventHandler<ContainerEvent> HoverOn;
 
         /// <summary>
         /// 事件: 发生于鼠标与之交互, 左键单击按下时.
@@ -113,8 +113,8 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
 
         public void UpdateEvent( )
         {
-            _mouseState = MouseResponder.Instance.MouseState;
-            _mouseStateLast = MouseResponder.Instance.MouseStateLast;
+            _mouseState = MouseResponder.state;
+            _mouseStateLast = MouseResponder.stateLast;
             ContainerEvent containerEvent = new ContainerEvent( Container );
             if( Container.InteractiveInfo.Activation )
             {
@@ -124,8 +124,8 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
                     ActivationStart?.Invoke( this, containerEvent );
                 }
                 containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseHoverOn" );
-                MouseHoverOn?.Invoke( this, containerEvent );
-                if( _mouseState.LeftButton == ButtonState.Pressed && _mouseStateLast.LeftButton == ButtonState.Released )
+                HoverOn?.Invoke( this, containerEvent );
+                if( Input.Interactive1_Before )
                 {
                     Invariable = true;
                     UserInterface.CurrentFocu = Container;
@@ -138,18 +138,18 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
                         DraggingState = true;
                     }
                 }
-                if( _mouseState.LeftButton == ButtonState.Pressed && _mouseStateLast.LeftButton == ButtonState.Pressed )
+                if( Input.Interactive1_Down )
                 {
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseLeftDown" );
                     MouseLeftDown?.Invoke( this, containerEvent );
                 }
-                if( _mouseState.LeftButton == ButtonState.Released && _mouseStateLast.LeftButton == ButtonState.Pressed && Invariable )
+                if( Input.Interactive1_After && Invariable )
                 {
                     Invariable = false;
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseLeftClickAfter" );
                     MouseLeftClickAfter?.Invoke( this, containerEvent );
                 }
-                if( _mouseState.LeftButton == ButtonState.Released && _mouseStateLast.LeftButton == ButtonState.Released )
+                if( Input.Interactive1_Up )
                 {
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MouseLeftUp" );
                     MouseLeftUp?.Invoke( this, containerEvent );
@@ -182,7 +182,6 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
                     containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_MousePulleySliding" );
                     MousePulleySliding?.Invoke( this, containerEvent );
                 }
-
             }
         }
 
@@ -208,13 +207,12 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Events
                 containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_Dragging" );
                 Dragging?.Invoke( this, containerEvent );
             }
-            if( _mouseState.LeftButton == ButtonState.Released && Container.InteractiveInfo.CanDrag )
+            if( Input.Interactive1_Up && Container.InteractiveInfo.CanDrag )
             {
                 DraggingState = false;
                 containerEvent.Name = string.Concat( "Event_Container_", Container.Name, "_Mouse_DragEnd" );
                 DragEnd?.Invoke( this, containerEvent );
             }
-
         }
 
        public void Clear()

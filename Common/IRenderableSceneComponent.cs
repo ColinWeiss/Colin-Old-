@@ -48,6 +48,7 @@ namespace Colin.Common
 
         public void InitRenderTarget( )
         {
+            RenderTarget?.Dispose( );
             RenderTarget = RenderTargetExt.CreateDefault( );
         }
 

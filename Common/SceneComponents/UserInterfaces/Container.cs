@@ -185,24 +185,24 @@ namespace Colin.Common.SceneComponents.UserInterfaces
         {
             if( Parent != null )
             {
-                Point mouseForParentLocation = MouseState.Position - Parent.LayoutInfo.Location;
+                Point mouseForParentLocation = Input.InteractionPoint.ToPoint( ) - Parent.LayoutInfo.Location;
                 _cachePos = mouseForParentLocation - LayoutInfo.Location;
             }
             else
             {
-                _cachePos = MouseState.Position - LayoutInfo.RenderLocation;
+                _cachePos = Input.InteractionPoint.ToPoint( ) - LayoutInfo.RenderLocation;
             }
         }
         private void Container_DragDragging( object o, ContainerEvent e )
         {
             if( Parent != null )
             {
-                Point _resultLocation = MouseState.Position - Parent.LayoutInfo.Location - _cachePos;
+                Point _resultLocation = Input.InteractionPoint.ToPoint( ) - Parent.LayoutInfo.Location - _cachePos;
                 LayoutInfo.SetLocation( _resultLocation.X, _resultLocation.Y );
             }
             else
             {
-                Point _resultLocation = MouseState.Position - _cachePos;
+                Point _resultLocation = Input.InteractionPoint.ToPoint( ) - _cachePos;
                 LayoutInfo.SetLocation( _resultLocation.X, _resultLocation.Y );
             }
         }
@@ -236,7 +236,8 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             DesignInfoUpdate( ref DesignInfo );
 
             Rectangle _interactiveRec = LayoutInfo.InteractiveRectangle;
-            InteractiveInfo.Activation = _interactiveRec.IntersectMouse( );
+            InteractiveInfo.Activation = _interactiveRec.IntersectInteractive( ) || Page.Selected == this;
+
             InteractiveInfoUpdate( ref InteractiveInfo );
             EventResponder.UpdateIndependentEvent( );
 
@@ -391,6 +392,19 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             return result;
         }
 
+        public IEnumerable<Container> GetCanSeekContainers( )
+        {
+            IEnumerable<Container> result = new List<Container>( );
+            Container _sub;
+            Sub.ForEach( ( a ) => { if( a.InteractiveInfo.CanSeek && a.Enable ) result = result.Append( a ); } );
+            for( int count = 0; count < Sub.Count; count++ )
+            {
+                _sub = Sub[count];
+                result = result.Concat( _sub.GetCanSeekContainers( ) );
+            }
+            return result;
+        }
+
         /// <summary>
         /// 寻找允许交互的、当前最先交互元素.
         /// </summary>
@@ -476,7 +490,10 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             {
                 if( disposing )
                 {
+                    for( int count = 0; count < Sub.Count; count++ )
+                        Sub[count].Dispose( );
                     LayoutInfo.OnSizeChanged -= LayoutInfo_OnSizeChanged;
+                    EventResponder = null;
                     OnDispose( );
                 }
 
@@ -491,6 +508,5 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             Dispose( disposing: true );
             GC.SuppressFinalize( this );
         }
-
     }
 }

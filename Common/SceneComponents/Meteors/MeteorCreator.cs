@@ -27,7 +27,6 @@ namespace Colin.Common.SceneComponents.Meteors
 
         public bool Visiable { get; set; }
         public RenderTarget2D RenderTarget { get; set; }
-        public RenderTarget2D RenderTargetSwap { get; set; }
         public SpriteSortMode SpriteSortMode => SpriteSortMode.Deferred;
         public Material Material => Material.DefaultMaterial;
         public Matrix? TransformMatrix { get; }

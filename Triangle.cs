@@ -25,8 +25,7 @@ namespace Colin
         /// <summary>
         /// 以 A、B、C 作为元素的顶点数组.
         /// </summary>
-        public List<Vector2> Vertices =>
-            new List<Vector2>( ) { VertexA, VertexB, VertexC };
+        public Vector2[ ] Vertices => new Vector2[ ] { VertexA, VertexB, VertexC };
 
         /// <summary>
         /// 定义具有三个组件的三角形.
