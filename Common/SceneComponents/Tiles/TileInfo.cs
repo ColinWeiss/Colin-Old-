@@ -1,4 +1,11 @@
-﻿namespace Colin.Common.SceneComponents.Tiles
+﻿using Colin.Common.SceneComponents.Tiles;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Colin.Common.SceneComponents.Tiled
 {
     /// <summary>
     /// 物块基本信息.
@@ -27,29 +34,17 @@
         public int CoordinateY;
 
         /// <summary>
-        /// 默认无用途的 <see cref="byte"/>[], 可用于存储其他数据.
+        /// 指示物块帧格.
         /// </summary>
-        public byte[ ] Datas;
-
-        /// <summary>
-        /// 物块存储的纹理帧数据.
-        /// </summary>
-        public TileFrame TextureFrame;
-
-        /// <summary>
-        /// 物块存储的边框帧数据.
-        /// </summary>
-        public TileFrame BorderFrame;
+        public TileFrame TileFrame;
 
         public TileInfo( )
         {
             ID = 0;
-            Empty = false;
+            Empty = true;
             CoordinateX = 0;
             CoordinateY = 0;
-            Datas = null;
-            TextureFrame = new TileFrame( );
-            BorderFrame = new TileFrame( );
+            TileFrame = new TileFrame( -1 , -1 );
         }
     }
 }

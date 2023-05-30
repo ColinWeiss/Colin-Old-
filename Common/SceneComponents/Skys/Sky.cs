@@ -23,11 +23,6 @@ namespace Colin.Common.SceneComponents.Skys
 
         public Matrix? TransformMatrix { get; }
 
-
-        private float _changeSkyTimer = 0;
-
-        private float _changeSkyTime = 120;
-
         public SkyStyle CurrentSkyStyle { get; private set; }
 
         public SkyStyle NextStyle { get; private set; }
@@ -35,8 +30,8 @@ namespace Colin.Common.SceneComponents.Skys
         public void DoInitialize( )
         {
             Material = new Material( );
-            Material.BlendState = BlendState.Additive;
-            Material.SamplerState = SamplerState.PointClamp;
+            Material.blendState = BlendState.Additive;
+            Material.samplerState = SamplerState.PointClamp;
         }
         public void DoUpdate( GameTime time )
         {

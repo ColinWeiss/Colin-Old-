@@ -16,7 +16,7 @@ namespace Colin.IO
             }
         }
 
-        public bool InitializeOnSwitch = true;
+        public bool initializeOnSwitch = true;
 
         public List<IFileDropBehavior> FileDropBehaviors = new List<IFileDropBehavior>( );
 

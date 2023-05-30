@@ -75,7 +75,7 @@ namespace Colin.Common
         {
             IRenderableSceneComponent renderMode;
             RenderTarget2D frameRenderLayer;
-            for( int count = 0; count < ComponentList.RenderableComponents.Length; count++ )
+            for( int count = 0; count < ComponentList.RenderableComponents.length; count++ )
             {
                 renderMode = ComponentList.RenderableComponents[count];
                 if( renderMode.Visiable )

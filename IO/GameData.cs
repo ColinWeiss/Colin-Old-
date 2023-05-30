@@ -8,17 +8,17 @@
         /// <summary>
         /// 相对文件路径.
         /// </summary>
-        public string Path;
+        public string path;
 
         /// <summary>
         /// 文件大小.
         /// </summary>
-        public int Length;
+        public int length;
 
         /// <summary>
         /// 文件数据.
         /// </summary>
-        public byte[ ] Bytes;
+        public byte[ ] bytes;
 
         /// <summary>
         /// 保存文件至指定路径.
@@ -27,15 +27,15 @@
         public async void Save( bool async )
         {
             if( async )
-                await File.WriteAllBytesAsync( Path, Bytes );
+                await File.WriteAllBytesAsync( path, bytes );
             else
-                File.WriteAllBytes( Path, Bytes );
+                File.WriteAllBytes( path, bytes );
         }
 
         public GameData( string path, byte[ ] bytes )
         {
-            Path = path;
-            Bytes = bytes;
+            this.path = path;
+            this.bytes = bytes;
         }
 
         /// <summary>
@@ -46,9 +46,9 @@
         /// <param name="bytes">文件字节.</param>
         public GameData( string path, int length )
         {
-            Path = path;
-            Length = length;
-            Bytes = File.ReadAllBytes( path );
+            this.path = path;
+            this.length = length;
+            bytes = File.ReadAllBytes( path );
         }
 
         /// <summary>
@@ -59,9 +59,9 @@
         /// <param name="bytes">文件字节.</param>
         public GameData( string path, int length, byte[ ] bytes )
         {
-            Path = path;
-            Length = length;
-            Bytes = bytes;
+            this.path = path;
+            this.length = length;
+            this.bytes = bytes;
         }
 
     }

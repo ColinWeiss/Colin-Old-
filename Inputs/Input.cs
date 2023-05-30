@@ -7,19 +7,8 @@ using System.Threading.Tasks;
 
 namespace Colin.Inputs
 {
-    public sealed class Input : GameComponent
+    public sealed class Input : GameComponent, ISingleton
     {
-        private static Input _instance;
-        public static Input Instance
-        {
-            get
-            {
-                if( _instance == null )
-                    _instance = new Input( EngineInfo.Engine );
-                return _instance;
-            }
-        }
-
         /// <summary>
         /// 交互 激活开始时 操作.
         /// </summary>
@@ -82,11 +71,11 @@ namespace Colin.Inputs
             if( MouseResponder.state.Position != MouseResponder.stateLast.Position )
             {
                 _interactionPoint = MouseResponder.state.Position.ToVector2( );
-                ControllerResponder.CursorPosition = MouseResponder.state.Position.ToVector2( );
+                ControllerResponder.cursorPosition = MouseResponder.state.Position.ToVector2( );
             }
             else if( ControllerResponder.state.ThumbSticks.Right != Vector2.Zero )
             {
-                _interactionPoint = ControllerResponder.CursorPosition;
+                _interactionPoint = ControllerResponder.cursorPosition;
                 Mouse.SetPosition( (int)_interactionPoint.X, (int)_interactionPoint.Y );
             }
             base.Update( gameTime );
@@ -94,11 +83,11 @@ namespace Colin.Inputs
 
         public static void SetInteractionPoint( Point point )
         {
-            ControllerResponder.CursorPosition = point.ToVector2( );
+            ControllerResponder.cursorPosition = point.ToVector2( );
             Mouse.SetPosition( point.X , point.Y );
             _interactionPoint = point.ToVector2( );
         }
-        internal Input( Game game ) : base( game ) { }
+        public Input( ) : base( EngineInfo.Engine ) { }
 
     }
 }

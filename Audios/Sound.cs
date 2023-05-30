@@ -9,6 +9,7 @@ namespace Colin.Audios
     public class Sound : ISceneComponent
     {
         public bool Enable { get; set; } = true;
+
         public Scene Scene { get; set; }
 
         public void DoInitialize( )

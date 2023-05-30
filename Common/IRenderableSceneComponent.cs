@@ -36,12 +36,12 @@ namespace Colin.Common
         /// </summary>
         public void BatchBegin( )
         {
-            EngineInfo.SpriteBatch.Begin( SpriteSortMode, Material.BlendState, Material.SamplerState, Material.DepthStencilState, null, Material.Effect, TransformMatrix );
+            EngineInfo.SpriteBatch.Begin( SpriteSortMode, Material.blendState, Material.samplerState, Material.depthStencilState, null, Material.effect, TransformMatrix );
         }
 
         public void DoRender_SceneModeCollectionUseIt( )
         {
-            EngineInfo.SpriteBatch.Begin( SpriteSortMode, Material.BlendState, Material.SamplerState, Material.DepthStencilState, null, Material.Effect, TransformMatrix );
+            EngineInfo.SpriteBatch.Begin( SpriteSortMode, Material.blendState, Material.samplerState, Material.depthStencilState, null, Material.effect, TransformMatrix );
             DoRender( );
             EngineInfo.SpriteBatch.End( );
         }

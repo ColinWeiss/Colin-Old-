@@ -6,20 +6,9 @@ namespace Colin.Inputs
     /// 键盘响应器.
     /// <br>另两个键盘事件请使用 <see cref="Game.Window"/> 中的 <see cref="GameWindow.KeyDown"/> 与 <see cref="GameWindow.KeyUp"/>.</br>
     /// </summary>
-    public sealed class KeyboardResponder : GameComponent
+    public sealed class KeyboardResponder : GameComponent, ISingleton
     {
-        private static KeyboardResponder _instance;
-        public static KeyboardResponder Instance
-        {
-            get
-            {
-                if( _instance == null )
-                    _instance = new KeyboardResponder( );
-                return _instance;
-            }
-        }
-
-        internal KeyboardResponder( ) : base( EngineInfo.Engine ) { }
+        public KeyboardResponder( ) : base( EngineInfo.Engine ) { }
 
         /// <summary>
         /// 事件: 发生于键盘上任何键单击按下时.
@@ -50,7 +39,7 @@ namespace Colin.Inputs
             {
                 if( !pressedKeysLast.Contains( key ) )
                 {
-                    KeyboardEvent.Name = "Event.Keyboard.KeyClickBefore";
+                    KeyboardEvent.name = "Event.Keyboard.KeyClickBefore";
                     KeyboardEvent.Keys = key;
                     KeyClickBefore?.Invoke( this, KeyboardEvent );
                 }
@@ -59,7 +48,7 @@ namespace Colin.Inputs
             {
                 if( keyboardState.IsKeyUp( keyLast ) && keyboardStateLast.IsKeyDown( keyLast ) )
                 {
-                    KeyboardEvent.Name = "Event.Keyboard.KeyClickAfter";
+                    KeyboardEvent.name = "Event.Keyboard.KeyClickAfter";
                     KeyboardEvent.Keys = keyLast;
                     KeyClickAfter?.Invoke( this, KeyboardEvent );
                 }

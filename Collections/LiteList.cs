@@ -14,19 +14,19 @@ namespace Colin.Collections
         /// <summary>
         /// 直接访问后备缓冲区.
         /// <br>[!] 不要使用 <see cref="Buffer.Length"/></br>
-        /// <br>[!] 使用 <see cref="LiteList{T}.Length"/>.</br>
+        /// <br>[!] 使用 <see cref="LiteList{T}.length"/>.</br>
         /// </summary>
-        public T[ ] Buffer;
+        public T[ ] buffer;
 
         /// <summary>
         /// 获取缓冲区中已填充项目的长度.
         /// <br>[!] 不要自己改动它的值.</br>
         /// </summary>
-        public int Length = 0;
+        public int length = 0;
 
         public LiteList( int size )
         {
-            Buffer = new T[size];
+            buffer = new T[size];
         }
 
         public LiteList( ) : this( 5 )
@@ -37,23 +37,23 @@ namespace Colin.Collections
         /// 尽管建议仅直接访问缓冲区, 但提供了便于访问的功能.
         /// </summary>
         /// <param name="index">索引.</param>
-        public T this[int index] => Buffer[index];
+        public T this[int index] => buffer[index];
 
         /// <summary>
         /// 清除列表并清空缓冲区中的所有项.
         /// </summary>
         public void Clear( )
         {
-            Array.Clear( Buffer, 0, Length );
-            Length = 0;
+            Array.Clear( buffer, 0, length );
+            length = 0;
         }
 
         /// <summary>
-        /// 令 <see cref="Length"/> 归零, 只是它不会使缓冲区中的所有项为 <see langword="null"/>, 在处理结构时很有用.
+        /// 令 <see cref="length"/> 归零, 只是它不会使缓冲区中的所有项为 <see langword="null"/>, 在处理结构时很有用.
         /// </summary>
         public void Reset( )
         {
-            Length = 0;
+            length = 0;
         }
 
         /// <summary>
@@ -61,9 +61,9 @@ namespace Colin.Collections
         /// </summary>
         public void Add( T item )
         {
-            if( Length == Buffer.Length )
-                Array.Resize( ref Buffer, Math.Max( Buffer.Length << 1, 10 ) );
-            Buffer[Length++] = item;
+            if( length == buffer.Length )
+                Array.Resize( ref buffer, Math.Max( buffer.Length << 1, 10 ) );
+            buffer[length++] = item;
         }
 
         /// <summary>
@@ -73,9 +73,9 @@ namespace Colin.Collections
         public void Remove( T item )
         {
             var comp = EqualityComparer<T>.Default;
-            for( var i = 0; i < Length; ++i )
+            for( var i = 0; i < length; ++i )
             {
-                if( comp.Equals( Buffer[i], item ) )
+                if( comp.Equals( buffer[i], item ) )
                 {
                     RemoveAt( i );
                     return;
@@ -88,12 +88,12 @@ namespace Colin.Collections
         /// </summary>
         public void RemoveAt( int index )
         {
-            Debug.Assert( index < Length );
+            Debug.Assert( index < length );
 
-            Length--;
-            if( index < Length )
-                Array.Copy( Buffer, index + 1, Buffer, index, Length - index );
-            Buffer[Length] = default;
+            length--;
+            if( index < length )
+                Array.Copy( buffer, index + 1, buffer, index, length - index );
+            buffer[length] = default;
         }
 
         /// <summary>
@@ -102,11 +102,11 @@ namespace Colin.Collections
         /// <param name="index">索引.</param>
         public void RemoveAtWithSwap( int index )
         {
-            Debug.Assert( index < Length );
+            Debug.Assert( index < length );
 
-            Buffer[index] = Buffer[Length - 1];
-            Buffer[Length - 1] = default;
-            --Length;
+            buffer[index] = buffer[length - 1];
+            buffer[length - 1] = default;
+            --length;
         }
 
         /// <summary>
@@ -116,9 +116,9 @@ namespace Colin.Collections
         public bool Contains( T item )
         {
             var comp = EqualityComparer<T>.Default;
-            for( var i = 0; i < Length; ++i )
+            for( var i = 0; i < length; ++i )
             {
-                if( comp.Equals( Buffer[i], item ) )
+                if( comp.Equals( buffer[i], item ) )
                     return true;
             }
             return false;
@@ -127,22 +127,21 @@ namespace Colin.Collections
         public T Contains<TType>( ) where TType : T
         {
             var comp = EqualityComparer<Type>.Default;
-            for( var i = 0; i < Length; ++i )
+            for( var i = 0; i < length; ++i )
             {
-                if( comp.Equals( Buffer[i].GetType( ), typeof( TType ) ) )
-                    return Buffer[i];
+                if( comp.Equals( buffer[i].GetType( ), typeof( TType ) ) )
+                    return buffer[i];
             }
             return default( T );
         }
-
 
         /// <summary>
         /// 如果缓冲区达到最大值，则将分配更多空间来容纳.
         /// </summary>
         public void EnsureCapacity( int additionalItemCount = 1 )
         {
-            if( Length + additionalItemCount >= Buffer.Length )
-                Array.Resize( ref Buffer, Math.Max( Buffer.Length << 1, Length + additionalItemCount ) );
+            if( length + additionalItemCount >= buffer.Length )
+                Array.Resize( ref buffer, Math.Max( buffer.Length << 1, length + additionalItemCount ) );
         }
 
         /// <summary>
@@ -160,7 +159,7 @@ namespace Colin.Collections
         /// </summary>
         public void Sort( )
         {
-            Array.Sort( Buffer, 0, Length );
+            Array.Sort( buffer, 0, length );
         }
 
         /// <summary>
@@ -168,7 +167,7 @@ namespace Colin.Collections
         /// </summary>
         public void Sort( IComparer comparer )
         {
-            Array.Sort( Buffer, 0, Length, comparer );
+            Array.Sort( buffer, 0, length, comparer );
         }
 
         /// <summary>
@@ -176,7 +175,7 @@ namespace Colin.Collections
         /// </summary>
         public void Sort( IComparer<T> comparer )
         {
-            Array.Sort( Buffer, 0, Length, comparer );
+            Array.Sort( buffer, 0, length, comparer );
         }
     }
 }

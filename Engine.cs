@@ -68,11 +68,11 @@ namespace Colin
                 Components.Remove( CurrentScene );
             }
             Components.Clear( );
-            Components.Add( TextInputResponder.Instance );
-            Components.Add( ControllerResponder.Instance );
-            Components.Add( MouseResponder.Instance );
-            Components.Add( KeyboardResponder.Instance );
-            Components.Add( Input.Instance );
+            Components.Add( Singleton<TextInputResponder>.Instance );
+            Components.Add( Singleton<ControllerResponder>.Instance );
+            Components.Add( Singleton<MouseResponder>.Instance );
+            Components.Add( Singleton<KeyboardResponder>.Instance );
+            Components.Add( Singleton<Input>.Instance );
             Components.Add( scene );
             CurrentScene = scene;
             GC.Collect( );

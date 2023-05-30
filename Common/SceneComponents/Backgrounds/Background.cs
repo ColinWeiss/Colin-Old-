@@ -99,8 +99,8 @@ namespace Colin.Common.SceneComponents.Backgrounds
 
         public void RenderLeftRightLoopBackground( BackgroundLayer layer )
         {
-            Vector3 translateBody = new Vector3( -(Camera.Position - CurrentStyle.LoopLayerDrawPosition) * layer.Parallax, 0f );
-            Vector3 translateCenter = new Vector3( Camera.TranslateCenter, 0f );
+            Vector3 translateBody = new Vector3( -(Camera.position - CurrentStyle.LoopLayerDrawPosition) * layer.Parallax, 0f );
+            Vector3 translateCenter = new Vector3( Camera.translateCenter, 0f );
             Vector2 drawCount = new Vector2( (float)EngineInfo.ViewWidth / layer.Sprite.Width, (float)EngineInfo.ViewHeight / layer.Sprite.Height );
             Vector2 offset = Vector2.One / layer.Sprite.SizeF;
             layer.Transform = Matrix.CreateTranslation( translateBody ) * Matrix.CreateTranslation( translateCenter );
@@ -112,7 +112,7 @@ namespace Colin.Common.SceneComponents.Backgrounds
             LeftRightLoopEffect.Parameters["DrawCount"].SetValue( drawCount );
             LeftRightLoopEffect.Parameters["Offset"].SetValue( offset );
             EngineInfo.SpriteBatch.End( );
-            EngineInfo.SpriteBatch.Begin( SpriteSortMode, Material.BlendState, Material.SamplerState, null, null, LeftRightLoopEffect, null );
+            EngineInfo.SpriteBatch.Begin( SpriteSortMode, Material.blendState, Material.samplerState, null, null, LeftRightLoopEffect, null );
             EngineInfo.SpriteBatch.Draw( _screenMap, new Rectangle( 0, 0, EngineInfo.ViewWidth, EngineInfo.ViewHeight ), Color.White );
             EngineInfo.SpriteBatch.End( );
             (this as IRenderableSceneComponent).BatchBegin( );

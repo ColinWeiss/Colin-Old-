@@ -75,9 +75,9 @@ namespace Colin.Common.SceneComponents.UserInterfaces
             SeekInteractive( )?.EventResponder.UpdateEvent( );
             Selected?.EventResponder.UpdateEvent( );
 
-            if( KeyboardResponder.Instance.IsKeyDown( Keys.LeftShift ) && KeyboardResponder.Instance.IsKeyClickBefore( Keys.U ) )
+            if( Singleton<KeyboardResponder>.Instance.IsKeyDown( Keys.LeftShift ) && Singleton<KeyboardResponder>.Instance.IsKeyClickBefore( Keys.U ) )
                 OnDebug = !OnDebug;
-            if( KeyboardResponder.Instance.IsKeyDown( Keys.LeftShift ) && KeyboardResponder.Instance.IsKeyClickBefore( Keys.L ) )
+            if( Singleton<KeyboardResponder>.Instance.IsKeyDown( Keys.LeftShift ) && Singleton<KeyboardResponder>.Instance.IsKeyClickBefore( Keys.L ) )
                 DoInitialize( );
 
             if( OnDebug && DebugText != null )

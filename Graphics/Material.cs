@@ -2,23 +2,26 @@
 {
     public class Material : IComparable<Material>, IDisposable
     {
-        public static SamplerState DefaultSamplerState = new SamplerState
+        private static SamplerState _defaultSamplerState = new SamplerState
         {
             Filter = TextureFilter.Point,
             BorderColor = Color.Red
         };
+        public static SamplerState DefaultSamplerState => _defaultSamplerState;
 
-        public static Material DefaultMaterial = new Material( );
+        private static Material _defaultMaterial = new Material( );
+        public static Material DefaultMaterial => _defaultMaterial;
 
-        public static Material DefaultOpaqueMaterial = new Material( BlendState.Opaque );
+        private static Material _defaultOpaqueMaterial = new Material( BlendState.Opaque );
+        public static Material DefaultOpaqueMaterial => _defaultOpaqueMaterial;
 
-        public BlendState BlendState = BlendState.AlphaBlend;
+        public BlendState blendState = BlendState.AlphaBlend;
 
-        public DepthStencilState DepthStencilState = DepthStencilState.None;
+        public DepthStencilState depthStencilState = DepthStencilState.None;
 
-        public SamplerState SamplerState = DefaultSamplerState;
+        public SamplerState samplerState = DefaultSamplerState;
 
-        public Effect Effect;
+        public Effect effect;
 
         public Material( )
         {
@@ -26,19 +29,19 @@
 
         public Material( Effect effect )
         {
-            Effect = effect;
+            this.effect = effect;
         }
 
         public Material( BlendState blendState, Effect effect = null )
         {
-            BlendState = blendState;
-            Effect = effect;
+            this.blendState = blendState;
+            this.effect = effect;
         }
 
         public Material( DepthStencilState depthStencilState, Effect effect = null )
         {
-            DepthStencilState = depthStencilState;
-            Effect = effect;
+            this.depthStencilState = depthStencilState;
+            this.effect = effect;
         }
 
         ~Material( )
@@ -48,28 +51,28 @@
 
         public virtual void Dispose( )
         {
-            if( BlendState != null && BlendState != BlendState.AlphaBlend )
+            if( blendState != null && blendState != BlendState.AlphaBlend )
             {
-                BlendState.Dispose( );
-                BlendState = null;
+                blendState.Dispose( );
+                blendState = null;
             }
 
-            if( DepthStencilState != null && DepthStencilState != DepthStencilState.None )
+            if( depthStencilState != null && depthStencilState != DepthStencilState.None )
             {
-                DepthStencilState.Dispose( );
-                DepthStencilState = null;
+                depthStencilState.Dispose( );
+                depthStencilState = null;
             }
 
-            if( SamplerState != null && SamplerState != DefaultSamplerState )
+            if( samplerState != null && samplerState != DefaultSamplerState )
             {
-                SamplerState.Dispose( );
-                SamplerState = null;
+                samplerState.Dispose( );
+                samplerState = null;
             }
 
-            if( Effect != null )
+            if( effect != null )
             {
-                Effect.Dispose( );
-                Effect = null;
+                effect.Dispose( );
+                effect = null;
             }
         }
 

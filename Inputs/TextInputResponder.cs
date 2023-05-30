@@ -7,24 +7,13 @@ using System.Threading.Tasks;
 
 namespace Colin.Inputs
 {
-    public class TextInputResponder : GameComponent
+    public class TextInputResponder : GameComponent , ISingleton
     {
-        private static TextInputResponder _instance;
-        public static TextInputResponder Instance
-        {
-            get
-            {
-                if( _instance == null )
-                    _instance = new TextInputResponder( EngineInfo.Engine );
-                return _instance;
-            }
-        }
-
         public event EventHandler<TextInputEventArgs> OnTextInput;
 
-        public TextInputResponder( Game game ) : base( game ) 
+        public TextInputResponder( ) : base( EngineInfo.Engine ) 
         {
-            game.Window.TextInput += Window_TextInput; ;
+            Game.Window.TextInput += Window_TextInput; ;
         }
 
         private void Window_TextInput( object sender, TextInputEventArgs e )

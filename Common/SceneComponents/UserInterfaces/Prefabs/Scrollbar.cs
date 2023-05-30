@@ -106,7 +106,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs
 
             if( info.Activation || (ControlledStandard != null ? ControlledStandard.InteractiveInfo.Activation : false) )
             {
-                if( KeyboardResponder.Instance.IsKeyDown( Keys.LeftShift ) || ControllerResponder.state.Buttons.LeftShoulder == ButtonState.Pressed )
+                if( Singleton<KeyboardResponder>.Instance.IsKeyDown( Keys.LeftShift ) || ControllerResponder.state.Buttons.LeftShoulder == ButtonState.Pressed )
                 {
                     Slider.LayoutInfo.SetLeft( (int)(Slider.LayoutInfo.Left + Input.Wipe) );
                 }

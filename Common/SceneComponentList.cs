@@ -33,9 +33,9 @@ namespace Colin.Common
         public void DoUpdate( GameTime gameTime )
         {
             ISceneComponent _com;
-            for( int count = 0; count < Components.Length; count++ )
+            for( int count = 0; count < Components.length; count++ )
             {
-                _com = Components.Buffer[count];
+                _com = Components.buffer[count];
                 if( _com.Enable )
                     _com.DoUpdate( gameTime );
             }

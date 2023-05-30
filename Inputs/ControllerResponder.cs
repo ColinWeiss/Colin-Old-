@@ -7,26 +7,18 @@ using System.Threading.Tasks;
 
 namespace Colin.Inputs
 {
-    public class ControllerResponder : GameComponent
+    /// <summary>
+    /// [!] 已继承 <see cref="ISingleton"/>.
+    /// </summary>
+    public class ControllerResponder : GameComponent , ISingleton
     {
-        private static ControllerResponder _instance;
-        public static ControllerResponder Instance
-        {
-            get
-            {
-                if( _instance == null )
-                    _instance = new ControllerResponder( );
-                return _instance;
-            }
-        }
-
-        internal ControllerResponder( ) : base( EngineInfo.Engine ) { }
+        public ControllerResponder( ) : base( EngineInfo.Engine ) { }
 
         public static GamePadState state;
 
         public static GamePadState stateLast;
 
-        public static Vector2 CursorPosition;
+        public static Vector2 cursorPosition;
 
         #region Buttons
         public static bool Button_A_ClickBefore => state.Buttons.A == ButtonState.Pressed && stateLast.Buttons.A == ButtonState.Released;
@@ -74,15 +66,18 @@ namespace Colin.Inputs
             {
                 EngineInfo.Engine.IsMouseVisible = false;
                 if( state.ThumbSticks.Right.X > 0 )
-                    CursorPosition.X+=3;
+                    cursorPosition.X+=3;
                 if( state.ThumbSticks.Right.X < 0 )
-                    CursorPosition.X-=3;
+                    cursorPosition.X-=3;
                 if( state.ThumbSticks.Right.Y > 0 )
-                    CursorPosition.Y-=3;
+                    cursorPosition.Y-=3;
                 if( state.ThumbSticks.Right.Y < 0 )
-                    CursorPosition.Y+=3;
+                    cursorPosition.Y+=3;
                 //          Console.WriteLine( State.ThumbSticks.Right );
             }
+            else
+                EngineInfo.Engine.IsMouseVisible = true;
+
             base.Update( gameTime );
         }
     }

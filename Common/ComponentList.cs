@@ -63,19 +63,19 @@ namespace Colin.Common
         public void DoUpdate( GameTime gameTime )
         {
             UpdateLists( );
-            for( var i = 0; i < _updatableComponents.Length; i++ )
+            for( var i = 0; i < _updatableComponents.length; i++ )
             {
-                if( _updatableComponents.Buffer[i].Enable && (_updatableComponents.Buffer[i] as Component).Enable )
-                    _updatableComponents.Buffer[i].DoUpdate( gameTime );
+                if( _updatableComponents.buffer[i].Enable && (_updatableComponents.buffer[i] as Component).Enable )
+                    _updatableComponents.buffer[i].DoUpdate( gameTime );
             }
         }
 
         public void DoRender( )
         {
-            for( var i = 0; i < _renderableComponents.Length; i++ )
+            for( var i = 0; i < _renderableComponents.length; i++ )
             {
-                if( _renderableComponents.Buffer[i].Visiable )
-                    _renderableComponents.Buffer[i].DoRender( );
+                if( _renderableComponents.buffer[i].Visiable )
+                    _renderableComponents.buffer[i].DoRender( );
             }
         }
 

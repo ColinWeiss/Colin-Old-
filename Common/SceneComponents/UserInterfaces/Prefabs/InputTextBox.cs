@@ -23,7 +23,7 @@ namespace Colin.Common.SceneComponents.UserInterfaces.Prefabs
         public override void ContainerInitialize( )
         {
             Label.LayoutInfo.SetLocation( 4 , 4 );
-            TextInputResponder.Instance.OnTextInput += Instance_OnTextInput;
+            Singleton<TextInputResponder>.Instance.OnTextInput += Instance_OnTextInput;
             Register( Label );
             base.ContainerInitialize( );
         }

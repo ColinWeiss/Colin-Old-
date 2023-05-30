@@ -8,6 +8,6 @@
         /// <summary>
         /// 事件名称.
         /// </summary>
-        public string Name;
+        public string name;
     }
 }

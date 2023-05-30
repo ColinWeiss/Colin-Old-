@@ -4,20 +4,11 @@ namespace Colin.Inputs
 {
     /// <summary>
     /// 鼠标响应器.
+    /// <br>[!] 已继承 <see cref="ISingleton"/>.</br>
     /// </summary>
-    public sealed class MouseResponder : GameComponent
+    public sealed class MouseResponder : GameComponent , ISingleton
     {
-        private static MouseResponder _instance;
-        public static MouseResponder Instance
-        {
-            get
-            {
-                if( _instance == null )
-                    _instance = new MouseResponder( );
-                return _instance;
-            }
-        }
-        internal MouseResponder( ) : base( EngineInfo.Engine ) { }
+        public MouseResponder( ) : base( EngineInfo.Engine ) { }
 
         public static bool MouseLeftClickBeforeFlag =>
             state.LeftButton == ButtonState.Pressed &&
