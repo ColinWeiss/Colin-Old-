@@ -32,6 +32,16 @@ namespace Colin.Common.SceneComponents.Tiled
             Span<TileInfo> _map = _tiles;
             _map.Fill( _emptyTile );
         }
+        public TileInfocollection( Point size )
+        {
+            Width = size.X;
+            Height = size.Y;
+            _tiles = new TileInfo[Width * Height];
+            TileInfo _emptyTile = new TileInfo( );
+            _emptyTile.Empty = true;
+            Span<TileInfo> _map = _tiles;
+            _map.Fill( _emptyTile );
+        }
 
         internal void CreateTileDefaultInfo( int coordinateX, int coordinateY )
         {
@@ -41,7 +51,7 @@ namespace Colin.Common.SceneComponents.Tiled
                 _tiles[id].CoordinateX = coordinateX;
                 _tiles[id].CoordinateY = coordinateY;
                 _tiles[id].ID = id;
-                _tiles[id].Empty = true;
+                _tiles[id].Empty = false;
             }
         }
 
@@ -51,7 +61,7 @@ namespace Colin.Common.SceneComponents.Tiled
             if( !_tiles[id].Empty )
             {
                 _tiles[id].ID = 0;
-                _tiles[id].Empty = false;
+                _tiles[id].Empty = true;
             }
         }
     }

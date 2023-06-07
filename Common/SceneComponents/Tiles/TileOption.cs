@@ -12,8 +12,7 @@ namespace Colin.Common.SceneComponents.Tiled
     public class TileOption
     {
         public static Point TileSize => new Point( 16, 16 );
-
-        public static Point ChunkSize => new Point( 16 , 16 );
+        public static Vector2 TileSizeF => new Vector2( TileSize.X, TileSize.Y );
 
     }
 }

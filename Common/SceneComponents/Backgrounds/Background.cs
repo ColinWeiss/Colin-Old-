@@ -20,8 +20,8 @@ namespace Colin.Common.SceneComponents.Backgrounds
 
         public Material Material => Material.DefaultMaterial;
 
-        private Camera _camera;
-        public Camera Camera => _camera;
+        private SceneCamera _camera;
+        public SceneCamera Camera => _camera;
 
         public Matrix? TransformMatrix => null;
 
@@ -40,7 +40,7 @@ namespace Colin.Common.SceneComponents.Backgrounds
         /// 设置该场景所使用的摄像机.
         /// </summary>
         /// <param name="camera">摄像机.</param>
-        public void SetCamera( Camera camera )
+        public void SetCamera( SceneCamera camera )
         {
             _camera = camera;
         }
@@ -100,14 +100,15 @@ namespace Colin.Common.SceneComponents.Backgrounds
         public void RenderLeftRightLoopBackground( BackgroundLayer layer )
         {
             Vector3 translateBody = new Vector3( -(Camera.position - CurrentStyle.LoopLayerDrawPosition) * layer.Parallax, 0f );
-            Vector3 translateCenter = new Vector3( Camera.translateCenter, 0f );
+            Vector3 translateCenter = new Vector3( Camera.translate, 0f );
             Vector2 drawCount = new Vector2( (float)EngineInfo.ViewWidth / layer.Sprite.Width, (float)EngineInfo.ViewHeight / layer.Sprite.Height );
             Vector2 offset = Vector2.One / layer.Sprite.SizeF;
             layer.Transform = Matrix.CreateTranslation( translateBody ) * Matrix.CreateTranslation( translateCenter );
 
             offset *= new Vector2( -layer.Translation.X, -layer.Translation.Y );
-            offset.X += CurrentStyle.LoopLayerOffset.X;
-            offset.Y -= CurrentStyle.LoopLayerOffset.Y;
+            offset.X += CurrentStyle.LoopLayerOffset.X / layer.Sprite.Height;
+            offset.Y -= CurrentStyle.LoopLayerOffset.Y / layer.Sprite.Width;
+
             LeftRightLoopEffect.Parameters["MappingTexture"].SetValue( layer.Sprite.Source );
             LeftRightLoopEffect.Parameters["DrawCount"].SetValue( drawCount );
             LeftRightLoopEffect.Parameters["Offset"].SetValue( offset );

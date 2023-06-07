@@ -86,7 +86,6 @@ namespace Colin.Common
                         EngineInfo.Graphics.GraphicsDevice.Clear( Color.Black );
                     else
                         EngineInfo.Graphics.GraphicsDevice.Clear( Color.Transparent );
-
                     renderMode.DoRender_SceneModeCollectionUseIt( );
                     EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( SceneRenderTarget );
                     EngineInfo.SpriteBatch.Begin( );

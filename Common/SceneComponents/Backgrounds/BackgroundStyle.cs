@@ -25,7 +25,6 @@ namespace Colin.Common.SceneComponents.Backgrounds
 
         /// <summary>
         /// 循环图层在绘制时的整体偏移量.
-        /// <br>单位: 将 <see cref="Vector2.One"/> 映射到图层长宽.</br>
         /// </summary>
         public Vector2 LoopLayerOffset;
 

@@ -1,18 +1,20 @@
-﻿namespace Colin.Common
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Colin.Common
 {
-    public class Camera : ISceneComponent
+    public class Camera
     {
-        private static GraphicsDevice _graphics;
-
-        public Vector2 translateCenter;
-
         public Matrix view;
 
         public Matrix projection;
 
-        public Vector2 LeftTop => position - EngineInfo.ViewCenter * zoom;
-
         public Vector2 position;
+        public Vector2 positionLast;
+        public Vector2 translate;
 
         public float rotation;
 
@@ -34,20 +36,39 @@
 
         public Matrix Transform => view * projection;
 
-        public void DoInitialize( )
+        private int _width;
+        public int Width => _width;
+
+        private int _height;
+        public int Height => _height;
+
+        public Point Size => new Point( Width , Height);
+        public Vector2 SizeF => new Vector2( Width , Height );
+
+        public void DoInitialize( int width, int height )
         {
-            _graphics = EngineInfo.Engine.GraphicsDevice;
-            projection = Matrix.CreateOrthographicOffCenter( 0f, _graphics.Viewport.Width, _graphics.Viewport.Height, 0f, 0f, 1f );
+            _width = width;
+            _height = height;
+            projection = Matrix.CreateOrthographicOffCenter( 0f, width, height, 0f, 0f, 1f );
             view = Matrix.Identity;
-            translateCenter = new Vector2( _graphics.Viewport.Width / 2f, _graphics.Viewport.Height / 2f );
+            translate = Vector2.Zero;
             ResetCamera( );
-            EngineInfo.Engine.Window.ClientSizeChanged += ( s, e ) =>
+        }
+        public void DoUpdate( GameTime time )
+        {
+            if( trace )
             {
-                projection = Matrix.CreateOrthographicOffCenter( 0f, _graphics.Viewport.Width, _graphics.Viewport.Height, 0f, 0f, 1f );
-                view = Matrix.Identity;
-                translateCenter = new Vector2( _graphics.Viewport.Width / 2f, _graphics.Viewport.Height / 2f );
-                ResetCamera( );
-            };
+                velocity = (targetPosition - position) * 0.1f;
+                rotationVelocity = (targetRotation - rotation) * 0.1f;
+                if( Vector2.Distance( targetPosition, position ) < 1 )
+                    position = targetPosition;
+                if( Math.Abs( rotation - rotationVelocity ) < 0.017f )
+                    rotation = rotationVelocity;
+            }
+            rotation += rotationVelocity;
+            positionLast = position;
+            position += velocity;
+            SetView( );
         }
 
         public void MoveCamera( Vector2 amount )
@@ -68,47 +89,30 @@
             SetView( );
         }
 
-        public void DoUpdate( GameTime time )
-        {
-            if( trace )
-            {
-                velocity = (targetPosition - position) * 0.1f;
-                rotationVelocity = (targetRotation - rotation) * 0.1f;
-                if( Vector2.Distance( targetPosition, position ) < 1 )
-                    position = targetPosition;
-                if( Math.Abs( rotation - rotationVelocity ) < 0.017f )
-                    rotation = rotationVelocity;
-            }
-            rotation += rotationVelocity;
-            position += velocity;
-            SetView( );
-        }
-
         private void SetView( )
         {
             Matrix matRotation = Matrix.CreateRotationZ( rotation );
             Matrix matZoom = Matrix.CreateScale( zoom );
-            Vector3 trCenter = new Vector3( translateCenter, 0f );
+            Vector3 trCenter = new Vector3( translate, 0f );
             Vector3 translateBody = new Vector3( -position, 0f );
             view =
                 Matrix.CreateTranslation( translateBody ) *
                 matZoom *
                 matRotation *
                 Matrix.CreateTranslation( trCenter );
-
         }
 
         public Vector2 ConvertScreenToWorld( Vector2 location )
         {
             Vector3 t = new Vector3( location, 0 );
-            t = _graphics.Viewport.Unproject( t, projection, view, Matrix.Identity );
+            t = EngineInfo.Graphics.GraphicsDevice.Viewport.Unproject( t, projection, view, Matrix.Identity );
             return new Vector2( t.X, t.Y );
         }
 
         public Vector2 ConvertWorldToScreen( Vector2 location )
         {
             Vector3 t = new Vector3( location, 0 );
-            t = _graphics.Viewport.Project( t, projection, view, Matrix.Identity );
+            t = EngineInfo.Graphics.GraphicsDevice.Viewport.Project( t, projection, view, Matrix.Identity );
             return new Vector2( t.X, t.Y );
         }
 
