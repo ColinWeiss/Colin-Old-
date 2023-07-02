@@ -6,8 +6,6 @@ namespace Colin.Common
     {
         public bool Visiable;
 
-        public Material Material = null;
-
         public virtual void DoRender( ) { }
 
     }
