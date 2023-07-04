@@ -30,6 +30,17 @@ namespace Colin.Modulars.UserInterfaces
         /// 划分元素的布局样式
         /// </summary>
         public LayoutStyle Layout;
+        private LayoutStyleController _layoutStyleController;
+        /// <summary>
+        /// 划分元素的布局样式控制器.
+        /// </summary>
+        public LayoutStyleController LayoutController => _layoutStyleController;
+        public T BindLayoutStyleController<T>( ) where T : LayoutStyleController, new()
+        {
+            _layoutStyleController = new T( );
+            _layoutStyleController._division = this;
+            return _layoutStyleController as T;
+        }
 
         /// <summary>
         /// 划分元素的剪裁样式.
@@ -45,6 +56,17 @@ namespace Colin.Modulars.UserInterfaces
         /// 划分元素的设计样式.
         /// </summary>
         public DesignStyle Design;
+        private DesignStyleController _designStyleController;
+        /// <summary>
+        /// 划分元素的设计样式控制器.
+        /// </summary>
+        public DesignStyleController DesignController => _designStyleController;
+        public T BindDesignStyleController<T>( ) where T : DesignStyleController, new()
+        {
+            _designStyleController = new T( );
+            _designStyleController._division = this;
+            return _designStyleController as T;
+        }
 
         /// <summary>
         /// 划分元素的事件响应器.
@@ -62,6 +84,13 @@ namespace Colin.Modulars.UserInterfaces
             _renderer._division = this;
             _renderer.RendererInit( );
             return _renderer as T;
+        }
+        public T GetRenderer<T>( ) where T : DivisionRenderer
+        {
+            if( _renderer is T )
+                return _renderer as T;
+            else
+                return null;
         }
 
         /// <summary>
@@ -169,7 +198,9 @@ namespace Colin.Modulars.UserInterfaces
                 Layout.Calculation( Parent.Layout );
             if( IsVisible )
             {
-                EventResponder.IndependentEvent( );
+                EventResponder.Independent( );
+                LayoutController?.OnUpdate( ref Layout );
+                DesignController?.OnUpdate( ref Design );
                 OnUpdate( time );
                 UpdateChildren( time );
             }

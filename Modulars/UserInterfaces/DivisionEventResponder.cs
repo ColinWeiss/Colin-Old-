@@ -179,7 +179,7 @@ namespace Colin.Modulars.UserInterfaces
             }
         }
 
-        public void IndependentEvent()
+        public void Independent( )
         {
             _mouseStateLast = _mouseState;
             _mouseState = Mouse.GetState();
