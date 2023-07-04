@@ -35,7 +35,7 @@ namespace Colin.Modulars.Skys
             CurrentSkyStyle?.DoUpdate(time);
         }
 
-        public void DoRender(SpriteBatch batch )
+        public void DoRender()
         {
             CurrentSkyStyle?.DoRender();
         }

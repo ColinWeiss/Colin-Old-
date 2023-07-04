@@ -23,7 +23,7 @@ namespace Colin.Common
         /// </summary>
         bool Visiable { get; set; }
 
-        void DoRender( SpriteBatch batch );
+        void DoRender( );
 
         public void InitRenderTarget( )
         {

@@ -63,7 +63,7 @@ namespace Colin.Modulars.Meteors
             }
         }
 
-        public void DoRender(SpriteBatch batch )
+        public void DoRender()
         {
             if ((int)EngineInfo.Config.PictureQuality <= 0)
                 return;

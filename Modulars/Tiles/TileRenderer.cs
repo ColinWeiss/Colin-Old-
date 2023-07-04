@@ -145,7 +145,7 @@ namespace Colin.Modulars.Tiles
             }
         }
 
-        public void DoRender(SpriteBatch batch )
+        public void DoRender()
         {
             if (!_first)
             {
@@ -162,10 +162,10 @@ namespace Colin.Modulars.Tiles
             offset.Y = _camera.position.Y % TileOption.TileSizeF.Y;
 
 
-            batch.End();
+            EngineInfo.SpriteBatch.End();
             EngineInfo.Graphics.GraphicsDevice.SetRenderTarget(Scene.SceneRenderTarget);
-            batch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
-            batch.Draw(cacheRt, Vector2.Zero, Color.White);
+            EngineInfo.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp);
+            EngineInfo.SpriteBatch.Draw(cacheRt, Vector2.Zero, Color.White);
 
         }
 
