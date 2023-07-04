@@ -61,7 +61,7 @@ namespace Colin.Modulars.Backgrounds
             CurrentStyle?.UpdateStyle();
         }
 
-        public void DoRender()
+        public void DoRender( SpriteBatch batch )
         {
             if (CurrentStyle != null)
             {

@@ -19,11 +19,11 @@ namespace Colin.Modulars.UserInterfaces
         /// </summary>
         public bool Enable;
 
-        private Rectangle _scissor;
+       //private Rectangle _scissor;
         /// <summary>
         /// 指示要进行剪裁的范围.
         /// <br>若不指定其值, 默认使用 <see cref="LayoutStyle.DefaultTotalRect"/>.</br>
         /// </summary>
-        public Rectangle Scissor => _scissor;
+        public Rectangle Scissor;
     }
 }

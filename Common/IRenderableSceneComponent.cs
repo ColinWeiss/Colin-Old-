@@ -16,14 +16,14 @@ namespace Colin.Common
         /// <br>用完记得还.</br>
         /// <br>[!] 不用自己初始化.</br>
         /// </summary>
-        RenderTarget2D SceneRt { get; set; }
+        public RenderTarget2D SceneRt { get; set; }
 
         /// <summary>
         /// 指示对象是否启用渲染.
         /// </summary>
-        bool Visiable { get; set; }
+        public bool Visiable { get; set; }
 
-        void DoRender( );
+        public void DoRender( SpriteBatch batch );
 
         public void InitRenderTarget( )
         {

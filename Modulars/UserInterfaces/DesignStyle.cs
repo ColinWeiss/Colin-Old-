@@ -21,5 +21,13 @@ namespace Colin.Modulars.UserInterfaces
         public float Rotation;
 
         public Vector2 Anchor;
+
+        public DesignStyle( )
+        {
+            Color = Color.White;
+            Scale = Vector2.One;
+            Rotation = 0f;
+            Anchor = Vector2.Zero;
+        }
     }
 }

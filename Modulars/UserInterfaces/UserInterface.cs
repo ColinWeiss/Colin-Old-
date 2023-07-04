@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Colin.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,22 +7,44 @@ using System.Threading.Tasks;
 
 namespace Colin.Modulars.UserInterfaces
 {
-    public class UserInterface
+    public class UserInterface : ISceneComponent, IRenderableSceneComponent
     {
         public static Division Focus;
 
-        public Container Container { get; private set; } = new Container("NomalContainer");
+        private Container _contianer = new Container( "NomalContainer" );
+        public Container Container => _contianer;
 
-        public void DoUpdate(GameTime time)
+        public RenderTarget2D SceneRt { get; set; }
+
+        public bool Enable { get; set; }
+
+        public bool Visiable { get; set; }
+
+        public Scene Scene { get; set; }
+
+        public void DoInitialize( ) 
         {
-            Container?.DoUpdate(time);
+            _contianer.DoInitialize( );
         }
 
-        public void DoRender(SpriteBatch spriteBatch) => Container?.DoRender(spriteBatch);
+        public void DoUpdate( GameTime time ) => Container?.DoUpdate( time );
 
-        public void Register(Container container) => Container?.Register(container);
+        public void DoRender( SpriteBatch batch )
+        {
+            batch.Begin( );
+            Container?.DoRender( batch );
+            batch.End( );
+        }
 
-        public void Remove(Container container, bool dispose) => Container?.Remove(container);
+        public void Register( Container container ) => Container?.Register( container );
 
+        public void Remove( Container container, bool dispose ) => Container?.Remove( container );
+
+        public void SetContainer( Container container )
+        {
+            _contianer = container;
+            _contianer._interface = this;
+            _contianer.DoInitialize( );
+        }
     }
 }

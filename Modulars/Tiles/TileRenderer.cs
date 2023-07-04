@@ -145,7 +145,7 @@ namespace Colin.Modulars.Tiles
             }
         }
 
-        public void DoRender()
+        public void DoRender(SpriteBatch batch )
         {
             if (!_first)
             {

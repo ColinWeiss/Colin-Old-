@@ -112,8 +112,8 @@ namespace Colin.Modulars.UserInterfaces
         /// <param name="parent"></param>
         public void Calculation(LayoutStyle parent)
         {
-            TotalLeft += parent.TotalLeft;
-            TotalTop += parent.TotalTop;
+            TotalLeft = parent.TotalLeft + Left;
+            TotalTop = parent.TotalTop + Top;
             if (_needRefreshSizeRelative)
             {
                 Width = (int)(parent.Width * RelativeWidth);

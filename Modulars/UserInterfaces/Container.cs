@@ -12,23 +12,29 @@ namespace Colin.Modulars.UserInterfaces
     /// </summary>
     public class Container : Division
     {
-        public Container(string name) : base(name) { }
+        public Container( string name ) : base( name ) { }
 
-        public override void OnInit()
+        public override sealed void OnInit( )
         {
             Interact.IsInteractive = false;
             Interact.IsSelectable = false;
-            //     Layout.Width = EngineInfo.ViewWidth;
-            //     Layout.Height = EngineInfo.ViewHeight;
-            // EngineInfo.Engine.Window.ClientSizeChanged += Window_ClientSizeChanged;
-            ContainerInitialize();
-            base.OnInit();
+            Layout.Width = EngineInfo.ViewWidth;
+            Layout.Height = EngineInfo.ViewHeight;
+            EngineInfo.Engine.Window.ClientSizeChanged += Window_ClientSizeChanged;
+            ContainerInitialize( );
+            base.OnInit( );
+        }
+
+        private void Window_ClientSizeChanged( object sender, EventArgs e )
+        {
+            Layout.Width = EngineInfo.ViewWidth;
+            Layout.Height = EngineInfo.ViewHeight;
         }
 
         /// <summary>
         /// 在此处进行容器初始化操作.
         /// </summary>
-        public virtual void ContainerInitialize()
+        public virtual void ContainerInitialize( )
         {
 
         }

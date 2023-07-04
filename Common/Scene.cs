@@ -86,7 +86,7 @@ namespace Colin.Common
                         EngineInfo.Graphics.GraphicsDevice.Clear( Color.Black );
                     else
                         EngineInfo.Graphics.GraphicsDevice.Clear( Color.Transparent );
-                    renderMode.DoRender( );
+                    renderMode.DoRender( EngineInfo.SpriteBatch );
                     EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( SceneRenderTarget );
                     EngineInfo.SpriteBatch.Begin( );
                     EngineInfo.SpriteBatch.Draw( frameRenderLayer, new Rectangle( 0, 0, EngineInfo.ViewWidth, EngineInfo.ViewHeight ), Color.White );
