@@ -19,14 +19,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Assets\obj\**" />
+    <Compile Remove="Graphics\Particles\**" />
     <Compile Remove="Graphics\Vertexes\**" />
-    <Compile Remove="Common\SceneComponents\Networks\Events\**" />
+    <Compile Remove="Modulars\Networks\Events\**" />
     <EmbeddedResource Remove="Assets\obj\**" />
+    <EmbeddedResource Remove="Graphics\Particles\**" />
     <EmbeddedResource Remove="Graphics\Vertexes\**" />
-    <EmbeddedResource Remove="Common\SceneComponents\Networks\Events\**" />
+    <EmbeddedResource Remove="Modulars\Networks\Events\**" />
     <None Remove="Assets\obj\**" />
+    <None Remove="Graphics\Particles\**" />
     <None Remove="Graphics\Vertexes\**" />
-    <None Remove="Common\SceneComponents\Networks\Events\**" />
+    <None Remove="Modulars\Networks\Events\**" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Icon.bmp" />
@@ -36,9 +39,6 @@
     <PackageReference Include="FontStashSharp.MonoGame" Version="1.2.8" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Graphics\Particles\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources\PreLoadResources\ProgramResources.Designer.cs">

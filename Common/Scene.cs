@@ -80,14 +80,13 @@ namespace Colin.Common
                 renderMode = ComponentList.RenderableComponents[count];
                 if( renderMode.Visiable )
                 {
-                    frameRenderLayer = renderMode.RenderTarget;
+                    frameRenderLayer = renderMode.SceneRt;
                     EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( frameRenderLayer );
                     if( count == 0 )
                         EngineInfo.Graphics.GraphicsDevice.Clear( Color.Black );
                     else
                         EngineInfo.Graphics.GraphicsDevice.Clear( Color.Transparent );
-
-                    renderMode.DoRender_SceneModeCollectionUseIt( );
+                    renderMode.DoRender( );
                     EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( SceneRenderTarget );
                     EngineInfo.SpriteBatch.Begin( );
                     EngineInfo.SpriteBatch.Draw( frameRenderLayer, new Rectangle( 0, 0, EngineInfo.ViewWidth, EngineInfo.ViewHeight ), Color.White );

@@ -5,7 +5,7 @@
     /// </summary>
     public interface IUpdateableComponent
     {
-        bool Enable { get; }
+        bool Enable { get; set; }
         int UpdateOrder { get; }
         public virtual void DoUpdate( GameTime gameTime ) { }
     }

@@ -129,7 +129,6 @@ namespace Colin
             {
                 EngineInfo.SpriteBatch.Begin( );
                 EngineInfo.SpriteBatch.Draw( PreloadResource.ControllerCursor.Source, Input.InteractionPoint - Vector2.One * 8 , Color.White );
-
                 EngineInfo.SpriteBatch.End( );
             }
         }
