@@ -14,7 +14,15 @@ namespace Colin.Modulars.UserInterfaces.Renderers
         public override void RendererInit( ) { }
         public override void DoRender( SpriteBatch batch )
         {
-            batch.Draw( _sprite.Source, Division.Layout.LocationF, null, Division.Design.Color, Division.Design.Rotation, Division.Design.Anchor, Division.Design.Scale, SpriteEffects.None, _sprite.Depth );
+            batch.Draw( 
+                _sprite.Source, 
+                Division.Layout.TotalLocationF, 
+                null, Division.Design.Color, 
+                Division.Design.Rotation,
+                Division.Design.Anchor, 
+                Division.Design.Scale, 
+                SpriteEffects.None, 
+                _sprite.Depth );
         }
         public void Bind( Sprite sprite ) => _sprite = sprite;
         public void Bind( Texture2D texture ) => _sprite = new Sprite( texture );

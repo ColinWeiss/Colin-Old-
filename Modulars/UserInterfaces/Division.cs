@@ -56,11 +56,12 @@ namespace Colin.Modulars.UserInterfaces
         /// 划分元素的渲染器.
         /// </summary>
         public DivisionRenderer Renderer => _renderer;
-        public void BindRenderer<T>( ) where T : DivisionRenderer, new()
+        public T BindRenderer<T>( ) where T : DivisionRenderer, new()
         {
             _renderer = new T( );
             _renderer._division = this;
             _renderer.RendererInit( );
+            return _renderer as T;
         }
 
         /// <summary>
@@ -236,7 +237,10 @@ namespace Colin.Modulars.UserInterfaces
             if( IsCanvas )
             {
                 batch.End( );
-                EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( Interface.SceneRt );
+                if( Parent.IsCanvas )
+                    EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( Parent.Canvas );
+                else
+                    EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( Interface.SceneRt );
                 batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp );
                 batch.Draw( Canvas, Layout.LocationF, Design.Color );
             }
