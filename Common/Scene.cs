@@ -1,5 +1,6 @@
 ﻿using Colin.Collections;
 using Colin.Extensions;
+using Colin.Resources;
 
 namespace Colin.Common
 {
@@ -28,6 +29,8 @@ namespace Colin.Common
         /// 场景本身的 RenderTarget.
         /// </summary>
         public RenderTarget2D SceneRenderTarget;
+
+        public SceneShaderManager SceneShaders = new SceneShaderManager( );
 
         public override sealed void Initialize( )
         {
@@ -75,6 +78,8 @@ namespace Colin.Common
         {
             IRenderableSceneComponent renderMode;
             RenderTarget2D frameRenderLayer;
+            EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( SceneRenderTarget );
+            EngineInfo.Graphics.GraphicsDevice.Clear( Color.Black );
             for( int count = 0; count < ComponentList.RenderableComponents.length; count++ )
             {
                 renderMode = ComponentList.RenderableComponents[count];
@@ -82,15 +87,24 @@ namespace Colin.Common
                 {
                     frameRenderLayer = renderMode.SceneRt;
                     EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( frameRenderLayer );
-                    if( count == 0 )
-                        EngineInfo.Graphics.GraphicsDevice.Clear( Color.Black );
-                    else
-                        EngineInfo.Graphics.GraphicsDevice.Clear( Color.Transparent );
+                    EngineInfo.Graphics.GraphicsDevice.Clear( Color.Transparent );
                     renderMode.DoRender( EngineInfo.SpriteBatch );
-                    EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( SceneRenderTarget );
-                    EngineInfo.SpriteBatch.Begin( );
+                }
+            }
+            EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( SceneRenderTarget );
+            for( int count = 0; count < ComponentList.RenderableComponents.length; count++ )
+            {
+                renderMode = ComponentList.RenderableComponents[count];
+                if( renderMode.Visiable )
+                {
+                    frameRenderLayer = renderMode.SceneRt;
+                    if( SceneShaders.Effects.TryGetValue( renderMode, out Effect e ) )
+                        EngineInfo.SpriteBatch.Begin( SpriteSortMode.Deferred, effect: e );
+                    else
+                        EngineInfo.SpriteBatch.Begin( SpriteSortMode.Deferred );
                     EngineInfo.SpriteBatch.Draw( frameRenderLayer, new Rectangle( 0, 0, EngineInfo.ViewWidth, EngineInfo.ViewHeight ), Color.White );
                     EngineInfo.SpriteBatch.End( );
+
                 }
             }
             SceneRender( );

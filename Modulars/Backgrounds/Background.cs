@@ -6,8 +6,6 @@ namespace Colin.Modulars.Backgrounds
 {
     /// <summary>
     /// 场景背景.
-    /// <br>仅支持将其加入 <see cref="Gameworld"/> 场景中.</br>
-    /// <br>加入其他场景可能会发生预料不到的后果.</br>
     /// </summary>
     public sealed class Background : ISceneComponent, IRenderableSceneComponent
     {
@@ -101,15 +99,13 @@ namespace Colin.Modulars.Backgrounds
             Vector2 drawCount = new Vector2((float)EngineInfo.ViewWidth / layer.Sprite.Width, (float)EngineInfo.ViewHeight / layer.Sprite.Height);
             Vector2 offset = Vector2.One / layer.Sprite.SizeF;
             layer.Transform = Matrix.CreateTranslation(translateBody) * Matrix.CreateTranslation(translateCenter);
-
             offset *= new Vector2(-layer.Translation.X, -layer.Translation.Y);
             offset.X += CurrentStyle.LoopLayerOffset.X / layer.Sprite.Height;
             offset.Y -= CurrentStyle.LoopLayerOffset.Y / layer.Sprite.Width;
-
-            LeftRightLoopEffect.Parameters["MappingTexture"].SetValue(layer.Sprite.Source);
+            LeftRightLoopEffect.Parameters["MappingTexture"].SetValue( layer.Sprite.Source );
             LeftRightLoopEffect.Parameters["DrawCount"].SetValue(drawCount);
             LeftRightLoopEffect.Parameters["Offset"].SetValue(offset);
-            EngineInfo.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, LeftRightLoopEffect, null);
+            EngineInfo.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, null, null , LeftRightLoopEffect );
             EngineInfo.SpriteBatch.Draw(_screenMap, new Rectangle(0, 0, EngineInfo.ViewWidth, EngineInfo.ViewHeight), Color.White);
             EngineInfo.SpriteBatch.End();
         }

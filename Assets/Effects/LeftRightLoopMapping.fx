@@ -15,20 +15,10 @@ float2 DrawCount;
 //映射图在底图上的偏移绘制量.
 float2 Offset;
 
-Texture2D SpriteTexture;
-
-//映射使用的纹理.
-Texture2D MappingTexture;
-
-
-sampler2D SpriteTextureSampler = sampler_state
-{
-    Texture = <SpriteTexture>;
-};
-sampler2D MappingTextureSampler = sampler_state
-{
-    Texture = <MappingTexture>;
-};
+Texture2D<float4> SpriteTexture : register( t0 );
+sampler SpriteTextureSampler : register( s0 );
+Texture2D<float4> MappingTexture : register(t1);
+sampler MappingTextureSampler : register(s1);
 
 struct VertexShaderOutput
 {
@@ -37,18 +27,18 @@ struct VertexShaderOutput
     float2 TextureCoordinates : TEXCOORD0;
 };
 
-float4 MainPS( VertexShaderOutput input ) : COLOR
+float4 PixelShaderFunction( VertexShaderOutput input ) : COLOR
 {
     float2 uv = input.TextureCoordinates * DrawCount + Offset;
-    float4 MappingColor = tex2D( MappingTextureSampler, uv );
+    float4 MappingColor = MappingTexture.Sample( MappingTextureSampler ,uv );
     MappingColor = max( 0, sign( -uv.y * (uv.y - 1) ) ) * MappingColor;
-    return tex2D( SpriteTextureSampler, input.TextureCoordinates ) * MappingColor;
+    return SpriteTexture.Sample( SpriteTextureSampler, input.TextureCoordinates ) * MappingColor;
 }
 
 technique SpriteDrawing
 {
     pass P0
     {
-        PixelShader = compile PS_SHADERMODEL MainPS( );
+        PixelShader = compile PS_SHADERMODEL PixelShaderFunction();
     }
 };
