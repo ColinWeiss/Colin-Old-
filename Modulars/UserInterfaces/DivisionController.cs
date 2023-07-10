@@ -12,7 +12,7 @@ namespace Colin.Modulars.UserInterfaces
         private Division _division;
         public Division Division => _division;
         public DivisionController( Division division ) => _division = division;
-        public virtual void Layout( ref LayoutStyle layout, GameTime time ) { }
+        public virtual void Layout( ref LayoutStyle layout ) { }
         public virtual void Interact( ref InteractStyle interact )
         {
             interact.InteractionLast = interact.Interaction;
@@ -21,6 +21,6 @@ namespace Colin.Modulars.UserInterfaces
             else
                 interact.Interaction = false;
         }
-        public virtual void Design( ref DesignStyle design, GameTime time ) { }
+        public virtual void Design( ref DesignStyle design ) { }
     }
 }

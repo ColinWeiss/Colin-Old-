@@ -171,11 +171,11 @@ namespace Colin.Modulars.UserInterfaces
             if( !IsVisible )
                 return;
             EventResponder.Independent( );
-            Controller?.Layout( ref Layout, time );
+            Controller?.Layout( ref Layout );
             if( Parent != null )
                 Layout.Calculation( Parent.Layout );
             Controller?.Interact( ref Interact );
-            Controller?.Design( ref Design, time );
+            Controller?.Design( ref Design );
             OnUpdate( time );
             UpdateChildren( time );
         }
@@ -248,7 +248,7 @@ namespace Colin.Modulars.UserInterfaces
                 else
                     EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( Interface.SceneRt );
                 batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp );
-                batch.Draw( Canvas, Layout.LocationF + Design.Anchor , null , Design.Color, 0f , Design.Anchor , Design.Scale , SpriteEffects.None , 0f );
+                batch.Draw( Canvas, Layout.LocationF + Design.Anchor, null, Design.Color, 0f, Design.Anchor, Design.Scale, SpriteEffects.None, 0f );
             }
         }
         /// <summary>

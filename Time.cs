@@ -21,19 +21,9 @@
         public static float UnscaledDeltaTime;
 
         /// <summary>
-        /// 次要增量, 当您需要同时缩放两个不同的增量时使用的时间.
-        /// </summary>
-        public static float AltDeltaTime;
-
-        /// <summary>
         /// <see cref="DeltaTime"/> 的时间尺度.
         /// </summary>
         public static float TimeScale = 1f;
-
-        /// <summary>
-        /// <see cref="AltDeltaTime"/> 的时间尺度.
-        /// </summary>
-        public static float AltTimeScale = 1f;
 
         /// <summary>
         ///已经过的帧数.
@@ -44,7 +34,6 @@
         {
             TotalTime += dt;
             DeltaTime = dt * TimeScale;
-            AltDeltaTime = dt * AltTimeScale;
             UnscaledDeltaTime = dt;
             FrameCount++;
         }

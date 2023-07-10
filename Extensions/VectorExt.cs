@@ -256,6 +256,5 @@
             current = new Vector2( x + tx, y + ty );
             return new Vector2( x + tx, y + ty );
         }
-
     }
 }

@@ -39,6 +39,5 @@
             current = new Color( (int)(r + tr), (int)(g + tg), (int)(b + tb), (int)(a + ta) );
             return new Color( (int)(r + tr), (int)(g + tg), (int)(b + tb), (int)(a + ta) );
         }
-
     }
 }

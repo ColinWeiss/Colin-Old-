@@ -6,7 +6,6 @@
         {
             handler?.Invoke( sender, e );
         }
-
         public static void EventRaise( this ITraceable sender, EventHandler handler, EventArgs e )
         {
             handler?.Invoke( sender, e );
