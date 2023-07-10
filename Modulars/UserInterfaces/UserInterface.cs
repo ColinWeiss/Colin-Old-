@@ -22,12 +22,13 @@ namespace Colin.Modulars.UserInterfaces
 
         public Scene Scene { get; set; }
 
-        public void DoInitialize( ) 
-        {
-            _contianer.DoInitialize( );
-        }
+        public void DoInitialize( ) => _contianer.DoInitialize( );
 
-        public void DoUpdate( GameTime time ) => Container?.DoUpdate( time );
+        public void DoUpdate( GameTime time )
+        {
+            Container?.DoUpdate( time );
+            Container.Seek( )?.EventResponder.Execute( );
+        }
 
         public void DoRender( SpriteBatch batch )
         {
@@ -44,7 +45,6 @@ namespace Colin.Modulars.UserInterfaces
         {
             _contianer = container;
             _contianer._interface = this;
-            _contianer.DoInitialize( );
         }
     }
 }

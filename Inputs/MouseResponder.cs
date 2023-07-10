@@ -11,35 +11,35 @@ namespace Colin.Inputs
         public MouseResponder( ) : base( EngineInfo.Engine ) { }
 
         public static bool MouseLeftClickBeforeFlag =>
-            state.LeftButton == ButtonState.Pressed &&
+            State.LeftButton == ButtonState.Pressed &&
             stateLast.LeftButton == ButtonState.Released;
 
         public static bool MouseLeftDownFlag =>
-            state.LeftButton == ButtonState.Pressed &&
+            State.LeftButton == ButtonState.Pressed &&
             stateLast.LeftButton == ButtonState.Pressed;
 
         public static bool MouseLeftUpFlag =>
-            state.LeftButton == ButtonState.Released &&
+            State.LeftButton == ButtonState.Released &&
             stateLast.LeftButton == ButtonState.Released;
 
         public static bool MouseLeftClickAfterFlag =>
-           state.LeftButton == ButtonState.Released &&
+           State.LeftButton == ButtonState.Released &&
             stateLast.LeftButton == ButtonState.Pressed;
 
         public static bool MouseRightClickBeforeFlag =>
-            state.RightButton == ButtonState.Pressed &&
+            State.RightButton == ButtonState.Pressed &&
             stateLast.RightButton == ButtonState.Released;
 
         public static bool MouseRightDownFlag =>
-            state.RightButton == ButtonState.Pressed &&
+            State.RightButton == ButtonState.Pressed &&
             stateLast.RightButton == ButtonState.Pressed;
 
         public static bool MouseRightUpFlag =>
-             state.RightButton == ButtonState.Released &&
+             State.RightButton == ButtonState.Released &&
              stateLast.RightButton == ButtonState.Released;
 
         public static bool MouseRightClickAfterFlag =>
-            state.RightButton == ButtonState.Released &&
+            State.RightButton == ButtonState.Released &&
             stateLast.RightButton == ButtonState.Pressed;
 
         public bool Enable { get; set; }
@@ -47,7 +47,7 @@ namespace Colin.Inputs
         /// <summary>
         /// 当前鼠标状态.
         /// </summary>
-        internal static MouseState state = new MouseState( );
+        internal static MouseState State = new MouseState( );
 
         /// <summary>
         /// 上一帧鼠标状态.
@@ -57,12 +57,12 @@ namespace Colin.Inputs
         /// <summary>
         /// 鼠标位置.
         /// </summary>
-        public Vector2 Position => state.Position.ToVector2( );
+        public Vector2 Position => State.Position.ToVector2( );
 
         public override void Update( GameTime gameTime )
         {
-            stateLast = state;
-            state = Mouse.GetState( );
+            stateLast = State;
+            State = Mouse.GetState( );
 
             base.Update( gameTime );
         }

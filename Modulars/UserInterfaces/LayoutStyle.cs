@@ -17,6 +17,10 @@ namespace Colin.Modulars.UserInterfaces
         private bool _needRefreshSizeRelative;
         private bool _needRefreshLocationRelative;
 
+        public int PaddingLeft;
+
+        public int PaddingTop;
+
         public int Left;
         public int TotalLeft;
         private float _relativeLeft;
@@ -87,8 +91,9 @@ namespace Colin.Modulars.UserInterfaces
         public Point Size => new Point(Width, Height);
         public Vector2 SizeF => new Vector2(Width, Height);
 
-        public Rectangle DefaultRect => new Rectangle(Left, Top, Width, Height);
-        public Rectangle DefaultTotalRect => new Rectangle(TotalLeft, TotalTop, Width, Height);
+        public Rectangle HitBox => new Rectangle(Left, Top, Width, Height);
+
+        public Rectangle TotalHitBox => new Rectangle(TotalLeft, TotalTop, Width, Height);
 
         public Matrix CanvasTransform =>
                 Matrix.CreateTranslation(new Vector3(-new Vector2(TotalLeft, TotalTop), 0f)) *
@@ -97,35 +102,23 @@ namespace Colin.Modulars.UserInterfaces
                 Matrix.CreateTranslation(new Vector3(Vector2.Zero, 0f));
 
         /// <summary>
-        /// 事件: 发生在元素大小发生变化时
-        /// </summary>
-        public event Action OnSizeChanged;
-
-        /// <summary>
-        /// 事件: 发生在元素位置发生变化时.
-        /// </summary>
-        public event Action OnLocationChanged;
-
-        /// <summary>
         /// 对样式进行计算.
         /// </summary>
         /// <param name="parent"></param>
         public void Calculation(LayoutStyle parent)
         {
-            TotalLeft = parent.TotalLeft + Left;
-            TotalTop = parent.TotalTop + Top;
+            TotalLeft = parent.TotalLeft + Left + parent.PaddingLeft;
+            TotalTop = parent.TotalTop + Top + parent.PaddingTop;
             if (_needRefreshSizeRelative)
             {
                 Width = (int)(parent.Width * RelativeWidth);
                 Height = (int)(parent.Height * RelativeHeight);
-                OnSizeChanged?.Invoke();
                 _needRefreshSizeRelative = false;
             }
             if (_needRefreshLocationRelative)
             {
                 Left = (int)(parent.Left * RelativeLeft);
                 Top = (int)(parent.Top * RelativeTop);
-                OnLocationChanged?.Invoke();
                 _needRefreshLocationRelative = false;
             }
         }

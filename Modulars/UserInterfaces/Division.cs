@@ -1,13 +1,16 @@
 ﻿using Colin.Extensions;
 using Colin.Inputs;
+using Microsoft.VisualBasic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Colin.Modulars.UserInterfaces
 {
@@ -30,17 +33,6 @@ namespace Colin.Modulars.UserInterfaces
         /// 划分元素的布局样式
         /// </summary>
         public LayoutStyle Layout;
-        private LayoutStyleController _layoutStyleController;
-        /// <summary>
-        /// 划分元素的布局样式控制器.
-        /// </summary>
-        public LayoutStyleController LayoutController => _layoutStyleController;
-        public T BindLayoutStyleController<T>( ) where T : LayoutStyleController, new()
-        {
-            _layoutStyleController = new T( );
-            _layoutStyleController._division = this;
-            return _layoutStyleController as T;
-        }
 
         /// <summary>
         /// 划分元素的剪裁样式.
@@ -56,17 +48,6 @@ namespace Colin.Modulars.UserInterfaces
         /// 划分元素的设计样式.
         /// </summary>
         public DesignStyle Design;
-        private DesignStyleController _designStyleController;
-        /// <summary>
-        /// 划分元素的设计样式控制器.
-        /// </summary>
-        public DesignStyleController DesignController => _designStyleController;
-        public T BindDesignStyleController<T>( ) where T : DesignStyleController, new()
-        {
-            _designStyleController = new T( );
-            _designStyleController._division = this;
-            return _designStyleController as T;
-        }
 
         /// <summary>
         /// 划分元素的事件响应器.
@@ -92,6 +73,8 @@ namespace Colin.Modulars.UserInterfaces
             else
                 return null;
         }
+
+        public DivisionController Controller;
 
         /// <summary>
         /// 划分元素的父元素.
@@ -127,6 +110,7 @@ namespace Colin.Modulars.UserInterfaces
             Design.Scale = Vector2.One;
             IsVisible = true;
             Children = new List<Division>( );
+            Controller = new DivisionController( this );
         }
 
         /// <summary>
@@ -139,11 +123,6 @@ namespace Colin.Modulars.UserInterfaces
             if( Parent != null )
                 Layout.Calculation( Parent.Layout ); //刷新一下.
             ForEach( child => child.DoInitialize( ) );
-            if( IsCanvas )
-            {
-                Canvas = RenderTargetExt.CreateDefault( Layout.Width, Layout.Height );
-                Layout.OnSizeChanged += LayoutInfo_OnSizeChanged;
-            }
         }
         /// <summary>
         /// 发生于划分元素执行 <see cref="DoInitialize"/> 时, 可于此自定义初始化操作.
@@ -154,25 +133,25 @@ namespace Colin.Modulars.UserInterfaces
         {
             if( Parent != null )
             {
-                Point mouseForParentLocation = MouseResponder.state.Position - Parent.Layout.Location;
+                Point mouseForParentLocation = MouseResponder.State.Position - Parent.Layout.Location;
                 _cachePos = mouseForParentLocation - Layout.Location;
             }
             else
             {
-                _cachePos = MouseResponder.state.Position - Layout.Location;
+                _cachePos = MouseResponder.State.Position - Layout.Location;
             }
         }
         private void Container_DragDragging( object o, DivisionEvent e )
         {
             if( Parent != null )
             {
-                Point _resultLocation = MouseResponder.state.Position - Parent.Layout.Location - _cachePos;
+                Point _resultLocation = MouseResponder.State.Position - Parent.Layout.Location - _cachePos;
                 Layout.Left = _resultLocation.X;
                 Layout.Top = _resultLocation.Y;
             }
             else
             {
-                Point _resultLocation = MouseResponder.state.Position - _cachePos;
+                Point _resultLocation = MouseResponder.State.Position - _cachePos;
                 Layout.Left = _resultLocation.X;
                 Layout.Top = _resultLocation.Y;
             }
@@ -180,11 +159,6 @@ namespace Colin.Modulars.UserInterfaces
         private void Container_DragEnd( object o, DivisionEvent e )
         {
             _cachePos = new Point( -1, -1 );
-        }
-        private void LayoutInfo_OnSizeChanged( )
-        {
-            Canvas.Dispose( );
-            Canvas = RenderTargetExt.CreateDefault( Layout.Width, Layout.Height );
         }
 
         /// <summary>
@@ -194,16 +168,16 @@ namespace Colin.Modulars.UserInterfaces
         public void DoUpdate( GameTime time )
         {
             PreUpdate( time );
+            if( !IsVisible )
+                return;
+            EventResponder.Independent( );
+            Controller?.Layout( ref Layout, time );
             if( Parent != null )
                 Layout.Calculation( Parent.Layout );
-            if( IsVisible )
-            {
-                EventResponder.Independent( );
-                LayoutController?.OnUpdate( ref Layout );
-                DesignController?.OnUpdate( ref Design );
-                OnUpdate( time );
-                UpdateChildren( time );
-            }
+            Controller?.Interact( ref Interact );
+            Controller?.Design( ref Design, time );
+            OnUpdate( time );
+            UpdateChildren( time );
         }
         /// <summary>
         /// 发生于 <see cref="DoUpdate"/> 执行时, 但不受 <see cref="IsVisible"/> 控制.
@@ -232,6 +206,8 @@ namespace Colin.Modulars.UserInterfaces
         /// <param name="time">游戏计时状态快照.</param>
         public void DoRender( SpriteBatch batch )
         {
+            if( !IsVisible && !Layout.IsHidden )
+                return;
             if( IsCanvas )
             {
                 batch.End( );
@@ -252,11 +228,10 @@ namespace Colin.Modulars.UserInterfaces
                 if( ScissorStyle.Scissor != Rectangle.Empty )
                     gd.ScissorRectangle = Rectangle.Intersect( gd.ScissorRectangle, ScissorStyle.Scissor );
                 else
-                    gd.ScissorRectangle = Rectangle.Intersect( gd.ScissorRectangle, Layout.DefaultTotalRect );
+                    gd.ScissorRectangle = Rectangle.Intersect( gd.ScissorRectangle, Layout.TotalHitBox );
                 batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, overflowHiddenRasterizerState );
             }
-            if( !Layout.IsHidden && IsVisible )
-                _renderer?.DoRender( batch );//渲染器进行渲染.
+            _renderer?.DoRender( batch );//渲染器进行渲染.
             RenderChildren( batch );
             if( ScissorStyle.Enable )
             {
@@ -273,7 +248,7 @@ namespace Colin.Modulars.UserInterfaces
                 else
                     EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( Interface.SceneRt );
                 batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp );
-                batch.Draw( Canvas, Layout.LocationF, Design.Color );
+                batch.Draw( Canvas, Layout.LocationF + Design.Anchor , null , Design.Color, 0f , Design.Anchor , Design.Scale , SpriteEffects.None , 0f );
             }
         }
         /// <summary>
@@ -297,8 +272,10 @@ namespace Colin.Modulars.UserInterfaces
                 return false;
             division.Parent = this;
             if( doInit )
+            {
                 division.DoInitialize( );
-            division.Layout.Calculation( Layout );
+                division.Layout.Calculation( Layout );
+            }
             Children.Add( division );
             division._interface = Interface;
             return true;
@@ -333,6 +310,61 @@ namespace Colin.Modulars.UserInterfaces
 		public void ForEach( Action<Division> action )
         {
             Children.ForEach( child => action( child ) );
+        }
+
+        /// <summary>
+		/// 获取裁切过的碰撞箱.
+		/// </summary>
+		/// <returns>裁切过的碰撞箱.</returns>
+		public virtual Rectangle GetScissorCalculation( )
+        {
+            if( Parent == null )
+                return Rectangle.Intersect( new Rectangle( 0, 0, EngineInfo.ViewWidth, EngineInfo.ViewHeight ), Layout.HitBox );
+            return Rectangle.Intersect( Rectangle.Intersect( Layout.HitBox, Parent.ScissorStyle.Scissor ), Parent.GetScissorCalculation( ) );
+        }
+
+        /// <summary>
+		/// 获取此元素与父元素是否开启溢出隐藏的值.
+		/// </summary>
+		/// <returns>如果有则返回 <see langword="true"/>，否则返回 <see langword="false"/>.</returns>
+		public bool GetDivsHidden( )
+        {
+            if( ScissorStyle.Enable )
+                return true;
+            if( Parent == null )
+                return false;
+            return Parent.GetDivsHidden( );
+        }
+
+        /// <summary>
+		/// 判断该划分元素是否包含指定点.
+		/// </summary>
+		/// <param name="point">输入的点.</param>
+		/// <returns>如果包含则返回 <see langword="true"/>，否则返回 <see langword="false"/>.</returns>
+		public virtual bool ContainsPoint( Point point ) => (GetDivsHidden( ) ? GetScissorCalculation( ) : Layout.TotalHitBox).Contains( point );
+
+        /// <summary>
+        /// 返回该划分元素下最先可进行交互的元素.
+        /// </summary>
+        /// <returns>如果寻找到非该划分元素之外的元素, 则返回寻找到的元素; 否则返回自己.</returns>
+        public virtual Division Seek( )
+        {
+            Division target = null;
+            Division child;
+            for( int sub = Children.Count - 1; sub >= 0; sub-- )
+            {
+                child = Children[sub];
+                if( child.Seek( ) == null )
+                    target = null;
+                else if( child.Seek( ) != null && child.IsVisible )
+                {
+                    target = child.Seek( );
+                    return target;
+                }
+            }
+            if( Interact.IsInteractive && IsVisible && Interact.Interaction )
+                return this;
+            return target;
         }
     }
 }

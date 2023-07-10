@@ -45,9 +45,9 @@ namespace Colin.Inputs
         {
             get
             {
-                if( MouseResponder.state.ScrollWheelValue < MouseResponder.stateLast.ScrollWheelValue )
+                if( MouseResponder.State.ScrollWheelValue < MouseResponder.stateLast.ScrollWheelValue )
                     return 1;
-                else if( MouseResponder.state.ScrollWheelValue > MouseResponder.stateLast.ScrollWheelValue )
+                else if( MouseResponder.State.ScrollWheelValue > MouseResponder.stateLast.ScrollWheelValue )
                     return -1;
                 else
                 {
@@ -68,10 +68,10 @@ namespace Colin.Inputs
         public override void Update( GameTime gameTime )
         {
             _interactionPointLast = _interactionPoint;
-            if( MouseResponder.state.Position != MouseResponder.stateLast.Position )
+            if( MouseResponder.State.Position != MouseResponder.stateLast.Position )
             {
-                _interactionPoint = MouseResponder.state.Position.ToVector2( );
-                ControllerResponder.cursorPosition = MouseResponder.state.Position.ToVector2( );
+                _interactionPoint = MouseResponder.State.Position.ToVector2( );
+                ControllerResponder.cursorPosition = MouseResponder.State.Position.ToVector2( );
             }
             else if( ControllerResponder.state.ThumbSticks.Right != Vector2.Zero )
             {

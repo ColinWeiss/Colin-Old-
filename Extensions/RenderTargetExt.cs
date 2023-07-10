@@ -29,7 +29,5 @@
             RenderTargetUsage.PreserveContents );
             return renderTarget;
         }
-
-
     }
 }

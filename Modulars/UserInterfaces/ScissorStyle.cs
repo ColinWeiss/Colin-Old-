@@ -22,7 +22,7 @@ namespace Colin.Modulars.UserInterfaces
        //private Rectangle _scissor;
         /// <summary>
         /// 指示要进行剪裁的范围.
-        /// <br>若不指定其值, 默认使用 <see cref="LayoutStyle.DefaultTotalRect"/>.</br>
+        /// <br>若不指定其值, 默认使用 <see cref="LayoutStyle.TotalHitBox"/>.</br>
         /// </summary>
         public Rectangle Scissor;
     }

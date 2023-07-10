@@ -107,7 +107,7 @@ namespace Colin.Modulars.UserInterfaces
 
         public void Execute()
         {
-            _mouseState = MouseResponder.state;
+            _mouseState = MouseResponder.State;
             _mouseStateLast = MouseResponder.stateLast;
             DivisionEvent divEvent = new DivisionEvent(Division);
             if (Division.Interact.Interaction)

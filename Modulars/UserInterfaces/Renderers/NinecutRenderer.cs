@@ -12,6 +12,7 @@ namespace Colin.Modulars.UserInterfaces.Renderers
     {
         private Sprite _sprite;
         public Sprite Sprite => _sprite;
+        public int Cut;
         public override void RendererInit( ) { }
         public override void DoRender( SpriteBatch batch )
         {
@@ -20,7 +21,7 @@ namespace Colin.Modulars.UserInterfaces.Renderers
                 Division.Design.Color,
                 Division.Layout.TotalLocation,
                 Division.Layout.Size,
-                6,
+                Cut,
                 _sprite.Depth );
         }
         public void Bind( Sprite sprite ) => _sprite = sprite;
