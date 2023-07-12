@@ -1,5 +1,6 @@
 ﻿using Colin.IO;
 using System.Text.Json;
+using System.Threading;
 
 namespace Colin
 {
@@ -26,22 +27,6 @@ namespace Colin
             set
             {
                 EngineInfo.Graphics.IsFullScreen = value;
-                EngineInfo.Graphics.ApplyChanges( );
-            }
-        }
-
-        /// <summary>
-        /// 指示窗体是否无边框.
-        /// </summary>
-        public bool IsBorderless
-        {
-            get
-            {
-                return EngineInfo.Engine.Window.IsBorderless;
-            }
-            set
-            {
-                EngineInfo.Engine.Window.IsBorderless = value;
                 EngineInfo.Graphics.ApplyChanges( );
             }
         }
@@ -97,7 +82,6 @@ namespace Colin
                 Save( );
             Config result = JsonSerializer.Deserialize<Config>( File.ReadAllText( ConfigPath ) );
             IsFullScreen = result.IsFullScreen;
-            IsBorderless = result.IsBorderless;
             SoundEffect = result.SoundEffect;
             SoundEffectVolume = result.SoundEffectVolume;
             PictureQuality = result.PictureQuality;
@@ -111,6 +95,5 @@ namespace Colin
             string config = JsonSerializer.Serialize( this, serializerOptions );
             File.WriteAllText( ConfigPath, config );
         }
-
     }
 }

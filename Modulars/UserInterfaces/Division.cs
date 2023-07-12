@@ -52,7 +52,7 @@ namespace Colin.Modulars.UserInterfaces
         /// <summary>
         /// 划分元素的事件响应器.
         /// </summary>
-        public DivisionEventResponder EventResponder;
+        public DivisionEventResponder Events;
 
         private DivisionRenderer _renderer;
         /// <summary>
@@ -74,6 +74,9 @@ namespace Colin.Modulars.UserInterfaces
                 return null;
         }
 
+        /// <summary>
+        /// 划分元素控制器.
+        /// </summary>
         public DivisionController Controller;
 
         /// <summary>
@@ -93,6 +96,8 @@ namespace Colin.Modulars.UserInterfaces
 
         public virtual bool IsCanvas => false;
 
+        public bool InitializationCompleted = false;
+
         /// <summary>
         /// 实例化一个划分元素, 并用名称加以区分.
         /// <br>[!] 虽然此处的名称可重复, 但该名称的作用是利于调试, 故建议使用不同的、可辨识的名称加以区分.</br>
@@ -101,10 +106,10 @@ namespace Colin.Modulars.UserInterfaces
         public Division( string name )
         {
             Name = name;
-            EventResponder = new DivisionEventResponder( this );
-            EventResponder.DragStart += Container_DragStart;
-            EventResponder.Dragging += Container_DragDragging;
-            EventResponder.DragEnd += Container_DragEnd;
+            Events = new DivisionEventResponder( this );
+            Events.DragStart += Container_DragStart;
+            Events.Dragging += Container_DragDragging;
+            Events.DragEnd += Container_DragEnd;
             Interact.IsInteractive = true;
             Design.Color = Color.White;
             Design.Scale = Vector2.One;
@@ -118,11 +123,14 @@ namespace Colin.Modulars.UserInterfaces
         /// </summary>
         public void DoInitialize( )
         {
+            if( InitializationCompleted )
+                return;
             OnInit( );
             _renderer?.RendererInit( );
             if( Parent != null )
                 Layout.Calculation( Parent.Layout ); //刷新一下.
             ForEach( child => child.DoInitialize( ) );
+            InitializationCompleted = true;
         }
         /// <summary>
         /// 发生于划分元素执行 <see cref="DoInitialize"/> 时, 可于此自定义初始化操作.
@@ -165,12 +173,12 @@ namespace Colin.Modulars.UserInterfaces
         /// 执行划分元素的逻辑刷新.
         /// </summary>
         /// <param name="time">游戏计时状态快照.</param>
-        public void DoUpdate( GameTime time )
+        public virtual void DoUpdate( GameTime time )
         {
             PreUpdate( time );
             if( !IsVisible )
                 return;
-            EventResponder.Independent( );
+            Events.Independent( );
             Controller?.Layout( ref Layout );
             if( Parent != null )
                 Layout.Calculation( Parent.Layout );

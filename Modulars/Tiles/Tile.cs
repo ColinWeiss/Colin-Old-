@@ -56,5 +56,6 @@ namespace Colin.Modulars.Tiles
             infos.CreateTileDefaultInfo(coorinateX, coorinateY);
             behaviors.SetBehavior<T>(coorinateX, coorinateY);
         }
+
     }
 }

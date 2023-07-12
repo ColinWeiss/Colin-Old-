@@ -9,11 +9,6 @@ namespace Colin.Common
     /// </summary>
     public class Scene : DrawableGameComponent
     {
-        /// <summary>
-        /// 场景中的实体.
-        /// </summary>
-        public LiteList<Entity> Entities = new LiteList<Entity>( );
-
         private SceneComponentList _components;
         /// <summary>
         /// 获取场景组件列表.
@@ -83,7 +78,7 @@ namespace Colin.Common
             for( int count = 0; count < ComponentList.RenderableComponents.length; count++ )
             {
                 renderMode = ComponentList.RenderableComponents[count];
-                if( renderMode.Visiable )
+                if( renderMode.Visible )
                 {
                     frameRenderLayer = renderMode.SceneRt;
                     EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( frameRenderLayer );
@@ -95,7 +90,7 @@ namespace Colin.Common
             for( int count = 0; count < ComponentList.RenderableComponents.length; count++ )
             {
                 renderMode = ComponentList.RenderableComponents[count];
-                if( renderMode.Visiable )
+                if( renderMode.Visible )
                 {
                     frameRenderLayer = renderMode.SceneRt;
                     if( SceneShaders.Effects.TryGetValue( renderMode, out Effect e ) )

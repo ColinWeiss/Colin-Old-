@@ -16,7 +16,7 @@ namespace Colin.Modulars.UserInterfaces.Renderers
         {
             batch.Draw( 
                 _sprite.Source, 
-                Division.Layout.TotalLocationF, 
+                Division.Layout.TotalLocationF + Division.Design.Anchor, 
                 null, Division.Design.Color, 
                 Division.Design.Rotation,
                 Division.Design.Anchor, 

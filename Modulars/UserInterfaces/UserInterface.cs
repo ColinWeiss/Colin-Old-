@@ -18,7 +18,7 @@ namespace Colin.Modulars.UserInterfaces
 
         public bool Enable { get; set; }
 
-        public bool Visiable { get; set; }
+        public bool Visible { get; set; }
 
         public Scene Scene { get; set; }
 
@@ -27,7 +27,7 @@ namespace Colin.Modulars.UserInterfaces
         public void DoUpdate( GameTime time )
         {
             Container?.DoUpdate( time );
-            Container.Seek( )?.EventResponder.Execute( );
+            Container.Seek( )?.Events.Execute( );
         }
 
         public void DoRender( SpriteBatch batch )

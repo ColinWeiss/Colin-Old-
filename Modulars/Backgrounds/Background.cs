@@ -13,7 +13,7 @@ namespace Colin.Modulars.Backgrounds
 
         public bool Enable { get; set; }
 
-        public bool Visiable { get; set; }
+        public bool Visible { get; set; }
 
         private SceneCamera _camera;
         public SceneCamera Camera => _camera;
@@ -51,7 +51,7 @@ namespace Colin.Modulars.Backgrounds
         public void DoInitialize()
         {
             _screenMap = PreloadResource.Pixel.Source;
-            LeftRightLoopEffect = EffectResource.GetAsset("LeftRightLoopMapping");
+            LeftRightLoopEffect = EffectResource.Get("LeftRightLoopMapping");
         }
 
         public void DoUpdate(GameTime time)
@@ -94,8 +94,8 @@ namespace Colin.Modulars.Backgrounds
 
         public void RenderLeftRightLoopBackground(BackgroundLayer layer)
         {
-            Vector3 translateBody = new Vector3(-(Camera.position - CurrentStyle.LoopLayerDrawPosition) * layer.Parallax, 0f);
-            Vector3 translateCenter = new Vector3(Camera.translate, 0f);
+            Vector3 translateBody = new Vector3(-(Camera.Position - CurrentStyle.LoopLayerDrawPosition) * layer.Parallax, 0f);
+            Vector3 translateCenter = new Vector3(Camera.Translate, 0f);
             Vector2 drawCount = new Vector2((float)EngineInfo.ViewWidth / layer.Sprite.Width, (float)EngineInfo.ViewHeight / layer.Sprite.Height);
             Vector2 offset = Vector2.One / layer.Sprite.SizeF;
             layer.Transform = Matrix.CreateTranslation(translateBody) * Matrix.CreateTranslation(translateCenter);

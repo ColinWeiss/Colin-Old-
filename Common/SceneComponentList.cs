@@ -48,7 +48,7 @@ namespace Colin.Common
             sceneMode.DoInitialize( );
             if( sceneMode is IRenderableSceneComponent dwMode )
             {
-                dwMode.Visiable = true;
+                dwMode.Visible = true;
                 RenderableComponents.Add( dwMode );
                 dwMode.InitRenderTarget( );
                 Scene.Game.Window.ClientSizeChanged += dwMode.OnClientSizeChanged;

@@ -47,23 +47,22 @@ namespace Colin.Inputs
         /// <summary>
         /// 当前鼠标状态.
         /// </summary>
-        internal static MouseState State = new MouseState( );
+        public static MouseState State = new MouseState( );
 
         /// <summary>
         /// 上一帧鼠标状态.
         /// </summary>
-        internal static MouseState stateLast = new MouseState( );
+        public static MouseState stateLast = new MouseState( );
 
         /// <summary>
         /// 鼠标位置.
         /// </summary>
-        public Vector2 Position => State.Position.ToVector2( );
+        public static Vector2 Position => State.Position.ToVector2( );
 
         public override void Update( GameTime gameTime )
         {
             stateLast = State;
             State = Mouse.GetState( );
-
             base.Update( gameTime );
         }
     }

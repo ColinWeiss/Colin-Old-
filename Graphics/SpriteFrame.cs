@@ -75,8 +75,6 @@ namespace Colin.Graphics
 
         /// <summary>
         /// 指示该帧格读取的方向.
-        /// <br>纵向: 从上至下.</br>
-        /// <br>横向: 从左至右.</br>
         /// </summary>
         [DataMember]
         public Direction FrameDirection;

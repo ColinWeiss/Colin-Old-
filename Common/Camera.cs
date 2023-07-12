@@ -8,33 +8,37 @@ namespace Colin.Common
 {
     public class Camera
     {
-        public Matrix view;
+        public Matrix View;
 
-        public Matrix projection;
+        public Matrix Projection;
 
-        public Vector2 position;
-        public Vector2 positionLast;
-        public Vector2 translate;
+        public Vector2 Position;
 
-        public float rotation;
+        public Vector2 PositionLast;
 
-        public float zoom;
+        public Vector2 Translate;
 
-        public bool trace = true;
+        public float Rotation;
 
-        public Vector2 velocity;
+        public float Zoom;
 
-        public float rotationVelocity;
+        public bool Trace = true;
 
-        public Vector2 targetPosition;
+        public Vector2 Amount;
 
-        public float targetRotation;
+        public Vector2 Velocity;
+
+        public float RotationVelocity;
+
+        public Vector2 TargetPosition;
+
+        public float TargetRotation;
 
         public bool Enable { get; set; }
 
         public Scene Scene { get; set; }
 
-        public Matrix Transform => view * projection;
+        public Matrix Transform => View * Projection;
 
         private int _width;
         public int Width => _width;
@@ -49,53 +53,53 @@ namespace Colin.Common
         {
             _width = width;
             _height = height;
-            projection = Matrix.CreateOrthographicOffCenter( 0f, width, height, 0f, 0f, 1f );
-            view = Matrix.Identity;
-            translate = Vector2.Zero;
+            Projection = Matrix.CreateOrthographicOffCenter( 0f, width, height, 0f, 0f, 1f );
+            View = Matrix.Identity;
+            Translate = Vector2.Zero;
             ResetCamera( );
         }
         public void DoUpdate( GameTime time )
         {
-            if( trace )
+            if( Trace )
             {
-                velocity = (targetPosition - position) * 0.1f;
-                rotationVelocity = (targetRotation - rotation) * 0.1f;
-                if( Vector2.Distance( targetPosition, position ) < 1 )
-                    position = targetPosition;
-                if( Math.Abs( rotation - rotationVelocity ) < 0.017f )
-                    rotation = rotationVelocity;
+                Velocity = (TargetPosition - Position) * 0.1f;
+                RotationVelocity = (TargetRotation - Rotation) * 0.1f;
+                if( Vector2.Distance( TargetPosition, Position ) < 1 )
+                    Position = TargetPosition;
+                if( Math.Abs( Rotation - RotationVelocity ) < 0.017f )
+                    Rotation = RotationVelocity;
             }
-            rotation += rotationVelocity;
-            positionLast = position;
-            position += velocity;
+            Rotation += RotationVelocity;
+            PositionLast = Position;
+            Position += Velocity + Amount;
+            Amount = Vector2.Zero;
             SetView( );
         }
-
         public void MoveCamera( Vector2 amount )
         {
-            position += amount;
-            targetPosition = position;
+            Amount += amount;
+            TargetPosition = Position + amount;
         }
 
         public void RotateCamera( float amount )
         {
-            rotation += amount;
+            Rotation += amount;
         }
 
         public void ResetCamera( )
         {
-            rotation = 0f;
-            zoom = 1f;
+            Rotation = 0f;
+            Zoom = 1f;
             SetView( );
         }
 
         private void SetView( )
         {
-            Matrix matRotation = Matrix.CreateRotationZ( rotation );
-            Matrix matZoom = Matrix.CreateScale( zoom );
-            Vector3 trCenter = new Vector3( translate, 0f );
-            Vector3 translateBody = new Vector3( -position, 0f );
-            view =
+            Matrix matRotation = Matrix.CreateRotationZ( Rotation );
+            Matrix matZoom = Matrix.CreateScale( Zoom );
+            Vector3 trCenter = new Vector3( Translate, 0f );
+            Vector3 translateBody = new Vector3( -Position, 0f );
+            View =
                 Matrix.CreateTranslation( translateBody ) *
                 matZoom *
                 matRotation *
@@ -105,14 +109,14 @@ namespace Colin.Common
         public Vector2 ConvertScreenToWorld( Vector2 location )
         {
             Vector3 t = new Vector3( location, 0 );
-            t = EngineInfo.Graphics.GraphicsDevice.Viewport.Unproject( t, projection, view, Matrix.Identity );
+            t = EngineInfo.Graphics.GraphicsDevice.Viewport.Unproject( t, Projection, View, Matrix.Identity );
             return new Vector2( t.X, t.Y );
         }
 
         public Vector2 ConvertWorldToScreen( Vector2 location )
         {
             Vector3 t = new Vector3( location, 0 );
-            t = EngineInfo.Graphics.GraphicsDevice.Viewport.Project( t, projection, view, Matrix.Identity );
+            t = EngineInfo.Graphics.GraphicsDevice.Viewport.Project( t, Projection, View, Matrix.Identity );
             return new Vector2( t.X, t.Y );
         }
 

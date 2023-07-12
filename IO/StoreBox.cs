@@ -47,6 +47,5 @@ namespace Colin.IO
             stream.Read( File.ReadAllBytes( filePath ) );
             dict = (Dictionary<string, object>)serializer.ReadObject( stream );
         }
-
     }
 }

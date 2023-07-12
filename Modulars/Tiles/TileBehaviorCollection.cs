@@ -52,6 +52,5 @@ namespace Colin.Modulars.Tiles
         {
             _behaviors[x + y * Width] = new TileBehavior();
         }
-
     }
 }

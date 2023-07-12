@@ -21,7 +21,7 @@ namespace Colin.Common
         /// <summary>
         /// 指示对象是否启用渲染.
         /// </summary>
-        public bool Visiable { get; set; }
+        public bool Visible { get; set; }
 
         public void DoRender( SpriteBatch batch );
 

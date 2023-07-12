@@ -4,7 +4,6 @@ namespace Colin.Inputs
 {
     /// <summary>
     /// 键盘响应器.
-    /// <br>另两个键盘事件请使用 <see cref="Game.Window"/> 中的 <see cref="GameWindow.KeyDown"/> 与 <see cref="GameWindow.KeyUp"/>.</br>
     /// </summary>
     public sealed class KeyboardResponder : GameComponent, ISingleton
     {
@@ -13,16 +12,16 @@ namespace Colin.Inputs
         /// <summary>
         /// 事件: 发生于键盘上任何键单击按下时.
         /// </summary>
-        public EventHandler<KeyboardEventArgs> KeyClickBefore;
+        public static EventHandler<KeyboardEventArgs> KeyClickBefore;
 
         /// <summary>
         /// 事件: 发生于键盘上任何键单击松开时.
         /// </summary>
-        public EventHandler<KeyboardEventArgs> KeyClickAfter;
+        public static EventHandler<KeyboardEventArgs> KeyClickAfter;
 
-        internal KeyboardState keyboardState = new KeyboardState( );
+        public static KeyboardState State = new KeyboardState( );
 
-        internal KeyboardState keyboardStateLast = new KeyboardState( );
+        public static KeyboardState StateLast = new KeyboardState( );
 
         /// <summary>
         /// 当前键盘事件.
@@ -31,11 +30,11 @@ namespace Colin.Inputs
 
         public override void Update( GameTime gameTime )
         {
-            keyboardStateLast = keyboardState;
-            keyboardState = Keyboard.GetState( );
-            KeyboardEvent = new KeyboardEventArgs( keyboardState );
-            Keys[ ] pressedKeysLast = keyboardStateLast.GetPressedKeys( );
-            foreach( Keys key in keyboardState.GetPressedKeys( ) )
+            StateLast = State;
+            State = Keyboard.GetState( );
+            KeyboardEvent = new KeyboardEventArgs( State );
+            Keys[ ] pressedKeysLast = StateLast.GetPressedKeys( );
+            foreach( Keys key in State.GetPressedKeys( ) )
             {
                 if( !pressedKeysLast.Contains( key ) )
                 {
@@ -44,9 +43,9 @@ namespace Colin.Inputs
                     KeyClickBefore?.Invoke( this, KeyboardEvent );
                 }
             }
-            foreach( Keys keyLast in keyboardStateLast.GetPressedKeys( ) )
+            foreach( Keys keyLast in StateLast.GetPressedKeys( ) )
             {
-                if( keyboardState.IsKeyUp( keyLast ) && keyboardStateLast.IsKeyDown( keyLast ) )
+                if( State.IsKeyUp( keyLast ) && StateLast.IsKeyDown( keyLast ) )
                 {
                     KeyboardEvent.name = "Event.Keyboard.KeyClickAfter";
                     KeyboardEvent.Keys = keyLast;
@@ -56,13 +55,13 @@ namespace Colin.Inputs
             base.Update( gameTime );
         }
 
-        public bool IsKeyDown( Keys keys ) => keyboardState.IsKeyDown( keys );
+        public static bool IsKeyDown( Keys keys ) => State.IsKeyDown( keys );
 
-        public bool IsKeyUp( Keys keys ) => keyboardState.IsKeyUp( keys );
+        public static bool IsKeyUp( Keys keys ) => State.IsKeyUp( keys );
 
-        public bool IsKeyClickBefore( Keys keys ) => keyboardStateLast.IsKeyUp( keys ) && keyboardState.IsKeyDown( keys );
+        public static bool IsKeyClickBefore( Keys keys ) => StateLast.IsKeyUp( keys ) && State.IsKeyDown( keys );
 
-        public bool IsKeyClickAfter( Keys keys ) => keyboardStateLast.IsKeyDown( keys ) && keyboardState.IsKeyUp( keys );
+        public static bool IsKeyClickAfter( Keys keys ) => StateLast.IsKeyDown( keys ) && State.IsKeyUp( keys );
 
     }
 }

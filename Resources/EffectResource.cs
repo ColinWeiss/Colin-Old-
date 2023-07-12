@@ -30,7 +30,7 @@
         /// </summary>
         /// <param name="path">路径.</param>
         /// <returns>着色器.</returns>
-        public static Effect GetAsset( string path )
+        public static Effect Get( string path )
         {
             Effect _texture;
             if( Effects.TryGetValue( string.Concat( "Effects/", path ), out _texture ) )
@@ -42,6 +42,5 @@
                 return _texture;
             }
         }
-
     }
 }
