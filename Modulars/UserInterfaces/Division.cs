@@ -126,6 +126,7 @@ namespace Colin.Modulars.UserInterfaces
             if( InitializationCompleted )
                 return;
             OnInit( );
+            Controller?.OnInit( );
             _renderer?.RendererInit( );
             if( Parent != null )
                 Layout.Calculation( Parent.Layout ); //刷新一下.

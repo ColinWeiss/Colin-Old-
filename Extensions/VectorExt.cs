@@ -239,7 +239,7 @@
         /// <param name="i"></param>
         /// <param name="maxi"></param>
         /// <returns></returns>
-        public static Vector2 GetCloserVector2( this ref Vector2 current, Vector2 target, float i, float maxi )
+        public static Vector2 Closer( this ref Vector2 current, Vector2 target, float i, float maxi )
         {
             float x = current.X;
             float y = current.Y;
