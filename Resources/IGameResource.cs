@@ -20,7 +20,7 @@ namespace Colin.Resources
         /// <summary>
         /// 加载资源.
         /// </summary>
-        public void LoadResource( );
+        public void Load( );
 
         /// <summary>
         /// 整理路径.
@@ -33,8 +33,8 @@ namespace Colin.Resources
             _result = GameDataFile.ArrangementPath( path );
             _result = _result.Replace( ".xnb", "" );
             _result = _result.Replace( string.Concat( EngineInfo.Engine.Content.RootDirectory, "/" ), "" );
+            _result = _result.Replace( string.Concat( EngineInfo.Engine.Content.RootDirectory, "\\" ), "" );
             return _result;
         }
-
     }
 }

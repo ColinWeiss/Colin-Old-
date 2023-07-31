@@ -81,7 +81,7 @@ namespace Colin
         protected override sealed void Initialize( )
         {
             EngineInfo.SpriteBatch = new SpriteBatch( EngineInfo.Graphics.GraphicsDevice );
-            Preloader.LoadResources( );
+            PreLoader.LoadResources( );
             EngineInfo.Config = new Config( );
             EngineInfo.Config.Load( );
             TargetElapsedTime = new TimeSpan( 0, 0, 0, 0, (int)Math.Round( 1000f / TargetFrame ) );
@@ -128,7 +128,7 @@ namespace Colin
             if( ControllerResponder.state.IsConnected )
             {
                 EngineInfo.SpriteBatch.Begin( );
-                EngineInfo.SpriteBatch.Draw( PreloadResource.ControllerCursor.Source, Input.InteractionPoint - Vector2.One * 8 , Color.White );
+                EngineInfo.SpriteBatch.Draw( PreLoadResource.ControllerCursor.Source, Input.InteractionPoint - Vector2.One * 8 , Color.White );
                 EngineInfo.SpriteBatch.End( );
             }
         }

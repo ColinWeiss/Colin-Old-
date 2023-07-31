@@ -12,9 +12,19 @@ namespace Colin.Modulars.UserInterfaces.Controllers
         /// 指示项间隔.
         /// </summary>
         public int DivInterval = 0;
+        /// <summary>
+        /// 方向.
+        /// </summary>
         public Direction Direction = Direction.Portrait;
+        /// <summary>
+        /// 对齐方式.
+        /// </summary>
         public Direction Alignment = Direction.Center;
+        /// <summary>
+        /// 朝向.
+        /// </summary>
         public Direction Toward = Direction.Down;
+        public Vector2 Scroll;
         public LinearMenuController( Division division ) : base( division ) { }
         public override void Layout( ref LayoutStyle layout )
         {
@@ -64,7 +74,7 @@ namespace Colin.Modulars.UserInterfaces.Controllers
             switch( Alignment )
             {
                 case Direction.Left:
-                    division.Layout.Left = 0;
+                    division.Layout.Left = (int)Scroll.X;
                     break;
                 case Direction.Right:
                     division.Layout.Left = division.Parent.Layout.Width - division.Layout.Width;
@@ -94,7 +104,7 @@ namespace Colin.Modulars.UserInterfaces.Controllers
             switch( Alignment )
             {
                 case Direction.Up:
-                    division.Layout.Top = 0;
+                    division.Layout.Top = (int)Scroll.Y;
                     break;
                 case Direction.Down:
                     division.Layout.Top = division.Parent.Layout.Height - division.Layout.Height;

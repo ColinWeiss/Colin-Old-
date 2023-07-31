@@ -32,5 +32,13 @@ namespace Colin.Modulars.UserInterfaces
         /// 在此处进行容器初始化操作.
         /// </summary>
         public virtual void ContainerInitialize( ) { }
+        public void SetTop( Division division )
+        {
+            if( Children.Contains( division ) )
+            {
+                Children.Remove( division );
+                Children.Add( division );
+            }
+        }
     }
 }

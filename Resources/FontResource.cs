@@ -9,14 +9,13 @@ namespace Colin.Resources
 
         public static FontSystem GlowSans { get; private set; }
 
-        public void PreLoadResource( )
+        public void PreLoad( )
         {
             Unifont = new FontSystem( );
             Unifont.AddFont( ProgramResources.Unifont );
 
             GlowSans = new FontSystem( );
             GlowSans.AddFont( ProgramResources.GlowSansSC_Normal_Medium );
-
         }
     }
 }

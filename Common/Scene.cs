@@ -9,6 +9,8 @@ namespace Colin.Common
     /// </summary>
     public class Scene : DrawableGameComponent
     {
+        public SceneCamera SceneCamera;
+
         private SceneComponentList _components;
         /// <summary>
         /// 获取场景组件列表.
@@ -35,6 +37,7 @@ namespace Colin.Common
                 InitRenderTarget( this, new EventArgs( ) );
                 Game.Window.ClientSizeChanged += InitRenderTarget;
                 _components = new SceneComponentList( this );
+                _components.Add( SceneCamera = new SceneCamera( ) );
                 SceneInit( );
             }
             else

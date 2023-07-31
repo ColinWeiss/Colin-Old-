@@ -50,7 +50,7 @@ namespace Colin.Modulars.Backgrounds
 
         public void DoInitialize()
         {
-            _screenMap = PreloadResource.Pixel.Source;
+            _screenMap = PreLoadResource.Pixel.Source;
             LeftRightLoopEffect = EffectResource.Get("LeftRightLoopMapping");
         }
 

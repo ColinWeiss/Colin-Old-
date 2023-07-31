@@ -53,10 +53,18 @@ namespace Colin.Modulars.UserInterfaces
             }
         }
 
-        public Point Location => new Point(Left, Top);
-        public Point TotalLocation => new Point(TotalLeft, TotalTop);
-        public Vector2 LocationF => new Vector2(Left, Top);
-        public Vector2 TotalLocationF => new Vector2(TotalLeft, TotalTop);
+        public Point Location
+        {
+            get => new Point( Left, Top );
+            set
+            {
+                Left = value.X;
+                Top = value.Y;
+            }
+        }
+        public Point TotalLocation => new Point( TotalLeft, TotalTop );
+        public Vector2 LocationF => new Vector2( Left, Top );
+        public Vector2 TotalLocationF => new Vector2( TotalLeft, TotalTop );
 
         public int Width;
         private float _relativeWidth;
@@ -88,38 +96,85 @@ namespace Colin.Modulars.UserInterfaces
             }
         }
 
-        public Point Size => new Point(Width, Height);
-        public Vector2 SizeF => new Vector2(Width, Height);
+        public Point Size => new Point( Width, Height );
+        public Vector2 SizeF
+        {
+            get => new Vector2( Width, Height );
+            set
+            {
+                Width = (int)value.X;
+                Height = (int)value.Y;
+            }
+        }
 
-        public Rectangle HitBox => new Rectangle(Left, Top, Width, Height);
+        public Point Half => new Point( Width / 2, Height / 2 );
+        public Vector2 HalfF => new Vector2( Width / 2, Height / 2 );
 
-        public Rectangle TotalHitBox => new Rectangle(TotalLeft, TotalTop, Width, Height);
+        public Rectangle HitBox => new Rectangle( Left, Top, Width, Height );
+
+        public Rectangle TotalHitBox => new Rectangle( TotalLeft, TotalTop, Width, Height );
 
         public Matrix CanvasTransform =>
-                Matrix.CreateTranslation(new Vector3(-new Vector2(TotalLeft, TotalTop), 0f)) *
-                Matrix.CreateScale(1f) *
-                Matrix.CreateRotationZ(0f) *
-                Matrix.CreateTranslation(new Vector3(Vector2.Zero, 0f));
+                Matrix.CreateTranslation( new Vector3( -new Vector2( TotalLeft, TotalTop ), 0f ) ) *
+                Matrix.CreateScale( 1f ) *
+                Matrix.CreateRotationZ( 0f ) *
+                Matrix.CreateTranslation( new Vector3( Vector2.Zero, 0f ) );
+
+        /// <summary>
+        /// 启用剪裁.
+        /// </summary>
+        public bool ScissorEnable;
+
+        private bool scissorDefault;
+        private Rectangle _scissor;
+        /// <summary>
+        /// 指示要进行剪裁的范围.
+        /// </summary>
+        public Rectangle Scissor
+        {
+            get
+            {
+                if( _scissor == Rectangle.Empty )
+                    scissorDefault = true;
+                return _scissor;
+            }
+            set
+            {
+                scissorDefault = false;
+                _scissor = value;
+            }
+        }
+
+        public bool IsCanvas { get; internal set; }
 
         /// <summary>
         /// 对样式进行计算.
         /// </summary>
         /// <param name="parent"></param>
-        public void Calculation(LayoutStyle parent)
+        public void Calculation( LayoutStyle parent )
         {
             TotalLeft = parent.TotalLeft + Left + parent.PaddingLeft;
             TotalTop = parent.TotalTop + Top + parent.PaddingTop;
-            if (_needRefreshSizeRelative)
+            if( _needRefreshSizeRelative )
             {
                 Width = (int)(parent.Width * RelativeWidth);
                 Height = (int)(parent.Height * RelativeHeight);
                 _needRefreshSizeRelative = false;
             }
-            if (_needRefreshLocationRelative)
+            if( _needRefreshLocationRelative )
             {
                 Left = (int)(parent.Left * RelativeLeft);
                 Top = (int)(parent.Top * RelativeTop);
                 _needRefreshLocationRelative = false;
+            }
+            if( ScissorEnable && scissorDefault )
+            {
+                _scissor = TotalHitBox;
+            }
+            if( IsCanvas )
+            {
+                _scissor.X = 0;
+                _scissor.Y = 0;
             }
         }
     }

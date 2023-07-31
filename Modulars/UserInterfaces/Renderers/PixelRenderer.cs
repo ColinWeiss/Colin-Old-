@@ -13,13 +13,13 @@ namespace Colin.Modulars.UserInterfaces.Renderers
         private Sprite _pixel;
         public override void RendererInit( )
         {
-            _pixel = PreloadResource.Pixel;
+            _pixel = PreLoadResource.Pixel;
         }
         public override void DoRender( SpriteBatch batch )
         {
             batch.Draw(
               _pixel.Source,
-              Division.Layout.TotalLocationF,
+              Division.Layout.TotalLocationF + Division.Design.Anchor,
               Division.Layout.TotalHitBox,
               Division.Design.Color,
               Division.Design.Rotation,

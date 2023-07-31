@@ -1,4 +1,6 @@
-﻿namespace Colin.Graphics
+﻿using Colin.Resources;
+
+namespace Colin.Graphics
 {
     /// <summary>
     /// 标识一张Sprite.
@@ -39,6 +41,8 @@
         /// </summary>
         public float Depth { get; internal set; }
 
+        public string Name => Source.Name;
+
         private void AddThisToGraphicCoreSpritePool( )
         {
             if( SpritePool.Instance.ContainsKey( Source.Name ))
@@ -55,6 +59,22 @@
         {
             Source = texture;
             AddThisToGraphicCoreSpritePool( );
+        }
+
+        public static Sprite Get( Texture2D texture )
+        {
+            if( SpritePool.Instance.TryGetValue( texture.Name, out Sprite sprite ) )
+                return sprite;
+            else
+                return new Sprite( texture );
+        }
+
+        public static Sprite Get( string path )
+        {
+            if ( SpritePool.Instance.TryGetValue( string.Concat( "Textures\\", path ), out Sprite sprite ) )
+                return sprite;
+            else
+                return new Sprite( TextureResource.Get( path ) );
         }
     }
 }

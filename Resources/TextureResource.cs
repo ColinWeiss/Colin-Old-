@@ -13,7 +13,7 @@ namespace Colin.Resources
 
         public static Dictionary<string, Texture2D> Textures { get; set; } = new Dictionary<string, Texture2D>( );
 
-        public void LoadResource( )
+        public void Load( )
         {
             if( !Directory.Exists( string.Concat( EngineInfo.Engine.Content.RootDirectory, "/Textures" ) ) )
                 return;

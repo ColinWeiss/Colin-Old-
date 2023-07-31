@@ -2,7 +2,7 @@
 
 namespace Colin.Resources
 {
-    public sealed class Preloader
+    public sealed class PreLoader
     {
         public static void LoadResources( )
         {
@@ -11,7 +11,7 @@ namespace Colin.Resources
                 if( item.GetInterfaces( ).Contains( typeof( IPreloadGameResource ) ) && !item.IsAbstract )
                 {
                     IPreloadGameResource asset = (IPreloadGameResource)Activator.CreateInstance( item );
-                    asset.PreLoadResource( );
+                    asset.PreLoad( );
                 }
             }
             foreach( Type item in Assembly.GetEntryAssembly( ).GetTypes( ) )
@@ -19,7 +19,7 @@ namespace Colin.Resources
                 if( item.GetInterfaces( ).Contains( typeof( IPreloadGameResource ) ) && !item.IsAbstract )
                 {
                     IPreloadGameResource asset = (IPreloadGameResource)Activator.CreateInstance( item );
-                    asset.PreLoadResource( );
+                    asset.PreLoad( );
                 }
             }
         }

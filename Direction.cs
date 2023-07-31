@@ -2,7 +2,13 @@
 {
     public enum Direction
     {
+        /// <summary>
+        /// 纵向.
+        /// </summary>
         Portrait,
+        /// <summary>
+        /// 横向.
+        /// </summary>
         Transverse,
         Left,
         Right,

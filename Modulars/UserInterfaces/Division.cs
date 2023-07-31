@@ -3,7 +3,6 @@ using Colin.Inputs;
 using Microsoft.VisualBasic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,11 +32,6 @@ namespace Colin.Modulars.UserInterfaces
         /// 划分元素的布局样式
         /// </summary>
         public LayoutStyle Layout;
-
-        /// <summary>
-        /// 划分元素的剪裁样式.
-        /// </summary>
-        public ScissorStyle ScissorStyle;
 
         /// <summary>
         /// 划分元素的交互样式.
@@ -206,7 +200,12 @@ namespace Colin.Modulars.UserInterfaces
         /// <param name="time">游戏计时状态快照.</param>
         public virtual void UpdateChildren( GameTime time )
         {
-            Children.ForEach( child => { child?.DoUpdate( time ); } );
+            Children.ForEach( child => {
+                if( Layout.ScissorEnable && child.Layout.TotalHitBox.Intersects( Layout.TotalHitBox ) )
+                    child?.DoUpdate( time );
+                else
+                    child?.DoUpdate( time );
+            } );
         }
 
         /// <summary>
@@ -222,33 +221,24 @@ namespace Colin.Modulars.UserInterfaces
                 batch.End( );
                 EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( Canvas );
                 batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Layout.CanvasTransform );
+                EngineInfo.Graphics.GraphicsDevice.Clear( Color.Transparent );
             }
-            var overflowHiddenRasterizerState = new RasterizerState
+            var rasterizerState = new RasterizerState
             {
                 CullMode = CullMode.None,
                 ScissorTestEnable = true
             };
-            var gd = batch.GraphicsDevice;
-            var scissorRectangle = gd.ScissorRectangle;
-            if( ScissorStyle.Enable )
+            if( Layout.ScissorEnable )
             {
                 batch.End( );
-                batch.GraphicsDevice.RasterizerState = overflowHiddenRasterizerState;
-                if( ScissorStyle.Scissor != Rectangle.Empty )
-                    gd.ScissorRectangle = Rectangle.Intersect( gd.ScissorRectangle, ScissorStyle.Scissor );
+                EngineInfo.Graphics.GraphicsDevice.ScissorRectangle = Layout.Scissor;
+                if( IsCanvas )
+                    batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, rasterizerState: rasterizerState, transformMatrix: Layout.CanvasTransform );
                 else
-                    gd.ScissorRectangle = Rectangle.Intersect( gd.ScissorRectangle, Layout.TotalHitBox );
-                batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, overflowHiddenRasterizerState );
+                    batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, rasterizerState: rasterizerState );
             }
             _renderer?.DoRender( batch );//渲染器进行渲染.
             RenderChildren( batch );
-            if( ScissorStyle.Enable )
-            {
-                batch.End( );
-                gd.RasterizerState = overflowHiddenRasterizerState;
-                gd.ScissorRectangle = scissorRectangle;
-                batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, overflowHiddenRasterizerState );
-            }
             if( IsCanvas )
             {
                 batch.End( );
@@ -266,7 +256,12 @@ namespace Colin.Modulars.UserInterfaces
         /// <param name="time">游戏计时状态快照.</param>
         public virtual void RenderChildren( SpriteBatch spriteBatch )
         {
-            Children.ForEach( child => { child?.DoRender( spriteBatch ); } );
+            Children.ForEach( child => { 
+                if( Layout.ScissorEnable && child.Layout.TotalHitBox.Intersects( Layout.TotalHitBox ) )
+                    child?.DoRender( spriteBatch );
+                else
+                    child?.DoRender( spriteBatch );
+            } );
         }
 
         /// <summary>
@@ -322,35 +317,11 @@ namespace Colin.Modulars.UserInterfaces
         }
 
         /// <summary>
-		/// 获取裁切过的碰撞箱.
-		/// </summary>
-		/// <returns>裁切过的碰撞箱.</returns>
-		public virtual Rectangle GetScissorCalculation( )
-        {
-            if( Parent == null )
-                return Rectangle.Intersect( new Rectangle( 0, 0, EngineInfo.ViewWidth, EngineInfo.ViewHeight ), Layout.HitBox );
-            return Rectangle.Intersect( Rectangle.Intersect( Layout.HitBox, Parent.ScissorStyle.Scissor ), Parent.GetScissorCalculation( ) );
-        }
-
-        /// <summary>
-		/// 获取此元素与父元素是否开启溢出隐藏的值.
-		/// </summary>
-		/// <returns>如果有则返回 <see langword="true"/>，否则返回 <see langword="false"/>.</returns>
-		public bool GetDivsHidden( )
-        {
-            if( ScissorStyle.Enable )
-                return true;
-            if( Parent == null )
-                return false;
-            return Parent.GetDivsHidden( );
-        }
-
-        /// <summary>
 		/// 判断该划分元素是否包含指定点.
 		/// </summary>
 		/// <param name="point">输入的点.</param>
 		/// <returns>如果包含则返回 <see langword="true"/>，否则返回 <see langword="false"/>.</returns>
-		public virtual bool ContainsPoint( Point point ) => (GetDivsHidden( ) ? GetScissorCalculation( ) : Layout.TotalHitBox).Contains( point );
+		public virtual bool ContainsPoint( Point point ) => Layout.TotalHitBox.Contains( point );
 
         /// <summary>
         /// 返回该划分元素下最先可进行交互的元素.

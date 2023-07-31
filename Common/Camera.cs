@@ -20,7 +20,7 @@ namespace Colin.Common
 
         public float Rotation;
 
-        public float Zoom;
+        public Vector2 Zoom;
 
         public bool Trace = true;
 
@@ -89,14 +89,14 @@ namespace Colin.Common
         public void ResetCamera( )
         {
             Rotation = 0f;
-            Zoom = 1f;
+            Zoom = Vector2.One;
             SetView( );
         }
 
         private void SetView( )
         {
             Matrix matRotation = Matrix.CreateRotationZ( Rotation );
-            Matrix matZoom = Matrix.CreateScale( Zoom );
+            Matrix matZoom = Matrix.CreateScale( Zoom.X, Zoom.Y , 1f );
             Vector3 trCenter = new Vector3( Translate, 0f );
             Vector3 translateBody = new Vector3( -Position, 0f );
             View =

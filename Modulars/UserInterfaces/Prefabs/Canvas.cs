@@ -24,5 +24,10 @@ namespace Colin.Modulars.UserInterfaces.Prefabs
             Canvas?.Dispose( );
             Canvas = RenderTargetExt.CreateDefault( width, height );
         }
+        public override void OnUpdate( GameTime time )
+        {
+            Layout.IsCanvas = IsCanvas;
+            base.OnUpdate( time );
+        }
     }
 }
