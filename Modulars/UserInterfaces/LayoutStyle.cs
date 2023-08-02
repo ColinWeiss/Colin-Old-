@@ -170,6 +170,8 @@ namespace Colin.Modulars.UserInterfaces
             if( ScissorEnable && scissorDefault )
             {
                 _scissor = TotalHitBox;
+                if( parent.IsCanvas )
+                    _scissor = HitBox;
             }
             if( IsCanvas )
             {

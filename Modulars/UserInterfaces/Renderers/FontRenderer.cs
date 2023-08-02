@@ -26,7 +26,7 @@ namespace Colin.Modulars.UserInterfaces.Renderers
         public override void RendererInit( )
         {
             if( Font == null )
-                Font = FontResource.GlowSans.GetFont( 16 );
+                Font = FontResource.Unifont.GetFont( 16 );
         }
         public override void DoRender( SpriteBatch batch )
         {

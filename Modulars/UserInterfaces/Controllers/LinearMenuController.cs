@@ -25,11 +25,11 @@ namespace Colin.Modulars.UserInterfaces.Controllers
         /// </summary>
         public Direction Toward = Direction.Down;
         public Vector2 Scroll;
+        public Point TotalSize;
         public LinearMenuController( Division division ) : base( division ) { }
         public override void Layout( ref LayoutStyle layout )
         {
-            Division.Layout.Width = 0;
-            Division.Layout.Height = 0;
+            TotalSize = Point.Zero;
             Division.ForEach( CalculateLayout );
             if( Direction == Direction.Portrait )
                 Division.ForEach( Portrait );
@@ -44,14 +44,14 @@ namespace Colin.Modulars.UserInterfaces.Controllers
             switch( Direction )
             {
                 case Direction.Portrait:
-                    if( Division.Layout.Width < division.Layout.Width )
-                        Division.Layout.Width = division.Layout.Width;
-                    Division.Layout.Height += division.Layout.Height + DivInterval;
+                    if( TotalSize.X < division.Layout.Width )
+                        TotalSize.X = division.Layout.Width;
+                    TotalSize.Y += division.Layout.Height + DivInterval;
                     break;
                 case Direction.Transverse:
-                    if( Division.Layout.Height < division.Layout.Height )
-                        Division.Layout.Height = division.Layout.Height;
-                    Division.Layout.Width += division.Layout.Width + DivInterval;
+                    if( TotalSize.Y < division.Layout.Height )
+                        TotalSize.Y = division.Layout.Height;
+                    TotalSize.X += division.Layout.Width + DivInterval;
                     break;
             }
         }
@@ -70,7 +70,7 @@ namespace Colin.Modulars.UserInterfaces.Controllers
                 }
             }
             else if( Toward == Direction.Up )
-                division.Layout.Top = Division.Layout.Height - division.Layout.Height;
+                division.Layout.Top = TotalSize.Y - division.Layout.Height;
             switch( Alignment )
             {
                 case Direction.Left:
@@ -80,7 +80,7 @@ namespace Colin.Modulars.UserInterfaces.Controllers
                     division.Layout.Left = division.Parent.Layout.Width - division.Layout.Width;
                     break;
                 case Direction.Center:
-                    division.Layout.Left = Division.Layout.Width / 2 - division.Layout.Width / 2;
+                    division.Layout.Left = TotalSize.X / 2 - division.Layout.Width / 2;
                     break;
             }
             lastDiv = division;

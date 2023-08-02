@@ -79,6 +79,11 @@ namespace Colin.Modulars.UserInterfaces
         public Division Parent;
 
         /// <summary>
+        /// 划分元素可溯到的最近的 Canvas 元素.
+        /// </summary>
+        public Division ParentCanvas;
+
+        /// <summary>
         /// 划分元素的子元素列表.
         /// </summary>
         public List<Division> Children;
@@ -87,6 +92,9 @@ namespace Colin.Modulars.UserInterfaces
 
         internal UserInterface _interface;
         public UserInterface Interface => _interface;
+
+        internal Container _container;
+        public Container Container => _container;
 
         public virtual bool IsCanvas => false;
 
@@ -200,7 +208,8 @@ namespace Colin.Modulars.UserInterfaces
         /// <param name="time">游戏计时状态快照.</param>
         public virtual void UpdateChildren( GameTime time )
         {
-            Children.ForEach( child => {
+            Children.ForEach( child =>
+            {
                 if( Layout.ScissorEnable && child.Layout.TotalHitBox.Intersects( Layout.TotalHitBox ) )
                     child?.DoUpdate( time );
                 else
@@ -233,9 +242,9 @@ namespace Colin.Modulars.UserInterfaces
                 batch.End( );
                 EngineInfo.Graphics.GraphicsDevice.ScissorRectangle = Layout.Scissor;
                 if( IsCanvas )
-                    batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, rasterizerState: rasterizerState, transformMatrix: Layout.CanvasTransform );
+                    batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Layout.CanvasTransform );
                 else
-                    batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, rasterizerState: rasterizerState );
+                    batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: ParentCanvas?.Layout.CanvasTransform );
             }
             _renderer?.DoRender( batch );//渲染器进行渲染.
             RenderChildren( batch );
@@ -244,10 +253,19 @@ namespace Colin.Modulars.UserInterfaces
                 batch.End( );
                 if( Parent.IsCanvas )
                     EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( Parent.Canvas );
+                if( ParentCanvas != null )
+                    EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( ParentCanvas.Canvas );
                 else
                     EngineInfo.Graphics.GraphicsDevice.SetRenderTarget( Interface.SceneRt );
-                batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp );
-                batch.Draw( Canvas, Layout.LocationF + Design.Anchor, null, Design.Color, 0f, Design.Anchor, Design.Scale, SpriteEffects.None, 0f );
+
+                //     batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp );
+                if( Parent.IsCanvas )
+                    batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Parent.Layout.CanvasTransform );
+                else if( ParentCanvas != null )
+                    batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: ParentCanvas.Layout.CanvasTransform );
+                else
+                    batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp );
+                batch.Draw( Canvas, Layout.TotalLocationF + Design.Anchor, null, Design.Color, 0f, Design.Anchor, Design.Scale, SpriteEffects.None, 0f );
             }
         }
         /// <summary>
@@ -256,11 +274,12 @@ namespace Colin.Modulars.UserInterfaces
         /// <param name="time">游戏计时状态快照.</param>
         public virtual void RenderChildren( SpriteBatch spriteBatch )
         {
-            Children.ForEach( child => { 
-                if( Layout.ScissorEnable && child.Layout.TotalHitBox.Intersects( Layout.TotalHitBox ) )
-                    child?.DoRender( spriteBatch );
-                else
-                    child?.DoRender( spriteBatch );
+            Children.ForEach( child =>
+            {
+                //   if( Layout.ScissorEnable && child.Layout.TotalHitBox.Intersects( Layout.TotalHitBox ) )
+                //       child?.DoRender( spriteBatch );
+                //    else
+                child?.DoRender( spriteBatch );
             } );
         }
 
@@ -281,7 +300,11 @@ namespace Colin.Modulars.UserInterfaces
                 division.Layout.Calculation( Layout );
             }
             Children.Add( division );
-            division._interface = Interface;
+            division.ParentCanvas = ParentCanvas;
+            if( IsCanvas )
+                division.ParentCanvas = this;
+            division._interface = _interface;
+            division._container = _container;
             return true;
         }
 
@@ -295,6 +318,9 @@ namespace Colin.Modulars.UserInterfaces
             if( element == null || !Children.Contains( element ) || element.Parent == null )
                 return false;
             element.Parent = null;
+            element.ParentCanvas = null;
+            element._container = null;
+            element._interface = null;
             return Children.Remove( element );
         }
 

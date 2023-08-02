@@ -13,9 +13,15 @@ namespace Colin.Modulars.UserInterfaces.Prefabs
         public FontRenderer FontRenderer;
         public override void OnInit( )
         {
-            FontRenderer = BindRenderer<FontRenderer>( );
+            if( FontRenderer == null )
+                FontRenderer = BindRenderer<FontRenderer>( );
             base.OnInit( );
         }
-        public void SetText( string text ) => FontRenderer.Text = text;
+        public void SetText( string text )
+        {
+            if( FontRenderer == null )
+                FontRenderer = BindRenderer<FontRenderer>( );
+            FontRenderer.Text = text;
+        }
     }
 }

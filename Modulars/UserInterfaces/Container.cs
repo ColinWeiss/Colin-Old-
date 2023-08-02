@@ -40,5 +40,15 @@ namespace Colin.Modulars.UserInterfaces
                 Children.Add( division );
             }
         }
+        public override bool Register( Division division, bool doInit = false )
+        {
+            if( base.Register( division, doInit ) )
+            {
+                division._container = this;
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }
