@@ -21,6 +21,9 @@ namespace Colin
         public ResourceLoader ResourceLoader { get; private set; }
 
         private int _targetFrame = 60;
+        /// <summary>
+        /// 指示程序目标帧率.
+        /// </summary>
         public int TargetFrame
         {
             get => _targetFrame;
