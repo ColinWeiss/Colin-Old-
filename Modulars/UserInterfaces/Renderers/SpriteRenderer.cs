@@ -24,7 +24,15 @@ namespace Colin.Modulars.UserInterfaces.Renderers
                 SpriteEffects.None, 
                 _sprite.Depth );
         }
-        public void Bind( Sprite sprite ) => _sprite = sprite;
-        public void Bind( Texture2D texture ) => _sprite = new Sprite( texture );
+        public SpriteRenderer Bind( Sprite sprite )
+        {
+            _sprite = sprite;
+            return this;
+        }
+        public SpriteRenderer Bind( Texture2D texture )
+        {
+            _sprite = new Sprite( texture );
+            return this;
+        }
     }
 }
