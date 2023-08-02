@@ -166,6 +166,11 @@ namespace Colin.Modulars.UserInterfaces
                 Layout.Left = _resultLocation.X;
                 Layout.Top = _resultLocation.Y;
             }
+            if( Interact.IsDraggable && Interact.DragLimit != Rectangle.Empty )
+            {
+                Layout.Left = Math.Clamp( Layout.Left , 0 , Interact.DragLimit.Width - Layout.Width );
+                Layout.Top = Math.Clamp( Layout.Top, 0, Interact.DragLimit.Height - Layout.Height );
+            }
         }
         private void Container_DragEnd( object o, DivisionEvent e )
         {
@@ -242,7 +247,9 @@ namespace Colin.Modulars.UserInterfaces
                 batch.End( );
                 EngineInfo.Graphics.GraphicsDevice.ScissorRectangle = Layout.Scissor;
                 if( IsCanvas )
-                    batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Layout.CanvasTransform );
+                    batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, rasterizerState: rasterizerState, transformMatrix: Layout.CanvasTransform );
+                else if( ParentCanvas == null )
+                    batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, rasterizerState: rasterizerState );
                 else
                     batch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: ParentCanvas?.Layout.CanvasTransform );
             }

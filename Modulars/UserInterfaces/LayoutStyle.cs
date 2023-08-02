@@ -114,6 +114,9 @@ namespace Colin.Modulars.UserInterfaces
 
         public Rectangle TotalHitBox => new Rectangle( TotalLeft, TotalTop, Width, Height );
 
+        public Rectangle InputBox;
+
+
         public Matrix CanvasTransform =>
                 Matrix.CreateTranslation( new Vector3( -new Vector2( TotalLeft, TotalTop ), 0f ) ) *
                 Matrix.CreateScale( 1f ) *

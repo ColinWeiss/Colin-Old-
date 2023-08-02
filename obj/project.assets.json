@@ -412,6 +412,30 @@
           "build/MonoGame.Framework.WindowsDX.targets": {}
         }
       },
+      "MonoGame.IMEHelper.Common/0.9.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/MonoGame.IMEHelper.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/MonoGame.IMEHelper.Common.dll": {}
+        }
+      },
+      "MonoGame.IMEHelper.WindowsDX/0.10.0": {
+        "type": "package",
+        "dependencies": {
+          "MonoGame.IMEHelper.Common": "0.9.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/MonoGame.IMEHelper.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/MonoGame.IMEHelper.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      },
       "NETStandard.Library/1.6.0": {
         "type": "package",
         "dependencies": {
@@ -3050,6 +3074,30 @@
         "lib/net6.0-windows7.0/MonoGame.Framework.dll",
         "monogame.framework.windowsdx.3.8.1.303.nupkg.sha512",
         "monogame.framework.windowsdx.nuspec"
+      ]
+    },
+    "MonoGame.IMEHelper.Common/0.9.0": {
+      "sha512": "wsoMb8ozAaqJ9AnLjmjTO+ANDbBYORZP1S2AN2ZF1/jGNIHZU4+5TbXOLBPkKfP2lCKAVpxe3XCCo1AzdyouUA==",
+      "type": "package",
+      "path": "monogame.imehelper.common/0.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/MonoGame.IMEHelper.Common.dll",
+        "monogame.imehelper.common.0.9.0.nupkg.sha512",
+        "monogame.imehelper.common.nuspec"
+      ]
+    },
+    "MonoGame.IMEHelper.WindowsDX/0.10.0": {
+      "sha512": "6XCvN71VbkH1e0JG6vAIEMSOSoolLwUEd9W/+PI69qUyuRNcoQ9wl4HCsR27wkDCbFq2LIIrUqIosbOTACwG/w==",
+      "type": "package",
+      "path": "monogame.imehelper.windowsdx/0.10.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netcoreapp3.1/MonoGame.IMEHelper.dll",
+        "monogame.imehelper.windowsdx.0.10.0.nupkg.sha512",
+        "monogame.imehelper.windowsdx.nuspec"
       ]
     },
     "NETStandard.Library/1.6.0": {
@@ -7642,7 +7690,8 @@
     "net7.0-windows7.0": [
       "FontStashSharp.MonoGame >= 1.2.8",
       "MonoGame.Content.Builder.Task >= 3.8.1.303",
-      "MonoGame.Framework.WindowsDX >= 3.8.1.303"
+      "MonoGame.Framework.WindowsDX >= 3.8.1.303",
+      "MonoGame.IMEHelper.WindowsDX >= 0.10.0"
     ]
   },
   "packageFolders": {
@@ -7701,6 +7750,10 @@
           "MonoGame.Framework.WindowsDX": {
             "target": "Package",
             "version": "[3.8.1.303, )"
+          },
+          "MonoGame.IMEHelper.WindowsDX": {
+            "target": "Package",
+            "version": "[0.10.0, )"
           }
         },
         "imports": [

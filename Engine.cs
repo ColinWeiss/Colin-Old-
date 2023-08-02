@@ -30,8 +30,7 @@ namespace Colin
         public Engine( )
         {
             ProgramCheck.DoCheck( );
-            if( EngineInfo.Engine == null )
-                EngineInfo.Engine = this;
+            EngineInfo.Init( this );
             if( EngineInfo.Graphics == null )
             {
                 EngineInfo.Graphics = new GraphicsDeviceManager( this )
@@ -68,7 +67,6 @@ namespace Colin
                 Components.Remove( CurrentScene );
             }
             Components.Clear( );
-            Components.Add( Singleton<TextInputResponder>.Instance );
             Components.Add( Singleton<ControllerResponder>.Instance );
             Components.Add( Singleton<MouseResponder>.Instance );
             Components.Add( Singleton<KeyboardResponder>.Instance );

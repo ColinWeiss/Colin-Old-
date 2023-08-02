@@ -39,6 +39,7 @@
     <PackageReference Include="FontStashSharp.MonoGame" Version="1.2.8" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
+    <PackageReference Include="MonoGame.IMEHelper.WindowsDX" Version="0.10.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources\PreLoadResources\ProgramResources.Designer.cs">

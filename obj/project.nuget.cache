@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "M0TVyXc+53RTwjVDG4DfHlYeFw/NgiEIu/cwcHvzRSs1DBZbdK/FiujC6naCV3MbB3QFPx8PP1WPzdzR0ueO9Q==",
+  "dgSpecHash": "IvQATIMq+FEif24wyhDWDGWKstyrebeNgIo/bVBvFccW+I9lHyIuGvqcHxMP5Q/LevSX+++KdPZPtKBewm16FQ==",
   "success": true,
   "projectFilePath": "E:\\Codes\\Colin\\Colin.csproj",
   "expectedPackageFiles": [
@@ -28,6 +28,8 @@
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.win32.registry\\4.0.0\\microsoft.win32.registry.4.0.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\monogame.framework.windowsdx\\3.8.1.303\\monogame.framework.windowsdx.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\monogame.imehelper.common\\0.9.0\\monogame.imehelper.common.0.9.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\monogame.imehelper.windowsdx\\0.10.0\\monogame.imehelper.windowsdx.0.10.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\netstandard.library\\1.6.0\\netstandard.library.1.6.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\runtime.native.system\\4.0.0\\runtime.native.system.4.0.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\runtime.native.system.io.compression\\4.1.0\\runtime.native.system.io.compression.4.1.0.nupkg.sha512",

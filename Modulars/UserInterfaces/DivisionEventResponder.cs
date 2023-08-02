@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace Colin.Modulars.UserInterfaces
 {
@@ -95,6 +96,16 @@ namespace Colin.Modulars.UserInterfaces
         public event EventHandler<DivisionEvent> ActivationEnd;
 
         /// <summary>
+        /// 事件: 发生于划分元素获得焦点时.
+        /// </summary>
+        public event EventHandler<DivisionEvent> ObtainingFocus;
+
+        /// <summary>
+        /// 事件: 发生于划分元素失去焦点时.
+        /// </summary>
+        public event EventHandler<DivisionEvent> LosesFocus;
+
+        /// <summary>
         /// 指示拖拽状态.
         /// </summary>
         public bool DraggingState = false;
@@ -184,10 +195,22 @@ namespace Colin.Modulars.UserInterfaces
             _mouseStateLast = _mouseState;
             _mouseState = Mouse.GetState();
             DivisionEvent divisionEvent = new DivisionEvent(Division);
+            Division.Interact.FocusLast = Division.Interact.Focus;
             if (UserInterface.Focus == Division)
                 Division.Interact.Focus = true;
             else
                 Division.Interact.Focus = false;
+
+            if( Division.Interact.Focus && !Division.Interact.FocusLast )
+            {
+                divisionEvent.Name = string.Concat( "Event_Division_", Division.Name, "_Activation_ObtainingFocus" );
+                ObtainingFocus?.Invoke( this, divisionEvent );
+            }
+            if( !Division.Interact.Focus && Division.Interact.FocusLast )
+            {
+                divisionEvent.Name = string.Concat( "Event_Division_", Division.Name, "_Activation_LosesFocus" );
+                LosesFocus?.Invoke( this, divisionEvent );
+            }
             if (Division.Interact.InteractionLast)
             {
                 if (!Division.Interact.Interaction)

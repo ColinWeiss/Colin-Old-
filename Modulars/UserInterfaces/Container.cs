@@ -15,7 +15,7 @@ namespace Colin.Modulars.UserInterfaces
         public Container( string name ) : base( name ) { }
         public override sealed void OnInit( )
         {
-            Interact.IsInteractive = false;
+            Interact.IsInteractive = true;
             Interact.IsSelectable = false;
             Layout.Width = EngineInfo.ViewWidth;
             Layout.Height = EngineInfo.ViewHeight;

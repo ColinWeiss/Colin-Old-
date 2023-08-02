@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Input;
+using MonoGame.IMEHelper;
 using System.Reflection;
 
 namespace Colin
@@ -143,9 +144,12 @@ namespace Colin
 
         public static Vector2 MousePositionF => MouseState.Position.ToVector2( );
 
-        public EngineInfo( Engine engine )
+        public static WinFormsIMEHandler IMEHandler;
+
+        internal static void Init( Engine engine )
         {
             Engine = engine;
+            IMEHandler = new WinFormsIMEHandler( engine );
         }
 
         /// <summary>

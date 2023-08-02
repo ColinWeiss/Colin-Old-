@@ -9,6 +9,9 @@ namespace Colin.Modulars.UserInterfaces
 {
     public class UserInterface : ISceneComponent, IRenderableSceneComponent
     {
+        /// <summary>
+        /// 指示当前焦点元素.
+        /// </summary>
         public static Division Focus;
 
         private Container _contianer = new Container( "NomalContainer" );

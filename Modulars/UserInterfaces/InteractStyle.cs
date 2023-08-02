@@ -17,6 +17,11 @@ namespace Colin.Modulars.UserInterfaces
         public bool Focus;
 
         /// <summary>
+        /// 指示划分元素上一帧是否具有焦点.
+        /// </summary>
+        public bool FocusLast;
+
+        /// <summary>
         /// 指示划分元素当前的交互状态.
         /// </summary>
         public bool Interaction;
@@ -32,6 +37,11 @@ namespace Colin.Modulars.UserInterfaces
         public bool IsDraggable;
 
         /// <summary>
+        /// 若 <see cref="IsDraggable"/> 为 <see langword="true"/>, 则针对此矩形进行限制.
+        /// </summary>
+        public Rectangle DragLimit;
+
+        /// <summary>
         /// 指示划分元素是否为可交互的.
         /// </summary>
         public bool IsInteractive;
@@ -40,7 +50,5 @@ namespace Colin.Modulars.UserInterfaces
         /// 指示划分元素是否为可选中的.
         /// </summary>
         public bool IsSelectable;
-
-
     }
 }
