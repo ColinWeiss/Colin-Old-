@@ -98,6 +98,9 @@ namespace Colin
             base.LoadContent( );
         }
 
+        /// <summary>
+        /// 在程序开始运行时执行.
+        /// </summary>
         public virtual void Start( ) { }
 
         private bool Started = false;
@@ -129,7 +132,7 @@ namespace Colin
             if( ControllerResponder.state.IsConnected )
             {
                 EngineInfo.SpriteBatch.Begin( );
-                EngineInfo.SpriteBatch.Draw( PreLoadResource.ControllerCursor.Source, Input.InteractionPoint - Vector2.One * 8 , Color.White );
+                EngineInfo.SpriteBatch.Draw( PreLoadResource.ControllerCursor.Source, Input.InteractionPoint - Vector2.One * 8, Color.White );
                 EngineInfo.SpriteBatch.End( );
             }
         }
