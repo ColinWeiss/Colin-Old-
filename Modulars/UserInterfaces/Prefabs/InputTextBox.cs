@@ -50,7 +50,6 @@ namespace Colin.Modulars.UserInterfaces.Prefabs
         public override void OnInit( )
         {
             Text = "";
-
             Layout.ScissorEnable = true;
 
             Label.Interact.IsInteractive = false;

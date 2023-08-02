@@ -32,7 +32,7 @@ namespace Colin.Modulars.UserInterfaces.Renderers
         {
             batch.DrawString( Font , _text , Division.Layout.TotalLocationF + Division.Design.Anchor,
                 Division.Design.Color , Division.Design.Scale , Division.Design.Rotation , Division.Design.Anchor ,
-                1f , 0f , 0f , TextStyle.None , FontSystemEffect.None , 0 );
+                1f , 0f , 0f , TextStyle.None , FontSystemEffect.Blurry , 0 );
         }
     }
 }

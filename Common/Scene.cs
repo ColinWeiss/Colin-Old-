@@ -128,6 +128,5 @@ namespace Colin.Common
         public virtual void UnLoad( ) { }
 
         public Scene( ) : base( EngineInfo.Engine ) { }
-
     }
 }

@@ -24,7 +24,15 @@ namespace Colin.Modulars.UserInterfaces.Renderers
                 Cut,
                 _sprite.Depth );
         }
-        public void Bind( Sprite sprite ) => _sprite = sprite;
-        public void Bind( Texture2D texture ) => _sprite = new Sprite( texture );
+        public NinecutRenderer Bind( Sprite sprite )
+        {
+            _sprite = sprite;
+            return this;
+        }
+        public NinecutRenderer Bind( Texture2D texture )
+        {
+            _sprite = new Sprite( texture );
+            return this;
+        }
     }
 }

@@ -318,17 +318,17 @@ namespace Colin.Modulars.UserInterfaces
         /// <summary>
 		/// 移除子元素.
 		/// </summary>
-		/// <param name="element">需要移除的划分元素.</param>
+		/// <param name="division">需要移除的划分元素.</param>
 		/// <returns>若移除成功, 返回 <see langword="true"/>, 否则返回 <see langword="false"/>.</returns>
-		public virtual bool Remove( Division element )
+		public virtual bool Remove( Division division )
         {
-            if( element == null || !Children.Contains( element ) || element.Parent == null )
+            if( division == null || !Children.Contains( division ) || division.Parent == null )
                 return false;
-            element.Parent = null;
-            element.ParentCanvas = null;
-            element._container = null;
-            element._interface = null;
-            return Children.Remove( element );
+            division.Parent = null;
+            division.ParentCanvas = null;
+            division._container = null;
+            division._interface = null;
+            return Children.Remove( division );
         }
 
         /// <summary>
@@ -348,6 +348,8 @@ namespace Colin.Modulars.UserInterfaces
         {
             Children.ForEach( child => action( child ) );
         }
+
+        public void Do( Action<Division> action ) => action( this );
 
         /// <summary>
 		/// 判断该划分元素是否包含指定点.
