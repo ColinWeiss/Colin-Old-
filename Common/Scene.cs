@@ -40,8 +40,6 @@ namespace Colin.Common
                 _components.Add( SceneCamera = new SceneCamera( ) );
                 SceneInit( );
             }
-            else
-                Game.Window.ClientSizeChanged += InitRenderTarget;
             base.Initialize( );
         }
 
@@ -61,8 +59,8 @@ namespace Colin.Common
         {
             if( !Started )
             {
-                Started = true;
                 Start( );
+                Started = true;
             }
             ComponentList.DoUpdate( gameTime );
             SceneUpdate( );

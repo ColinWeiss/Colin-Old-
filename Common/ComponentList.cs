@@ -5,13 +5,6 @@ namespace Colin.Common
 {
     public class ComponentList
     {
-        public readonly Entity Entity;
-
-        public ComponentList( Entity entity )
-        {
-            Entity = entity;
-        }
-
         internal LiteList<Component> _components = new LiteList<Component>( );
 
         private LiteList<IUpdateableComponent> _updatableComponents = new LiteList<IUpdateableComponent>( );
@@ -37,7 +30,6 @@ namespace Colin.Common
                 for( int i = 0, count = _componentsToAdd.Count; i < count; i++ )
                 {
                     var component = _componentsToAdd[i];
-                    component.Entity = Entity;
                     if( component is RenderableComponent renderableComponent )
                         _renderableComponents.Add( renderableComponent );
                     if( component is IUpdateableComponent updateableComponent )
@@ -49,8 +41,6 @@ namespace Colin.Common
                 for( var i = 0; i < _tempBufferList.Count; i++ )
                 {
                     var component = _tempBufferList[i];
-                    if( component.Enable )
-                        component.OnEnabled( );
                 }
                 _tempBufferList.Clear( );
             }
@@ -65,8 +55,6 @@ namespace Colin.Common
             UpdateLists( );
             for( var i = 0; i < _updatableComponents.length; i++ )
             {
-                if( _updatableComponents.buffer[i].Enable && (_updatableComponents.buffer[i] as Component).Enable )
-                    _updatableComponents.buffer[i].DoUpdate( gameTime );
             }
         }
 

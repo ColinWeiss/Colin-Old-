@@ -8,7 +8,10 @@ namespace Colin.Modulars.UserInterfaces.Prefabs
 {
     public class ProgressBar : Division
     {
-        public ProgressBar( string name ) : base( name ) { }
+        public ProgressBar( string name ) : base( name ) 
+        {
+            Fill = new Division( "Fill" );
+        }
 
         public Division Fill;
 
@@ -22,7 +25,6 @@ namespace Colin.Modulars.UserInterfaces.Prefabs
 
         public override void OnInit( )
         {
-            Fill = new Division( "Fill" );
             Register( Fill );
             base.OnInit( );
         }

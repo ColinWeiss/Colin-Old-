@@ -38,7 +38,7 @@ namespace Colin
             {
                 EngineInfo.Graphics = new GraphicsDeviceManager( this )
                 {
-                    PreferHalfPixelOffset = false,
+                    PreferHalfPixelOffset = true,
                     HardwareModeSwitch = false,
                     SynchronizeWithVerticalRetrace = true,
                     PreferMultiSampling = true,

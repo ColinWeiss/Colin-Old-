@@ -46,13 +46,31 @@ namespace Colin.Modulars.Tiles
         }
         public void DoUpdate( GameTime time )
         {
-
+            Console.WriteLine(  Camera.Position );
         }
 
+        public void First( SpriteBatch batch )
+        {
+            batch.Begin( samplerState: SamplerState.PointClamp , transformMatrix: Camera.View );
+            Point start = (Camera.Position / 16).ToPoint( );
+            Point view = (Camera.SizeF / 16).ToPoint( );
+            Point loop = start + view;
+            start.X = Math.Clamp( start.X, 0, Tile.Width - 1 );
+            start.Y = Math.Clamp( start.Y, 0, Tile.Height - 1 );
+            loop.X = Math.Clamp( loop.X, 0, Tile.Width - 1 );
+            loop.Y = Math.Clamp( loop.X, 0, Tile.Height - 1 );
+            for( int countX = start.X ; countX < loop.X ; countX++ )
+            {
+                for( int countY = start.Y ; countY < loop.Y ; countY++ )
+                {
+                    Tile.behaviors[countX, countY].RenderTexture( countX , countY );
+                }
+            }
+            batch.End( );
+        }
         public void DoRender( SpriteBatch batch )
         {
-            Point frameOffset = Camera.PositionLast.ToPoint( ) - Camera.Position.ToPoint( );
-
+            First( batch );
         }
         public TileRenderer( Tile tile, SceneCamera camera )
         {

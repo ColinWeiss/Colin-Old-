@@ -119,6 +119,5 @@ namespace Colin.Common
             t = EngineInfo.Graphics.GraphicsDevice.Viewport.Project( t, Projection, View, Matrix.Identity );
             return new Vector2( t.X, t.Y );
         }
-
     }
 }
