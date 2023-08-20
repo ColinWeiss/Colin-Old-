@@ -29,7 +29,7 @@ namespace Colin.Modulars.Tiles
             set => _enable = value;
         }
 
-        public TileInfocollection infos;
+        public TileInfoCollection infos;
 
         public TileBehaviorCollection behaviors;
 
@@ -37,7 +37,7 @@ namespace Colin.Modulars.Tiles
         {
             _width = width;
             _height = height;
-            infos = new TileInfocollection(width, height);
+            infos = new TileInfoCollection(width, height);
             behaviors = new TileBehaviorCollection(width, height);
             behaviors.tile = this;
         }
@@ -56,6 +56,5 @@ namespace Colin.Modulars.Tiles
             infos.CreateTileDefaultInfo(coorinateX, coorinateY);
             behaviors.SetBehavior<T>(coorinateX, coorinateY);
         }
-
     }
 }

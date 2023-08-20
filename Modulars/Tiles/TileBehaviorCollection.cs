@@ -12,45 +12,45 @@ namespace Colin.Modulars.Tiles
         public Tile Tile => tile;
         public int Width { get; }
         public int Height { get; }
-        private TileBehavior[] _behaviors;
+        private TileBehavior[ ] _behaviors;
         public TileBehavior this[int index] => _behaviors[index];
         public TileBehavior this[int x, int y] => _behaviors[x + y * Width];
-        public TileBehaviorCollection(int width, int height)
+        public TileBehaviorCollection( int width, int height )
         {
             Width = width;
             Height = height;
             _behaviors = new TileBehavior[width * height];
-            for (int count = 0; count < _behaviors.Length - 1; count++)
+            for( int count = 0 ; count < _behaviors.Length - 1 ; count++ )
             {
-                _behaviors[count] = new TileBehavior();
+                _behaviors[count] = new TileBehavior( );
             }
         }
-        public TileBehaviorCollection(Point size)
+        public TileBehaviorCollection( Point size )
         {
             Width = size.X;
             Height = size.Y;
             _behaviors = new TileBehavior[size.X * size.Y];
-            for (int count = 0; count < _behaviors.Length; count++)
+            for( int count = 0 ; count < _behaviors.Length ; count++ )
             {
-                _behaviors[count] = new TileBehavior();
+                _behaviors[count] = new TileBehavior( );
             }
         }
 
-        public void SetBehavior<T>(int x, int y) where T : TileBehavior, new()
+        public void SetBehavior<T>( int x, int y ) where T : TileBehavior, new()
         {
-            _behaviors[x + y * Width] = new T();
+            _behaviors[x + y * Width] = new T( );
             T _behavior = _behaviors[x + y * Width] as T;
             _behavior.tile = tile;
             _behavior.coordinateX = x;
             _behavior.coordinateY = y;
             _behavior.id = x + y * Width;
-            _behavior.SetDefaults();
-            _behavior.OnRefresh();
+            _behavior.SetDefaults( );
+            _behavior.OnRefresh( );
         }
 
-        public void ClearBehavior(int x, int y)
+        public void ClearBehavior( int x, int y )
         {
-            _behaviors[x + y * Width] = new TileBehavior();
+            _behaviors[x + y * Width] = new TileBehavior( );
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Colin.Modulars.Tiles
     /// 瓦片信息集合.
     /// </summary>
     [Serializable]
-    public struct TileInfocollection
+    public struct TileInfoCollection
     {
         public int Width { get; }
         public int Height { get; }
@@ -22,7 +22,7 @@ namespace Colin.Modulars.Tiles
         public ref TileInfo this[int index] => ref _tiles[index];
         public ref TileInfo this[int x, int y] => ref _tiles[x + y * Width];
 
-        public TileInfocollection(int width, int height)
+        public TileInfoCollection(int width, int height)
         {
             Width = width;
             Height = height;
@@ -32,7 +32,7 @@ namespace Colin.Modulars.Tiles
             Span<TileInfo> _map = _tiles;
             _map.Fill(_emptyTile);
         }
-        public TileInfocollection(Point size)
+        public TileInfoCollection(Point size)
         {
             Width = size.X;
             Height = size.Y;

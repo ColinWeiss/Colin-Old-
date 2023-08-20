@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Colin.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,27 +13,25 @@ namespace Colin.Common
 
         public Matrix Projection;
 
-        public Vector2 Position;
-
-        public Vector2 PositionLast;
-
         public Vector2 Translate;
 
+        public Vector2 Position;
+        public Vector2 PositionLast;
+        public Vector2 TargetPosition;
+
         public float Rotation;
+        public float RotationVelocity;
+        public float TargetRotation;
 
         public Vector2 Zoom;
+        public Vector2 ZoomVelocity;
+        public Vector2 TargetZoom;
 
         public bool Trace = true;
 
         public Vector2 Amount;
 
         public Vector2 Velocity;
-
-        public float RotationVelocity;
-
-        public Vector2 TargetPosition;
-
-        public float TargetRotation;
 
         public bool Enable { get; set; }
 
@@ -55,20 +54,25 @@ namespace Colin.Common
             _height = height;
             Projection = Matrix.CreateOrthographicOffCenter( 0f, width, height, 0f, 0f, 1f );
             View = Matrix.Identity;
-            Translate = Vector2.Zero;
+            Translate = EngineInfo.ViewCenter;
+            Zoom = Vector2.One;
+            TargetZoom = Vector2.One;
             ResetCamera( );
         }
+
         public void DoUpdate( GameTime time )
         {
-            if( Trace )
+            if ( Trace )
             {
                 Velocity = (TargetPosition - Position) * 0.1f;
+                ZoomVelocity = (TargetZoom - Zoom) * 0.1f;
                 RotationVelocity = (TargetRotation - Rotation) * 0.1f;
-                if( Vector2.Distance( TargetPosition, Position ) < 1 )
+                if( Vector2.Distance( TargetPosition, Position ) < 0.1f )
                     Position = TargetPosition;
                 if( Math.Abs( Rotation - RotationVelocity ) < 0.017f )
                     Rotation = RotationVelocity;
             }
+            Zoom += ZoomVelocity;
             Rotation += RotationVelocity;
             PositionLast = Position;
             Position += Velocity + Amount;
@@ -89,7 +93,7 @@ namespace Colin.Common
         public void ResetCamera( )
         {
             Rotation = 0f;
-            Zoom = Vector2.One;
+           // Zoom = Vector2.One;
             SetView( );
         }
 

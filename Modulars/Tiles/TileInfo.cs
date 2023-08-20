@@ -32,6 +32,9 @@ namespace Colin.Modulars.Tiles
         /// </summary>
         public int CoordinateY;
 
+        public Point Coordinate => new Point( CoordinateX , CoordinateY );
+        public Vector2 CoordinateF => new Vector2( CoordinateX, CoordinateY );
+
         /// <summary>
         /// 指示物块纹理帧格.
         /// </summary>
@@ -42,6 +45,13 @@ namespace Colin.Modulars.Tiles
         /// </summary>
         public TileFrame Border;
 
+        /// <summary>
+        /// 指示物块的碰撞信息.
+        /// </summary>
+        public TileCollision Collision;
+
+        public Rectangle HitBox => new Rectangle( (CoordinateF * TileOption.TileSizeF + TileOption.TileSizeF / 2).ToPoint( ), TileOption.TileSize );
+
         public TileInfo()
         {
             ID = 0;
@@ -50,6 +60,7 @@ namespace Colin.Modulars.Tiles
             CoordinateY = 0;
             Texture = new TileFrame(-1, -1);
             Border = new TileFrame(-1, -1);
+            Collision = TileCollision.Impassable;
         }
     }
 }

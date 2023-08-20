@@ -6,41 +6,47 @@ namespace Colin.Inputs
     /// 鼠标响应器.
     /// <br>[!] 已继承 <see cref="ISingleton"/>.</br>
     /// </summary>
-    public sealed class MouseResponder : GameComponent , ISingleton
+    public sealed class MouseResponder : GameComponent, ISingleton
     {
         public MouseResponder( ) : base( EngineInfo.Engine ) { }
 
         public static bool MouseLeftClickBeforeFlag =>
             State.LeftButton == ButtonState.Pressed &&
-            stateLast.LeftButton == ButtonState.Released;
+            StateLast.LeftButton == ButtonState.Released;
 
         public static bool MouseLeftDownFlag =>
             State.LeftButton == ButtonState.Pressed &&
-            stateLast.LeftButton == ButtonState.Pressed;
+            StateLast.LeftButton == ButtonState.Pressed;
 
         public static bool MouseLeftUpFlag =>
             State.LeftButton == ButtonState.Released &&
-            stateLast.LeftButton == ButtonState.Released;
+            StateLast.LeftButton == ButtonState.Released;
 
         public static bool MouseLeftClickAfterFlag =>
            State.LeftButton == ButtonState.Released &&
-            stateLast.LeftButton == ButtonState.Pressed;
+            StateLast.LeftButton == ButtonState.Pressed;
 
         public static bool MouseRightClickBeforeFlag =>
             State.RightButton == ButtonState.Pressed &&
-            stateLast.RightButton == ButtonState.Released;
+            StateLast.RightButton == ButtonState.Released;
 
         public static bool MouseRightDownFlag =>
             State.RightButton == ButtonState.Pressed &&
-            stateLast.RightButton == ButtonState.Pressed;
+            StateLast.RightButton == ButtonState.Pressed;
 
         public static bool MouseRightUpFlag =>
              State.RightButton == ButtonState.Released &&
-             stateLast.RightButton == ButtonState.Released;
+             StateLast.RightButton == ButtonState.Released;
 
         public static bool MouseRightClickAfterFlag =>
             State.RightButton == ButtonState.Released &&
-            stateLast.RightButton == ButtonState.Pressed;
+            StateLast.RightButton == ButtonState.Pressed;
+
+        public static bool MouseScrollUp =>
+            State.ScrollWheelValue < StateLast.ScrollWheelValue;
+
+        public static bool MouseScrollDown =>
+            State.ScrollWheelValue > StateLast.ScrollWheelValue;
 
         public bool Enable { get; set; }
 
@@ -52,7 +58,7 @@ namespace Colin.Inputs
         /// <summary>
         /// 上一帧鼠标状态.
         /// </summary>
-        public static MouseState stateLast = new MouseState( );
+        public static MouseState StateLast = new MouseState( );
 
         /// <summary>
         /// 鼠标位置.
@@ -61,7 +67,7 @@ namespace Colin.Inputs
 
         public override void Update( GameTime gameTime )
         {
-            stateLast = State;
+            StateLast = State;
             State = Mouse.GetState( );
             base.Update( gameTime );
         }

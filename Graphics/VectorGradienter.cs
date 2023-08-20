@@ -12,7 +12,7 @@ namespace Colin.Graphics
         public Vector2 Default;
         public Vector2 Current;
         public Vector2 Target;
-        public void Set(Vector2 vector2)
+        public void Set( Vector2 vector2 )
         {
             Default = vector2;
             Current = vector2;
@@ -23,12 +23,12 @@ namespace Colin.Graphics
         private bool _start;
         private float _currentValue;
         public GradientStyle GradientStyle = GradientStyle.Linear;
-        public Vector2 Update()
+        public Vector2 Update( )
         {
-            if (_start)
+            if( _start )
             {
                 Timer += Colin.Time.UnscaledDeltaTime;
-                if (Timer <= Time)
+                if( Timer <= Time )
                 {
                     switch( GradientStyle )
                     {
@@ -42,7 +42,7 @@ namespace Colin.Graphics
                     Current.Closer( Target, _currentValue, 1f );
                 }
             }
-            if (Timer > Time)
+            if( Timer > Time )
             {
                 Current = Target;
                 _start = false;
@@ -50,13 +50,13 @@ namespace Colin.Graphics
             }
             return Current;
         }
-        public void Start()
+        public void Start( )
         {
             Current = Default;
             Timer = 0;
             _start = true;
         }
-        public void Stop()
+        public void Stop( )
         {
             _start = false;
             Timer = 0;
