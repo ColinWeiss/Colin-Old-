@@ -2,6 +2,7 @@
 using Colin.Inputs;
 using Colin.IO;
 using Colin.Resources;
+using System.Windows.Forms;
 
 namespace Colin
 {
@@ -12,6 +13,8 @@ namespace Colin
         public bool Enable { get; set; } = true;
 
         public bool Visiable { get; set; } = true;
+
+        public bool Pause = false;
 
         /// <summary>
         /// 指示当前活跃场景.
@@ -29,6 +32,8 @@ namespace Colin
             get => _targetFrame;
             set => SetTargetFrame( value );
         }
+
+        public Form Form;
 
         public Engine( )
         {
@@ -48,6 +53,10 @@ namespace Colin
             Window.AllowUserResizing = true;
             IsMouseVisible = true;
             IsFixedTimeStep = true;
+            Form = Control.FromHandle( Window.Handle ) as Form;
+            Form.MinimizeBox = false;
+            Form.MaximizeBox = false;
+            Form.MinimumSize = new System.Drawing.Size( 1280 , 720 );
         }
 
         public void SetTargetFrame( int frame )
@@ -137,6 +146,18 @@ namespace Colin
             }
         }
         public virtual void DoRender( ) { }
+
+        protected override void OnActivated( object sender, EventArgs args )
+        {
+            Pause = false;
+            base.OnActivated( sender, args );
+        }
+
+        protected override void OnDeactivated( object sender, EventArgs args )
+        {
+            Pause = true;
+            base.OnDeactivated( sender, args );
+        }
 
         protected override void OnExiting( object sender, EventArgs args )
         {

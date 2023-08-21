@@ -136,7 +136,7 @@ namespace Colin.Modulars.UserInterfaces
                     UserInterface.Focus = Division;
                     divEvent.Name = string.Concat("Event_Division_", Division.Name, "_Mouse_MouseLeftClickBefore");
                     MouseLeftClickBefore?.Invoke(this, divEvent);
-                    if (Division.Interact.IsDraggable && Division.Interact.InteractionLast)
+                    if ( Division.Interact.IsDraggable && Division.Interact.InteractionLast )
                     {
                         divEvent.Name = string.Concat("Event_Division_", Division.Name, "_Mouse_DragStart");
                         DragStart?.Invoke(this, divEvent);
@@ -219,12 +219,12 @@ namespace Colin.Modulars.UserInterfaces
                     ActivationEnd?.Invoke(this, divisionEvent);
                 }
             }
-            if (DraggingState && Division.Interact.IsDraggable)
+            if (DraggingState && Division.Interact.IsDraggable )
             {
                 divisionEvent.Name = string.Concat("Event_Division_", Division.Name, "_Mouse_Dragging");
                 Dragging?.Invoke(this, divisionEvent);
             }
-            if (MouseResponder.MouseLeftUpFlag && Division.Interact.IsDraggable)
+            if (MouseResponder.MouseLeftUpFlag && Division.Interact.IsDraggable )
             {
                 DraggingState = false;
                 divisionEvent.Name = string.Concat("Event_Division_", Division.Name, "_Mouse_DragEnd");

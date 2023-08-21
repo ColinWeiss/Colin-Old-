@@ -37,7 +37,7 @@ namespace Colin.Modulars.UserInterfaces
         /// 划分元素的交互样式.
         /// </summary>
         public InteractStyle Interact;
-
+        
         /// <summary>
         /// 划分元素的设计样式.
         /// </summary>
@@ -67,6 +67,7 @@ namespace Colin.Modulars.UserInterfaces
             else
                 return null;
         }
+        public void ClearRenderer( ) => _renderer = null;
 
         /// <summary>
         /// 划分元素控制器.
@@ -177,6 +178,7 @@ namespace Colin.Modulars.UserInterfaces
             _cachePos = new Point( -1, -1 );
         }
 
+        private bool _started = false;
         /// <summary>
         /// 执行划分元素的逻辑刷新.
         /// </summary>
@@ -186,6 +188,11 @@ namespace Colin.Modulars.UserInterfaces
             PreUpdate( time );
             if( !IsVisible )
                 return;
+            if( !_started )
+            {
+                Start( time );
+                _started = true;
+            }
             Events.Independent( );
             Controller?.Layout( ref Layout );
             if( Parent != null )
@@ -195,6 +202,10 @@ namespace Colin.Modulars.UserInterfaces
             OnUpdate( time );
             UpdateChildren( time );
         }
+        /// <summary>
+        /// 发生于 <see cref="DoUpdate(GameTime)"/> 第一帧执行时.
+        /// </summary>
+        public virtual void Start( GameTime time ) { }
         /// <summary>
         /// 发生于 <see cref="DoUpdate"/> 执行时, 但不受 <see cref="IsVisible"/> 控制.
         /// <br>相较于 <see cref="UpdateChildren"/> 与 <see cref="OnUpdate"/> 最先执行.</br>
